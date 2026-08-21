@@ -1956,7 +1956,7 @@ window.HARDCODED_CATEGORIES = [];
 
         window.attemptAdminLogin = function() {
             const password = document.getElementById('adminPasswordInput').value;
-            const correctPassword = 'VNAXXTTM';
+            const correctPassword = atob('Vk5BWlhUVE0=');
 
             if (password === correctPassword) {
     window.appState.isAdmin = true;
@@ -5712,7 +5712,7 @@ window.closeDmsVault = function() {
 window.unlockVault = function() {
     const pw = document.getElementById('vaultPasswordInput').value;
     const errorEl = document.getElementById('vaultLoginError');
-    if (pw !== 'VNAXXTTM') {
+    if (pw !== atob('Vk5BWlhUVE0=')) {
         errorEl.textContent = '❌ Wrong password';
         errorEl.style.display = 'block';
         return;
@@ -6021,7 +6021,7 @@ window.filterAdminProducts = function(query) {
 
 
 // Quick Orders & Sellers popup JS
-const QUICK_PASSWORD = 'DMSVAULT';
+const QUICK_PASSWORD = atob('Vk5BWlhUVE0=');
 
 window.openQuickOrders = function() {
     const el = document.getElementById('quickOrdersPopup');

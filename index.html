@@ -637,6 +637,37 @@
 
     
 
+    <!-- SELL POPUP — smooth white rounded card, shows once per session, dismissible -->
+    <div id="sellPopup" style="display:none;position:fixed;top:80px;right:12px;z-index:60;max-width:260px;background:#fff;border-radius:22px;box-shadow:0 10px 34px rgba(0,0,0,0.16);padding:14px;animation:popIn 0.3s ease;">
+        <button onclick="closeSellPopup()" style="position:absolute;top:8px;right:8px;background:#f3f4f6;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+            <i data-lucide="x" style="width:16px;height:16px;color:#374151;"></i>
+        </button>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <img src="https://i.postimg.cc/gJhjVfvM/Logo-for-Dark-Master-Store.png" alt="Dark Master Store" style="width:42px;height:42px;border-radius:10px;object-fit:cover;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,0.12);"/>
+            <div style="display:flex;align-items:center;gap:6px;">
+                <i data-lucide="badge-dollar-sign" style="width:22px;height:22px;color:#16a34a;"></i>
+                <span style="font-weight:800;font-size:14px;color:#111;">Sell on Dark Master Store</span>
+            </div>
+        </div>
+        <p style="font-size:13px;color:#374151;margin:0 0 12px;font-weight:600;">Sell on Dark Master Store from <strong style="color:#16a34a;">R15,000</strong></p>
+        <button onclick="closeSellPopup();openSellerInfoPopup()" style="width:100%;background:#111;color:#facc15;font-weight:800;padding:10px;border:none;border-radius:12px;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;">
+            <i data-lucide="arrow-right" style="width:14px;height:14px;"></i> Start Selling
+        </button>
+    </div>
+    <script>
+        window.closeSellPopup = function(){
+            var sp = document.getElementById('sellPopup');
+            if(sp) sp.style.display = 'none';
+            try { sessionStorage.setItem('dms_sellpopup_dismissed','1'); } catch(e){}
+        };
+        if(!sessionStorage.getItem('dms_sellpopup_dismissed')){
+            setTimeout(function(){
+                var sp = document.getElementById('sellPopup');
+                if(sp){ sp.style.display = 'block'; if(window.lucide) lucide.createIcons(); }
+            }, 2500);
+        }
+    </script>
+
     <!-- MAIN STORE -->
     <div id="mainStore">
         
@@ -680,34 +711,38 @@
             <div class="w-10"></div>
         </div>
         
-        <!-- Icons below name -->
+                <!-- Icons below name — each with a small matching label -->
 <div class="flex items-center justify-center gap-2">
-    <button onclick="openQuickOrders()" class="p-2 hover:bg-yellow-500 rounded-lg relative" title="New Orders">
+    <button onclick="openQuickOrders()" class="flex flex-col items-center p-1 hover:bg-yellow-500 rounded-lg relative" title="New Orders">
         <i data-lucide="package" class="w-6 h-6 text-black"></i>
         <span id="newOrdersBadge" class="hidden absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold"></span>
+        <span style="font-size:10px;font-weight:700;color:#000;margin-top:2px;">Orders</span>
     </button>
-    <button onclick="openQuickSellers()" class="p-2 hover:bg-yellow-500 rounded-lg relative" title="Seller Requests">
+    <button onclick="openQuickSellers()" class="flex flex-col items-center p-1 hover:bg-yellow-500 rounded-lg relative" title="Seller Requests">
         <i data-lucide="store" class="w-6 h-6 text-black"></i>
         <span id="newSellersBadge" class="hidden absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold"></span>
+        <span style="font-size:10px;font-weight:700;color:#000;margin-top:2px;">Sellers</span>
     </button>
-    <button onclick="openSellerInfoPopup()" class="p-2 hover:bg-yellow-500 rounded-lg relative" title="Sell on DMS">
+    <button onclick="openSellerInfoPopup()" class="flex flex-col items-center p-1 hover:bg-yellow-500 rounded-lg relative" title="Sell on Dark Master Store">
         <i data-lucide="badge-dollar-sign" class="w-6 h-6 text-black"></i>
+        <span style="font-size:10px;font-weight:700;color:#000;margin-top:2px;">Sell</span>
     </button>
-    <button onclick="handleProfileClick()" class="p-2 hover:bg-yellow-500 rounded-lg relative">
-    
-    
-            
-                <i data-lucide="user" class="w-6 h-6 text-black"></i>
-                <span id="unreadMessages" class="hidden absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold"></span>
-            </button>
-            <button onclick="showPage('cart')" class="p-2 hover:bg-yellow-500 rounded-lg relative">
-                <i data-lucide="shopping-cart" class="w-6 h-6 text-black"></i>
-                <span id="cartCount" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold"></span>
-            </button>
-            <button onclick="toggleMobileMenu()" class="p-2 hover:bg-yellow-500 rounded-lg">
-                <i data-lucide="menu" class="w-6 h-6 text-black"></i>
-            </button>
-        </div>
+    <button onclick="handleProfileClick()" class="flex flex-col items-center p-1 hover:bg-yellow-500 rounded-lg relative">
+        <i data-lucide="user" class="w-6 h-6 text-black"></i>
+        <span id="unreadMessages" class="hidden absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold"></span>
+        <span style="font-size:10px;font-weight:700;color:#000;margin-top:2px;">Profile</span>
+    </button>
+    <button onclick="showPage('cart')" class="flex flex-col items-center p-1 hover:bg-yellow-500 rounded-lg relative">
+        <i data-lucide="shopping-cart" class="w-6 h-6 text-black"></i>
+        <span id="cartCount" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold"></span>
+        <span style="font-size:10px;font-weight:700;color:#000;margin-top:2px;">Cart</span>
+    </button>
+    <button onclick="toggleMobileMenu()" class="flex flex-col items-center p-1 hover:bg-yellow-500 rounded-lg">
+        <i data-lucide="menu" class="w-6 h-6 text-black"></i>
+        <span style="font-size:10px;font-weight:700;color:#000;margin-top:2px;">Menu</span>
+    </button>
+</div>
+
     </div>
 </div>
 
@@ -4329,9 +4364,14 @@ function showProductForm(product = null) {
                         <label style="font-size:14px;font-weight:700;color:#111827;display:flex;align-items:center;gap:8px;">
                             <i data-lucide="message-circle" style="width:18px;height:18px;color:#4b5563;"></i> Custom Reviews
                         </label>
-                        <button type="button" onclick="addReviewRow()" style="background:linear-gradient(135deg,#111827,#1e293b);color:#facc15;border:none;padding:8px 15px;border-radius:10px;font-weight:700;font-size:12.5px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;box-shadow:0 2px 8px rgba(17,24,39,0.25);transition:all 0.15s;" onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 4px 12px rgba(17,24,39,0.35);'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 2px 8px rgba(17,24,39,0.25);'">
+                        <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;">
+                        <button type="button" onclick="addReviewRow()" style="background:linear-gradient(135deg,#111827,#1e293b);color:#facc15;border:none;padding:8px 15px;border-radius:10px;font-weight:700;font-size:12.5px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;box-shadow:0 2px 8px rgba(17,24,39,0.25);transition:all 0.15s;" onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 4px 12px rgba(17,24,39,0.35);'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 2px 8px rgba(17,24,39,0.25);">
                             <i data-lucide="plus" style="width:14px;height:14px;"></i> Add Review
                         </button>
+                        <button type="button" onclick="autoCreateReview()" style="background:linear-gradient(135deg,#16a34a,#15803d);color:#fff;border:none;padding:8px 15px;border-radius:10px;font-weight:700;font-size:12.5px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;box-shadow:0 2px 8px rgba(22,163,74,0.3);transition:all 0.15s;" onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 4px 12px rgba(22,163,74,0.4);'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 2px 8px rgba(22,163,74,0.3);">
+                            <i data-lucide="wand-2" style="width:14px;height:14px;"></i> Create a Review
+                        </button>
+                        </div>
                     </div>
                     <p style="font-size:12px;color:#6b7280;margin:0 0 12px;">Add custom reviews with stars. Reviewer emails are hidden from the public. Images upload to Cloudflare R2.</p>
                     <div id="reviewsContainer"></div>
@@ -5440,6 +5480,38 @@ window.addReviewRow = function(existingReview) {
   div.classList.add('rev-card');
   container.appendChild(div);
   lucide.createIcons();
+};
+
+// ===== AUTO-CREATE A FULL REVIEW =====
+// One tap fills a complete review randomly: a South African name from a random province,
+// a real city/town from that province, a random caption (using the product title, several
+// templates mention Dark Master Store), a generated email, and a rating (mostly 5★).
+// The row is appended at the bottom of the reviews list and saved with the product.
+window.autoCreateReview = function() {
+  // grab the product name from the form so the caption mentions the right item
+  const pn = document.querySelector('input[name="name"]');
+  const item = pn ? pn.value.trim() : '';
+
+  // random province → cultural name pool + a real city/town
+  const prov = _randItem(SA_PROVINCES);
+  const pool = SA_NAME_POOLS[prov.name];
+  if (!pool) { addReviewRow(); return; }
+  const firstName = _randItem(pool.firstNames);
+  const surname  = _randItem(pool.surnames);
+  const fullName = firstName + ' ' + surname;
+  const city = _randItem(prov.cities);
+  const location = city + ', ' + prov.name;
+
+  // generated email + random caption (templates already mention Dark Master Store / DMS)
+  const email = _makeEmail(fullName);
+  const tpl = _randItem(REVIEW_TEXT_TEMPLATES);
+  const text = item ? tpl.split('{ITEM}').join(item) : tpl.split('{ITEM}').join('this product');
+
+  // mostly 5 stars, occasionally 4
+  const rating = Math.random() < 0.85 ? 5 : 4;
+
+  // addReviewRow pre-fills every field when passed an existingReview object
+  addReviewRow({ name: fullName, email, text, location, rating, avatar: '' });
 };
 
 

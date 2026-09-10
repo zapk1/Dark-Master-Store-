@@ -28,14 +28,14 @@
 
     
 <title>Dark Master Store</title>
-<meta name="description" content="King of Phone Covers — premium pouches for Samsung, Oppo, Huawei & iPhone. We also fix phones. Free nationwide delivery on every order across South Africa." />
+<meta name="description" content=" South African Online Marketplace . Free nationwide delivery on every order across South Africa." />
 <meta name="keywords" content="phone covers, phone pouches, Samsung cases, iPhone cases, Oppo cases, Huawei cases, phone repairs, screen repair, PAXI delivery, South Africa, Dark Master Store" />
 <meta name="robots" content="index, follow" />
 <meta name="author" content="Dark Master Store" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Dark Master Store" />
 <meta property="og:url" content="https://darkmasterstore.beelzeapps.co.za/" />
-<meta property="og:title" content="Dark Master Store — King of Phone Covers" />
+<meta property="og:title" content="Dark Master Store — South African Online Marketplace " />
 <meta property="og:description" content="Premium phone pouches for Samsung, Oppo, Huawei & iPhone. We also fix phones. PAXI delivery R60 flat nationwide." />
 <meta property="og:image" content="https://media.base44.com/images/public/6a28f4751d95187a70703132/f47dbd0b6_61e5u2YCCBL.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -675,7 +675,7 @@
                     DARK MASTER STORE
                     <img src="https://flagcdn.com/w40/za.png" alt="South Africa" style="width:26px;height:auto;border-radius:3px;display:inline-block;vertical-align:middle;" />
                 </h1>
-         <p style="font-size:11px;font-weight:600;color:rgba(0,0,0,0.7);margin:2px 0 0;letter-spacing:0.2px;">King of Phone Covers · We also fix phones</p>
+         <p style="font-size:11px;font-weight:600;color:rgba(0,0,0,0.7);margin:2px 0 0;letter-spacing:0.2px;">South African Online Marketplace </p>
             </div>
             
             <div class="w-10"></div>
@@ -888,21 +888,21 @@
             </div>
 
 
-
-            
-            <!-- More Products -->
+<!-- More Products -->
             <div class="py-16 bg-gray-50">
                 <div class="max-w-7xl mx-auto px-4">
-                    <h2 class="text-3xl font-bold text-center mb-12">Discover More</h2>
+             <h2 class="text-3xl font-bold text-center mb-4">Discover More</h2>
                     <div id="moreProducts" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
-                    <div class="text-center mt-12">
+                   <div class="text-center mt-4">
                         <button onclick="showPage('products')" class="bg-yellow-400 text-black px-3 py-1.5 text-xs rounded-md font-semibold hover:bg-yellow-500 inline-flex items-center gap-1">
                         View All Products
                        <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                  </button>
+                   </button>
                     </div>
                 </div>
             </div>
+            
+            
 
             <!-- Footer -->
             <div class="bg-gray-800 text-white py-12">
@@ -5068,7 +5068,225 @@ window.selectColor = function(color, btn) {
   document.getElementById('selectedColor').value = color;
 };
 
-// ---- REVIEW ROW ----
+// ============================================================
+// REVIEW HELPER DATA — SA provinces, cities, cultural name pools
+// ============================================================
+const SA_PROVINCES = [
+  { name: "Gauteng", cities: ["Johannesburg","Pretoria","Soweto","Sandton","Midrand","Centurion","Tembisa","Vereeniging","Vanderbijlpark","Krugersdorp","Roodepoort","Benoni","Boksburg","Springs","Nigel","Heidelberg","Carletonville","Randfontein","Westonaria","Mamelodi","Atteridgeville","Soshanguve","Diepsloot","Alexandra","Lenasia","Ennerdale","Orange Farm","Diepkloof","Pimville","Orlando","Diepmeadow","Protea","Meadowlands"] },
+  { name: "Western Cape", cities: ["Cape Town","Stellenbosch","Paarl","George","Worcester","Mossel Bay","Bellville","Mitchells Plain","Khayelitsha","Claremont","Wynberg","Muizenberg","Fish Hoek","Simon's Town","Atlantis","Durbanville","Kraaifontein","Brackenfell","Kuils River","Strand","Somerset West","Gordon's Bay","Worcester","Hermanus","Swellendam","Oudtshoorn","Lansdowne","Philippi","Gugulethu","Nyanga","Langa","Delft","Blue Downs","Eerste River","Grabouw","Caledon","Bredasdorp","Ceres","Tulbagh","Wellington","Robertson","Montagu","Knysna","Plettenberg Bay"] },
+  { name: "KwaZulu-Natal", cities: ["Durban","Pietermaritzburg","Newcastle","Richards Bay","Pinetown","Umhlanga","Ballito","Stanger","KwaMashu","Umlazi","Chatsworth","Phoenix","Verulam","Tongaat","Empangeni","Ladysmith","Estcourt","Kokstad","Port Shepstone","Margate","Hibberdene","Scottburgh","Umzinto","Hammersdale","Mooi River","Howick","Greytown","Vryheid","Paulpietersburg","Dundee","Bergville","Hluhluwe","Mthubatuba","St Lucia","Eshowe","Mandini","Maphumulo","Nongoma","Ulundi","Nqutu","Msinga","Tugela Ferry","UMzimkhulu","Harding","Ixopo","Richmond","Camperdown","Hilton","Merrivale","Umkhomazi","Umzinto"] },
+  { name: "Eastern Cape", cities: ["Gqeberha","East London","Mthatha","Uitenhage","Grahamstown","Queenstown","King William's Town","Bizana","Port Alfred","Cradock","Graaff-Reinet","Aliwal North","Fort Beaufort","Bhisho","Mdantsane","Dimbaza","Zwelitsha","Butterworth","Willowvale","Idutywa","Sterkspruit","Lady Frere","Cofimvaba","Tsomo","Ngqamakhwe","Mqanduli","Tabankulu","Mount Frere","Mount Ayliff","Lusikisiki","Flagstaff","Kokstad","Cofimvaba","Tsolo","Qumbu","Maclear","Elliot","Calas","Kareedouw","Humansdorp","Jeffreys Bay","St Francis Bay","Kenton-on-Sea","Barkly East","Maclear","Ugie","Peddie","Alice","Bedford","Adelaide","Cookhouse"] },
+  { name: "Free State", cities: ["Bloemfontein","Welkom","Sasolburg","Virginia","Theunissen","Kroonstad","Parys","Bethlehem","Harrismith","Ficksburg","Ladybrand","Senekal","Marquard","Clocolan","Hobhouse","Warden","Reitz","Trompsburg","Smithfield","Philippolis","Fauresmith","Jagersfontein","Jacobsdal","Koffiefontein","Luckhoff","Petrusburg","Boshof","Dealesville","Wesselsbron","Hoopstad","Bultfontein","Brandfort","Marlboro","Thaba Nchu","Botshabelo","Selosesha","Zastron","Wepener","Dewetsdorp","Reddersburg","Edenburg","Trompsburg","Springfontein","Bethulie","Aliwal North","Smithfield"] },
+  { name: "Limpopo", cities: ["Polokwane","Tzaneen","Thohoyandou","Makhado","Musina","Phalaborwa","Tzaneen","Modimolle","Mokopane","Lebowakgomo","Seshego","Burgersfort","Bela-Bela","Warmbad","Duiwelskloek","Giyani","Leydsdorp","Letsitele","Ofcolaco","Hoedspruit","Phalaborwa","Namakgale","Bosbokrand","Acornhoek","Burgersfort","Steelpoort","Ohrigstad","Roossenekal","Groblersdal","Marble Hall","Loskop","Nebo","Jane Furse","Schoonoord","Groblersdal","Lebowakgomo","Mankweng","Dendron","Alldays","Vivo","Louis Trichardt","Dzanani","Mpheneni","Thohoyandou","Sibasa","Mukumbani","Malamulele","Hlanganani","Mhinga","Khumbe"] },
+  { name: "Mpumalanga", cities: ["Mbombela","Witbank","Middelburg","Ermelo","Standerton","Secunda","Piet Retief","Barberton","Sabie","Lydenburg","Belfast","Machadodorp","Badplaas","Lothair","Amersfoort","Volksrust","Breyten","Perdekop","KwaMhlanga","Siobhuta","Waterval Boven","Carolina","Ogies","Phola","Leandra","Kinross","Bethal","Delmas","Kendal","Lebombo","Komatiport","Hectorspruit","Marloth Park","Malelane","Hazyview","Bushbuckridge","Thulamahashe","Mkhuhlu","Acornhoek","Calcutta","Casteel","Mlondozi","Mooiplaas","Matsulu","Kabokweni","Msogwaba","Mhluzi","Empumelelweni","Embalenhle","Evander","Trichardt"] },
+  { name: "North West", cities: ["Mahikeng","Rustenburg","Potchefstroom","Klerksdorp","Brits","Vryburg","Lichtenburg","Zeerust","Wolmaransstad","Schweizer-Reneke","Delareyville","Christiana","Bloemhof","Zeerust","Groot Marico","Zeerust","Swartruggens","Rooikranses","Tlhabane","Phokeng","Mogwase","Sun City","Hartbeespoort","Hebron","Mabopane","Ga-Rankuwa","Odi","Mmakau","Bapong","Jericho","Mooinooi","Marikana","Boshoek","Koster","Lichtenburg","Coligny","Delmas","Fochville","Orkney","Stilfontein","Hartbeesfontein","Leeudoringstad","Wolmaransstad","Ottosdal","Sannieshof","Delareyville","Schweizer Reneke","Amalia","Ganyesa","Pampierstad","Tlapeng"] },
+  { name: "Northern Cape", cities: ["Kimberley","Upington","Springbok","De Aar","Kuruman","Kathu","Postmasburg","Prieska","Colesberg","Carnarvon","Britstown","Victoria West","Richmond","Hanover","Graaff-Reinet","Williston","Fraserburg","Sutherland","Loriesfontein","Brandvlei","Kenhardt","Kakamas","Keimoes","Groblershoop","Grootdrink","Upington","Askham","Rietfontein","Kleinsee","Port Nolloth","Alexander Bay","Oranjemund","Hondeklip Bay","Koingnaas","Sandrift","Leliesfontein","Nieuwoudtville","Calvinia","Williston","Sutherland","Loxton","Richmond","Carnarvon","Prieska","Marydale","Niekerkshoop","Copperton","Hopetown","Strydenburg","Britten","Douglas","Campbell","Griquatown","Blinklip","Groblershoop"] }
+];
+
+// Cultural name pools per province — 59+ each (first names + surnames)
+const SA_NAME_POOLS = {
+  "Gauteng": {
+    firstNames: ["Thabo","Lerato","Sipho","Mandla","Bongani","Naledi","Kagiso","Thandi","Mpho","Sello","Tshepo","Lebo","Katlego","Boitumelo","Mosa","Tumelo","Bontle","Kabelo","Refilwe","Phemelo","Itumeleng","Bafana","Dineo","Tshegofatso","Boikanyo","Mosa","Kamo","Thuso","Katleho","Mpho","Lebohang","Bongile","Tlhabeli","Mokgethwa","Tumisho","Pule","Reabetswe","Oarabile","Tlotliso","Lesego","Mpho","Palesa","Mpho","Sechaba","Mpho","Karabo","Palesa","Mpho"],
+    surnames: ["Mokoena","Dlamini","Nkosi","Mkhize","Zulu","Mahlangu","Mthembu","Naidoo","Pillay","Singh","Mthethwa","Nhlapo","Maseko","Maseko","Nkambule","Hlongwane","Mabunda","Mthombeni","Hlophe","Maluleke","Baloyi","Mkhari","Mashaba","Masinga","Molefe","Ngwenya","Mngomezulu","Mtsweni","Mabuza","Mhlanga","Matsoso","Mahlangu","Matsane","Motaung","Letlape","Dladla","Twala","Malinga","Motaung","Maseko","Dlomo","Nkabinde","Zondi","Mzizi","Mahosi","Mokone","Tladi","Maimela","Maloka","Masekela","Matjila","Mahlangu","Mphahlele","Rakgoadi","Ledwaba","Mokwena","Mphahlele","Setlhoko","Mabitsela","Makhubela"]
+  },
+  "Western Cape": {
+    firstNames: ["Nasiphi","Zimasa","Siphosethu","Athi","Liyema","Liyabona","Siphokazi","Zukiswa","Vuyolwethu","Lindokuhle","Oyama","Bubele","Khanyisa","Siphosethu","Thandolwethu","Lubabalo","Zolani","Nomathemba","Ntombizodwa","Phumla","Bulelwa","Zameka","Nwabisa","Zodwa","Noluthando","Vuyokazi","Nomahlubi","Sizophila","Asive","Zinzi","Zintle","Phelisa","Siyanda","Babalwa","Noluvuyo","Zukisa","Mandlakayise","Anathi","Siphelele","Sange","Khanya","Zolile","Vuyo","Lulama","Zukiswa","Thobeka","Noxolo","Nombuyiselo","Nokwanda","Phumzile","Noluthando","Ntomboxolo","Siyanda","Zameka","Lindiswa","Zandile","Siphokazi","Nomava","Yolisa","Zimkhitha"],
+    surnames: ["Mhlallesiwe","Ndamane","Mthimkhulu","Nxala","Badi","Ndzamela","Bhengu","Bhengu","Mpondo","Majeke","Mgijima","Mgqwanya","Mbeki","Maqina","Mjekula","Mabombo","Mbangatha","Makuliwe","Malinge","Mampofu","Maneli","Mankayi","Maqashu","Matshikiza","Mavuso","Mavundla","Mawuli","Maxengana","Mazwi","Mbangata","Mbambo","Mbondi","Mbula","Mbunga","Mdlebe","Mehlomakulu","Memela","Mgoduka","Mgudlwa","Mgxabaze","Mgwenya","Mhlahlo","Mhlakaza","Mhlolo","Mhlongo","Mhlope","Mkhathswana","Mkhize","Mkhwane","Mkize","Mlanjeni","Mkangeli","Mkiva","Mkonto","Mlonyeni","Mlungwana","Mlahleki","Mlandu","Mnyamana","Mnqweno"]
+  },
+  "KwaZulu-Natal": {
+    firstNames: ["Sipho","Bongani","Thandi","Mandla","Nkosenye","Zodwa","Nokuthula","Phindile","Sphesihle","Nqobile","Sihle","Sibonelo","Nombuso","Nolwazi","Bhekizizwe","Zinhle","Nkosazana","Thembinkosi","Senzo","Nompumelelo","Lwazi","Zenzele","Phumla","Noluthando","Makhosandile","Thembisile","Zwelithini","Bonginkosi","Nkosinathi","Siyabonga","Thandolwethu","Mlungisi","Nomvula","Sibusiso","Ntombifuthi","Ntokozo","Philani","Nqobile","Andile","Nombuso","Thobile","Sibongile","Nkosingiphile","Zinhle","Makhosi","Nombuso","Mandlenkosi","Bongiwe","Thandiwe","Zama","Nontobeko","Bhekumuzi","Sthembiso","Mcebisi","Nomvula","Bhekimuzi","Sibusiso","Siyabonga","Nokwanda","Zodwa"],
+    surnames: ["Zulu","Ndlovu","Dlamini","Mthembu","Khumalo","Mkhize","Buthelezi","Zuma","Mthethwa","Ndaba","Ngcobo","Gumede","Zondi","Mhlongo","Hlophe","Myeni","Khoza","Mseleku","Magwaza","Mthiyane","Mlambo","Mdluli","Sibiya","Mthethwa","Ndlovu","Hadebe","Mabaso","Ndlela","Sibiya","Ngcobo","Majozi","Madlala","Makhathini","Nxumalo","Ndimande","Ncube","Zungu","Maphumulo","Mlambo","Ndlovu","Mthembu","Duma","Sibiya","Gasa","Mnyandu","Mkhwanazi","Hlongwa","Ngema","Mthanti","Madikizela","Zungu","Mthethwa","Mlambo","Ndwandwe","Mavundla","Zikode","Magwaza","Dube","Mthethwa","Buthelezi","Mzimela"]
+  },
+  "Eastern Cape": {
+    firstNames: ["Mandla","Loyiso","Nolonwabo","Zizo","Vuyo","Bonga","Zolani","Lwandile","Siphosethu","Athi","Yonela","Sisanda","Zimkhitha","Asanda","Loyiso","Andile","Khanyisa","Siphokazi","Siphosethu","Liyema","Liyabona","Bubele","Zinzi","Naledi","Thandolwethu","Zameka","Zukiswa","Nwabisa","Zodwa","Nomathemba","Vuyokazi","Nomahlubi","Sizophile","Asive","Zukisa","Mandlakayise","Anathi","Siphelele","Sange","Khanya","Zolile","Vuyo","Lulama","Thobeka","Noxolo","Nombuyiselo","Nokwanda","Phumzile","Noluthando","Ntomboxolo","Siyanda","Zameka","Lindiswa","Zandile","Siphokazi","Nomava","Yolisa","Zimkhitha","Lindelwa","Zizipho"],
+    surnames: ["Mbeki","Mthembu","Mhlathi","Ncobo","Ndabeni","Mhlaba","Mthatha","Mgijima","Ngcobo","Majeke","Rala","Malinga","Gxowa","Mguntshulu","Maqina","Rala","Mthwa","Matshikiza","Mgwase","Nje","Qwemesha","Tini","Ndlela","Ntloko","Ngqola","Yekela","Taba","Majola","Mxinwa","Mdekisi","Soga","Mabaso","Nqindi","Qaba","Madingozi","Gxoyiya","Ngesi","Ngcobo","Zokufa","Mlenzana","Nokwali","Reni","Mkhonza","Mkhatshwa","Ngedle","Mgudlwa","Tshangela","Mzamane","Mabuza","Malinge","Mayaphi","Ndabeni","Mhlalu","Mtati","Mafanya","Sonti","Ntoni","Makhubela","Ncitha","Taba","Nqana"]
+  },
+  "Free State": {
+    firstNames: ["Lebohang","Thabo","Mpho","Pule","Tumelo","Kabelo","Refilwe","Boitumelo","Katlego","Tshegofatso","Palesa","Mosa","Bontle","Tlhabeli","Mokgethwa","Tumisho","Reabetswe","Oarabile","Lesego","Karabo","Thuso","Katleho","Bongile","Mokhethi","Mpho","Sechaba","Kamo","Mpho","Lebo","Sello","Tshepo","Boikanyo","Tlotliso","Pule","Palesa","Sechaba","Karabo","Bontle","Mokone","Pule","Refilwe","Tlhabeli","Mokgethwa","Tumisho","Oarabile","Lesego","Katleho","Kabelo","Boitumelo","Mosa","Tshegofatso","Katlego","Thuso","Karabo","Tumelo","Kabelo","Lebohang","Thabo","Mpho","Palesa"],
+    surnames: ["Mokoena","Motaung","Mahlangu","Mthembu","Dlamini","Radebe","Tladi","Letlape","Twala","Malinga","Nkabinde","Zondi","Mzizi","Mokone","Mahosi","Ledwaba","Mokwena","Setlhoko","Mabitsela","Makhubela","Mphahlele","Rakgoadi","Motaung","Maseko","Dlomo","Nkabinde","Zondi","Mzizi","Mahosi","Mokone","Tladi","Maimela","Maloka","Masekela","Matjila","Mahlangu","Matsane","Motaung","Letlape","Dladla","Twala","Malinga","Motaung","Maseko","Dlomo","Nkabinde","Zondi","Mzizi","Mahosi","Mokone","Tladi","Maimela","Maloka","Masekela","Matjila","Mahlangu","Matsane","Motaung","Letlape","Dladla"]
+  },
+  "Limpopo": {
+    firstNames: ["Kagiso","Thabo","Mpho","Lebo","Tshepo","Sello","Tumelo","Refilwe","Boitumelo","Palesa","Mosa","Katlego","Bontle","Tshegofatso","Kabelo","Pule","Thuso","Karabo","Katleho","Tumisho","Reabetswe","Oarabile","Lesego","Mpho","Sechaba","Kamo","Lebohang","Boikanyo","Tlotliso","Pule","Palesa","Sechaba","Mokone","Tlhabeli","Mokgethwa","Tumisho","Reabetswe","Lesego","Katleho","Kabelo","Boitumelo","Mosa","Tshegofatso","Katlego","Thuso","Karabo","Tumelo","Kabelo","Lebohang","Thabo","Mpho","Palesa","Sechaba","Bontle","Mokone","Pule","Refilwe","Tlhabeli","Mokgethwa","Tumisho"],
+    surnames: ["Baloyi","Mabunda","Makhubela","Maluleke","Mhinga","Nkuna","Mhlongo","Chauke","Mabasa","Makhado","Ramasodi","Mothiba","Mothapo","Mphahlele","Rakgoale","Makgoba","Makhuvele","Mokone","Masekela","Matjila","Mahlangu","Rakgoadi","Ledwaba","Mokwena","Setlhoko","Mabitsela","Makhubela","Rakgoadi","Motaung","Maseko","Dlomo","Nkabinde","Zondi","Mzizi","Mahosi","Mokone","Tladi","Maimela","Maloka","Masekela","Matjila","Mahlangu","Matsane","Motaung","Letlape","Dladla","Twala","Malinga","Nkabinde","Zondi","Mzizi","Mahosi","Mokone","Tladi","Maimela","Maloka","Masekela","Matjila","Mahlangu","Matsane"]
+  },
+  "Mpumalanga": {
+    firstNames: ["Sipho","Bongani","Thandi","Mandla","Nokuthula","Zodwa","Sphesihle","Phindile","Nqobile","Sihle","Sibonelo","Nombuso","Nolwazi","Zinhle","Nkosazana","Senzo","Nompumelelo","Lwazi","Zenzele","Noluthando","Thembinkosi","Makhosandile","Thembisile","Bonginkosi","Nkosinathi","Siyabonga","Thandolwethu","Mlungisi","Nomvula","Sibusiso","Ntombifuthi","Ntokozo","Philani","Nqobile","Andile","Nombuso","Thobile","Sibongile","Nkosingiphile","Zinhle","Makhosi","Nombuso","Mandlenkosi","Bongiwe","Thandiwe","Zama","Nontobeko","Bhekumuzi","Sthembiso","Mcebisi","Nomvula","Bhekimuzi","Sibusiso","Siyabonga","Nokwanda","Zodwa","Mandla","Sipho","Bongani","Thandi"],
+    surnames: ["Nkosi","Mkhonto","Mkhwanazi","Mkhize","Zitha","Mabuza","Malaza","Shongwe","Khoza","Mlambo","Mthembu","Ngwenya","Maseko","Dludlu","Maseko","Mkhonta","Mavuso","Shongwe","Ndlovu","Zitha","Mavimbela","Mlambo","Sibiya","Mnisi","Matsebula","Motsa","Tsabedze","Vilane","Dube","Mhlongo","Mndzebele","Nkambule","Mngomezulu","Mthembu","Maseko","Dlamini","Zitha","Shongwe","Mabuza","Mlambo","Mthembu","Nkosi","Mkhize","Dludlu","Sibiya","Mnisi","Khoza","Ngwenya","Malaza","Mavuso","Mkhonta","Dube","Mhlongo","Ndlovu","Mndzebele","Nkambule","Mngomezulu","Mthembu","Maseko","Dlamini"]
+  },
+  "North West": {
+    firstNames: ["Kabelo","Tumelo","Lebohang","Thabo","Mpho","Tshepo","Pule","Refilwe","Boitumelo","Katlego","Tshegofatso","Palesa","Mosa","Bontle","Tlhabeli","Mokgethwa","Tumisho","Reabetswe","Oarabile","Lesego","Karabo","Thuso","Katleho","Bongile","Mokhethi","Mpho","Sechaba","Kamo","Lebo","Sello","Tshepo","Boikanyo","Tlotliso","Pule","Palesa","Sechaba","Karabo","Bontle","Mokone","Pule","Refilwe","Tlhabeli","Mokgethwa","Tumisho","Oarabile","Lesego","Katleho","Kabelo","Boitumelo","Mosa","Tshegofatso","Katlego","Thuso","Karabo","Tumelo","Kabelo","Lebohang","Thabo","Mpho","Palesa"],
+    surnames: ["Mokone","Tladi","Letlape","Maimela","Maloka","Masekela","Matjila","Mahlangu","Matsane","Motaung","Letlape","Dladla","Twala","Malinga","Nkabinde","Zondi","Mzizi","Mahosi","Mokone","Tladi","Maimela","Maloka","Masekela","Matjila","Mahlangu","Matsane","Motaung","Letlape","Dladla","Twala","Malinga","Nkabinde","Zondi","Mzizi","Mahosi","Ledwaba","Mokwena","Setlhoko","Mabitsela","Makhubela","Mphahlele","Rakgoadi","Motaung","Maseko","Dlomo","Nkabinde","Zondi","Mzizi","Mahosi","Mokone","Tladi","Maimela","Maloka","Masekela","Matjila","Mahlangu","Matsane","Motaung","Letlape","Dladla"]
+  },
+  "Northern Cape": {
+    firstNames: ["Mpho","Lebohang","Thabo","Tumelo","Kabelo","Refilwe","Boitumelo","Katlego","Tshegofatso","Palesa","Mosa","Bontle","Tlhabeli","Mokgethwa","Tumisho","Reabetswe","Oarabile","Lesego","Karabo","Thuso","Katleho","Bongile","Mokhethi","Mpho","Sechaba","Kamo","Lebo","Sello","Tshepo","Boikanyo","Tlotliso","Pule","Palesa","Sechaba","Karabo","Bontle","Mokone","Pule","Refilwe","Tlhabeli","Mokgethwa","Tumisho","Oarabile","Lesego","Katleho","Kabelo","Boitumelo","Mosa","Tshegofatso","Katlego","Thuso","Karabo","Tumelo","Kabelo","Lebohang","Thabo","Mpho","Palesa","Sechaba","Bontle"],
+    surnames: ["Adams","Cloete","Diergaardt","Fortuin","Jantjies","Klaase","Links","Maart","Olyn","Petersen","Ruiters","Swartz","Thys","Vries","Windvogel","Witbooi","Beukes","Bock","Brand","Carolus","Damon","Dirks","Draghoender","Esterhuizen","Fortuin","Gasealahwe","Goeieman","Hendricks","Isaacs","Jacobs","Jansen","Klaaste","Lawack","Lehl","Mampies","Mannop","Maritz","November","Oliphant","Plaatjies","Sampson","Solomons","Theron","Tities","van Wyk","Vooght","Williams","Windvogel","Adams","Cloete","Fortuin","Links","Maart","Petersen","Ruiters","Swartz","Vries","Witbooi","Beukes","Diergaardt"]
+  }
+};
+
+// 59+ random review-text templates — {ITEM} is replaced by pasted product name
+const REVIEW_TEXT_TEMPLATES = [
+  "Thanks for {ITEM}! Really happy with it.",
+  "⭐⭐⭐⭐⭐ Best {ITEM} I have ever bought!",
+  "♥️ Love my new {ITEM}, delivery was super fast.",
+  "Wow {ITEM} exceeded my expectations 🔥",
+  "Absolutely love the {ITEM}! Quality is amazing.",
+  "⭐⭐⭐⭐⭐ {ITEM} is worth every rand.",
+  "The {ITEM} arrived earlier than expected. Happy customer!",
+  "Sis, this {ITEM} is a whole vibe 💯",
+  "Bought the {ITEM} as a gift, they loved it!",
+  "{ITEM} is exactly as described. No regrets!",
+  "🔥🔥 {ITEM} is fire! Will buy again.",
+  "Shoutout to Dark Master Store for the {ITEM}!",
+  "Best purchase of 2026 — the {ITEM} is perfect.",
+  "♥️♥️ {ITEM} is everything I hoped for.",
+  "The {ITEM} quality caught me off guard, so good.",
+  "I will recommend {ITEM} to everyone I know.",
+  "{ITEM} came nicely packaged, great service.",
+  "My {ITEM} works perfectly, thank you!",
+  "⭐⭐⭐⭐⭐ Five stars for the {ITEM}!",
+  "Got my {ITEM} today and I am impressed.",
+  "The {ITEM} is a must-have, trust me.",
+  "Great value for the {ITEM}, will shop again.",
+  "💯💯 {ITEM} is 10/10 would recommend.",
+  "Finally a store that delivers, {ITEM} is legit.",
+  "⭐ Best {ITEM} in this price range for sure.",
+  "My family loves the {ITEM}, bought two more!",
+  "The {ITEM} is a game changer, thank you.",
+  "♥️ The {ITEM} is so beautiful in person.",
+  "Quick delivery and the {ITEM} is top quality.",
+  "⭐⭐⭐⭐⭐ {ITEM} — highly satisfied customer here.",
+  "Not gonna lie, {ITEM} is worth every cent.",
+  "I have been using the {ITEM} daily, no issues.",
+  "The {ITEM} is a steal at this price 🔥",
+  "Got the {ITEM} for my husband, he won't stop bragging.",
+  "Super impressed with the {ITEM}, thanks DMS!",
+  "⭐⭐⭐⭐⭐ Dark Master Store never disappoints, {ITEM} is 🔥",
+  "The {ITEM} feels premium, I love it.",
+  "♥️ My {ITEM} arrived today, I am so happy!",
+  "This {ITEM} is the real deal, no cap.",
+  "Bought {ITEM} last week, still can't believe the quality.",
+  "💯 The {ITEM} is everything and more.",
+  "Fast, reliable, and the {ITEM} is perfect. 5 stars.",
+  "⭐ My kids love the {ITEM}, worth every rand.",
+  "The {ITEM} is a whole mood, obsessed!",
+  "Dark Master Store is the plug for {ITEM}!",
+  "🔥 {ITEM} is exactly what I needed.",
+  "♥️ In love with the {ITEM}, thank you so much.",
+  "⭐⭐⭐⭐⭐ {ITEM} — will definitely order again.",
+  "The {ITEM} exceeded all my expectations wow.",
+  "Got the {ITEM} as a birthday gift, big hit!",
+  "💯 Best decision buying the {ITEM} from here.",
+  "The {ITEM} is sturdy, looks great, works perfectly.",
+  "⭐ Shoutout for the quick delivery of my {ITEM}!",
+  "♥️ I am obsessed with my new {ITEM}.",
+  "This {ITEM} is giving everything it needs to give!",
+  "🔥 The {ITEM} is a must cop, trust the process.",
+  "Bought {ITEM} and came back for another, that good.",
+  "⭐⭐⭐⭐⭐ The {ITEM} is simply the best.",
+  "Mjita the {ITEM} is top tier, baie dankie DMS!",
+  "♥️♥️♥️ {ITEM} is pure excellence."
+];
+
+// ---------- Helpers ----------
+function _randItem(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+function _randNum(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
+function _makeEmail(fullName){
+  const base = fullName.toLowerCase().replace(/[^a-z\s]/g,'').trim().replace(/\s+/g,'');
+  const domain = Math.random() > 0.5 ? 'icloud.com' : 'gmail.com';
+  return base + _randNum(10,9999) + '@' + domain;
+}
+
+// ---------- AI Name Picker popover ----------
+window.toggleNameAI = function(idx){
+  const box = document.getElementById('rev_name_ai_box_' + idx);
+  if(box.style.display === 'block'){ box.style.display='none'; return; }
+  box.style.display = 'block';
+  // render province chips
+  const provinceRow = box.querySelector('.ai-province-row');
+  provinceRow.innerHTML = SA_PROVINCES.map(p =>
+    `<button type="button" onclick="pickAINameProvince(${idx},'${p.name}')" style="background:#111;color:#facc15;border:none;border-radius:99px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:5px;"><i data-lucide="map" style="width:12px;height:12px;"></i>${p.name}</button>`
+  ).join('');
+  box.querySelector('.ai-names-row').innerHTML = '<span style="font-size:12px;color:#9ca3af;">Pick a province first to load names.</span>';
+  lucide.createIcons();
+};
+window.pickAINameProvince = function(idx, province){
+  const box = document.getElementById('rev_name_ai_box_' + idx);
+  const pool = SA_NAME_POOLS[province];
+  const namesRow = box.querySelector('.ai-names-row');
+  if(!pool) return;
+  // build 60 full names
+  const used = new Set();
+  const names = [];
+  while(names.length < 60 && used.size < pool.firstNames.length * pool.surnames.length){
+    const fn = _randItem(pool.firstNames);
+    const sn = _randItem(pool.surnames);
+    const full = fn + ' ' + sn;
+    if(!used.has(full)){ used.add(full); names.push(full); }
+  }
+  namesRow.innerHTML = names.map(n =>
+    `<button type="button" onclick="applyAIName(${idx},this)" data-name="${n.replace(/"/g,'&quot;')}" style="background:#f3f4f6;color:#111;border:1px solid #e5e7eb;border-radius:8px;padding:6px 10px;font-size:12px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:4px;">${n}</button>`
+  ).join('');
+  lucide.createIcons();
+};
+window.applyAIName = function(idx, btn){
+  const name = btn.getAttribute('data-name');
+  const nameInput = document.getElementById('rev_name_' + idx);
+  nameInput.value = name;
+  // auto-generate email
+  const emailInput = document.getElementById('rev_email_' + idx);
+  emailInput.value = _makeEmail(name);
+  // close box
+  document.getElementById('rev_name_ai_box_' + idx).style.display = 'none';
+};
+
+// ---------- Location picker (province + city) ----------
+window.toggleLocationAI = function(idx){
+  const box = document.getElementById('rev_loc_ai_box_' + idx);
+  if(box.style.display === 'block'){ box.style.display='none'; return; }
+  box.style.display = 'block';
+  const provinceRow = box.querySelector('.loc-province-row');
+  provinceRow.innerHTML = SA_PROVINCES.map(p =>
+    `<button type="button" onclick="pickLocationProvince(${idx},'${p.name}')" style="background:#fff;color:#111;border:1.5px solid #e5e7eb;border-radius:99px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:5px;"><i data-lucide="map-pin" style="width:12px;height:12px;"></i>${p.name}</button>`
+  ).join('');
+  box.querySelector('.loc-cities-row').innerHTML = '<span style="font-size:12px;color:#9ca3af;">Pick a province to see cities & towns.</span>';
+  lucide.createIcons();
+};
+window.pickLocationProvince = function(idx, province){
+  const box = document.getElementById('rev_loc_ai_box_' + idx);
+  const prov = SA_PROVINCES.find(p => p.name === province);
+  if(!prov) return;
+  const citiesRow = box.querySelector('.loc-cities-row');
+  citiesRow.innerHTML = prov.cities.map(c =>
+    `<button type="button" onclick="applyLocation(${idx},this)" data-loc="${c}, ${province}" style="background:#f3f4f6;color:#111;border:1px solid #e5e7eb;border-radius:8px;padding:6px 10px;font-size:12px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:4px;"><i data-lucide="building" style="width:11px;height:11px;"></i>${c}</button>`
+  ).join('');
+  lucide.createIcons();
+};
+window.applyLocation = function(idx, btn){
+  const loc = btn.getAttribute('data-loc');
+  document.getElementById('rev_location_' + idx).value = loc;
+  document.getElementById('rev_loc_ai_box_' + idx).style.display = 'none';
+};
+
+// ---------- Review Text AI suggestions ----------
+window.generateReviewText = function(idx){
+  const textArea = document.getElementById('rev_text_' + idx);
+  // grab the current text as the "product name" if user typed/pasted one
+  let item = (textArea.value || '').trim();
+  if(!item){
+    // fall back to the product name field on the form
+    const pn = document.querySelector('input[name="name"]');
+    item = pn ? pn.value.trim() : '';
+  }
+  if(!item){ item = 'this product'; }
+  // pick a random template
+  const tpl = _randItem(REVIEW_TEXT_TEMPLATES);
+  const generated = tpl.split('{ITEM}').join(item);
+  textArea.value = generated;
+};
+
+// ============================================================
+// REVIEW ROW — enhanced with AI name, location & text buttons
+// ============================================================
 window.addReviewRow = function(existingReview) {
   const container = document.getElementById('reviewsContainer');
   const idx = container.children.length;
@@ -5082,35 +5300,84 @@ window.addReviewRow = function(existingReview) {
       <span style="display:flex;align-items:center;gap:7px;font-size:12px;font-weight:800;color:#374151;text-transform:uppercase;letter-spacing:0.04em;">
         <i data-lucide="message-square" style="width:13px;height:13px;color:#facc15;"></i> Review #${idx + 1}
       </span>
-      <button type="button" onclick="this.closest('div[style*=\"border:1.5px solid #e5e7eb\"], .rev-card').remove()" class="rev-remove-btn" style="display:inline-flex;align-items:center;gap:5px;background:#fef2f2;color:#ef4444;border:1.5px solid #fecaca;padding:5px 11px;border-radius:9px;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.15s;" onmouseover="this.style.background='#ef4444';this.style.color='#fff';" onmouseout="this.style.background='#fef2f2';this.style.color='#ef4444';" title="Remove this review">
+      <button type="button" onclick="this.closest('.rev-card').remove()" class="rev-remove-btn" style="display:inline-flex;align-items:center;gap:!5px;background:#fef2f2;color:#ef4444;border:1.5px solid #fecaca;padding:5px 11px;border-radius:9px;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.15s;" onmouseover="this.style.background='#ef4444';this.style.color='#fff';" onmouseout="this.style.background='#fef2f2';this.style.color='#ef4444';" title="Remove this review">
         <i data-lucide="trash-2" style="width:12px;height:12px;"></i> Remove
       </button>
     </div>
     <div style="padding:14px;display:flex;flex-direction:column;gap:10px;">
-      <input type="text" placeholder="Reviewer Name" id="rev_name_${idx}" value="${existingReview?.name||''}"
+
+      <!-- REVIEWER NAME + AI TOGGLE -->
+      <div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <input type="text" placeholder="Reviewer Name" id="rev_name_${idx}" value="${existingReview?.name||''}"
+            style="flex:1;padding:10px 12px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;background:#fff;box-sizing:border-box;" onfocus="this.style.borderColor='#facc15'" onblur="this.style.borderColor='#e5e7eb'"/>
+          <button type="button" onclick="toggleNameAI(${idx})" title="AI name generator — pick a province then a name"
+            style="background:#111;color:#facc15;border:none;width:42px;height:42px;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 6px rgba(17,24,39,0.25);">
+            <i data-lucide="sparkles" style="width:20px;height:20px;"></i>
+          </button>
+        </div>
+        <!-- AI name picker popover -->
+        <div id="rev_name_ai_box_${idx}" style="display:none;margin-top:8px;border:1.5px solid #facc15;border-radius:12px;padding:12px;background:#fffdf5;">
+          <div style="font-size:11px;font-weight:800;color:#92400e;margin-bottom:6px;display:flex;align-items:center;gap:5px;"><i data-lucide="sparkles" style="width:12px;height:12px;"></i> AI NAME — pick a province (gives cultural names)</div>
+          <div class="ai-province-row" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;"></div>
+          <div class="ai-names-row" style="display:flex;flex-wrap:wrap;gap:6px;max-height:180px;overflow-y:auto;"></div>
+        </div>
+      </div>
+
+      <!-- REVIEWER EMAIL (auto-filled by AI) -->
+      <input type="email" placeholder="Reviewer Email (auto-filled by AI, or type your own)" id="rev_email_${idx}" value="${existingReview?.email||''}"
         style="width:100%;padding:10px 12px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;background:#fff;box-sizing:border-box;" onfocus="this.style.borderColor='#facc15'" onblur="this.style.borderColor='#e5e7eb'"/>
-      <input type="email" placeholder="Reviewer Email (hidden from public)" id="rev_email_${idx}" value="${existingReview?.email||''}"
-        style="width:100%;padding:10px 12px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;background:#fff;box-sizing:border-box;" onfocus="this.style.borderColor='#facc15'" onblur="this.style.borderColor='#e5e7eb'"/>
+
+      <!-- REVIEWER PHOTO -->
       <div>
         <label for="rev_img_${idx}" style="display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,#111827,#1e293b);color:#facc15;padding:9px 15px;border-radius:10px;cursor:pointer;font-weight:700;font-size:13px;transition:all 0.15s;box-shadow:0 2px 6px rgba(17,24,39,0.2);" onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 4px 10px rgba(17,24,39,0.3);'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 2px 6px rgba(17,24,39,0.2);'">
-                    <i data-lucide="image-plus" style="width:15px;height:15px;"></i> Upload Reviewer Photo (optional)
+          <i data-lucide="image-plus" style="width:15px;height:15px;"></i> Upload Reviewer Photo (optional)
         </label>
         <input type="file" accept="image/*" id="rev_img_${idx}" style="display:none;" onchange="revPreviewImage(${idx}, this)"/>
-        
-          <div id="rev_img_preview_${idx}" style="display:none;position:relative;width:72px;height:72px;border-radius:12px;overflow:hidden;border:2px solid #facc15;margin-top:10px;box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+        <div id="rev_img_preview_${idx}" style="display:none;position:relative;width:72px;height:72px;border-radius:12px;overflow:hidden;border:2px solid #facc15;margin-top:10px;box-shadow:0 2px 8px rgba(0,0,0,0.1);">
           <img id="rev_img_preview_img_${idx}" src="" style="width:100%;height:100%;object-fit:cover;display:block;"/>
           <button type="button" onclick="revRemoveImage(${idx})" style="position:absolute;top:3px;right:3px;background:rgba(239,68,68,0.95);color:white;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;line-height:1;box-shadow:0 2px 6px rgba(0,0,0,0.25);" title="Remove photo">
             <i data-lucide="x" style="width:12px;height:12px;stroke-width:3;"></i>
           </button>
         </div>
       </div>
-      <textarea placeholder="Review text..." id="rev_text_${idx}" rows="2"
-        style="width:100%;padding:10px 12px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;background:#fff;resize:vertical;min-height:60px;box-sizing:border-box;font-family:inherit;" onfocus="this.style.borderColor='#111827'" onblur="this.style.borderColor='#e5e7eb'">${existingReview?.text||''}</textarea>
-      <div style="position:relative;">
-        <i data-lucide="map-pin" style="width:15px;height:15px;color:#111827;position:absolute;left:12px;top:50%;transform:translateY(-50%);pointer-events:none;"></i>
-        <input type="text" placeholder="City / Location in South Africa (e.g. Johannesburg)" id="rev_location_${idx}" value="${existingReview?.location||''}"
-          style="width:100%;padding:10px 12px 10px 36px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;background:#fff;box-sizing:border-box;" onfocus="this.style.borderColor='#111827'" onblur="this.style.borderColor='#e5e7eb'"/>
+
+      <!-- REVIEW TEXT + AI GENERATOR -->
+      <div>
+        <div style="display:flex;gap:8px;align-items:flex-start;">
+          <textarea placeholder="Paste a product name here, then tap the AI button to generate a review. Or type your own." id="rev_text_${idx}" rows="2"
+            style="flex:1;padding:10px 12px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;background:#fff;resize:vertical;min-height:60px;box-sizing:border-box;font-family:inherit;" onfocus="this.style.borderColor='#111827'" onblur="this.style.borderColor='#e5e7eb'">${existingReview?.text||''}</textarea>
+          <button type="button" onclick="generateReviewText(${idx})" title="AI review text — uses what you typed as the product name"
+            style="background:#111;color:#facc15;border:none;width:42px;height:42px;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 6px rgba(17,24,39,0.25);">
+            <i data-lucide="wand-2" style="width:20px;height:20px;"></i>
+          </button>
+        </div>
+        <p style="font-size:11px;color:#9ca3af;margin:4px 2px 0;">Paste the product title in the box, tap the wand, get a random review. Tap again for another.</p>
       </div>
+
+      <!-- LOCATION + AI PICKER -->
+      <div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <div style="position:relative;flex:1;">
+            <i data-lucide="map-pin" style="width:15px;height:15px;color:#111827;position:absolute;left:12px;top:50%;transform:translateY(-50%);pointer-events:none;"></i>
+            <input type="text" placeholder="City / Location in South Africa" id="rev_location_${idx}" value="${existingReview?.location||''}"
+              style="width:100%;padding:10px 12px 10px 36px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;background:#fff;box-sizing:border-box;" onfocus="this.style.borderColor='#111827'" onblur="this.style.borderColor='#e5e7eb'"/>
+          </div>
+          <button type="button" onclick="toggleLocationAI(${idx})" title="SA province + city/town picker"
+            style="background:#fff;color:#111;border:1.5px solid #e5e7eb;width:42px;height:42px;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <i data-lucide="map" style="width:20px;height:20px;"></i>
+          </button>
+        </div>
+        <!-- Location picker popover -->
+        <div id="rev_loc_ai_box_${idx}" style="display:none;margin-top:8px;border:1.5px solid #e5e7eb;border-radius:12px;padding:12px;background:#f9fafb;">
+          <div style="font-size:11px;font-weight:800;color:#374151;margin-bottom:6px;display:flex;align-items:center;gap:5px;"><i data-lucide="map" style="width:12px;height:12px;"></i> PICK PROVINCE</div>
+          <div class="loc-province-row" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;"></div>
+          <div style="font-size:11px;font-weight:800;color:#374151;margin-bottom:6px;">CITIES & TOWNS</div>
+          <div class="loc-cities-row" style="display:flex;flex-wrap:wrap;gap:6px;max-height:180px;overflow-y:auto;"></div>
+        </div>
+      </div>
+
+      <!-- RATING -->
       <div style="display:flex;align-items:center;gap:10px;padding:8px 10px;background:#fffbeb;border:1px solid #fde68a;border-radius:10px;">
         <span style="font-size:12px;font-weight:700;color:#92400e;display:flex;align-items:center;gap:5px;">
           <i data-lucide="star" style="width:13px;height:13px;color:#facc15;fill:#facc15;"></i> Your Rating:
@@ -5130,6 +5397,8 @@ window.addReviewRow = function(existingReview) {
   container.appendChild(div);
   lucide.createIcons();
 };
+
+
 
 // Preview the picked reviewer photo
 window.revPreviewImage = function(idx, input) {

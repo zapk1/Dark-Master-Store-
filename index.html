@@ -429,6 +429,20 @@
     text-align: center;
 }
 
+@keyframes dmsDotSplash {
+    0%   { background: #c7d2fe; transform: translate(-50%,-50%) scale(1); }
+    20%  { background: #fbbf24; transform: translate(-50%,-50%) scale(1.25); }
+    40%  { background: #f472b6; transform: translate(-50%,-50%) scale(1.35); }
+    60%  { background: #34d399; transform: translate(-50%,-50%) scale(1.15); }
+    80%  { background: #60a5fa; transform: translate(-50%,-50%) scale(1.05); }
+    100% { background: #c7d2fe; transform: translate(-50%,-50%) scale(1); }
+}
+.dms-dot {
+    position: absolute;
+    border-radius: 50%;
+    animation: dmsDotSplash 3.5s ease-in-out infinite;
+}
+
 .loading-spinner {
     width: 60px;
     height: 60px;
@@ -468,20 +482,11 @@
 
     <div style="display:flex;flex-direction:column;align-items:center;gap:14px;">
         <!-- Brand images in a circle around logo -->
-        <div style="position:relative;width:180px;height:180px;">
-            <!-- Center logo -->
-            <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#111;border-radius:20px;width:72px;height:72px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 30px rgba(0,0,0,0.15);z-index:2;">
-                <i data-lucide="shopping-cart" style="width:34px;height:34px;color:#facc15;"></i>
-            </div>
-            <!-- Brand circles -->
-            <img src="https://i.postimg.cc/V6QQGBLt/Notes-260511-071706-881.png" style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:44px;height:44px;border-radius:50%;object-fit:cover;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.15);" title="Dark Master Store "/>
-            <img src="https://i.postimg.cc/15vPswc1/Screenshot-20260402-194826.jpg" style="position:absolute;top:50%;right:0;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;object-fit:cover;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.15);" title="DHL"/>
-            <img src="https://i.postimg.cc/vZSQLfcv/Screenshot-20260402-194555.jpg" style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:44px;height:44px;border-radius:50%;object-fit:cover;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.15);" title="Takealot"/>
-            <img src="https://i.postimg.cc/d1tXSHc3/Screenshot-20260511-073555-Gallery.jpg" style="position:absolute;top:50%;left:0;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;object-fit:cover;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.15);background:white;" title="Fastway"/>
-            <img src="https://i.postimg.cc/q7Ybjkw8/images-(1).png" style="position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;object-fit:cover;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.15);" title="Shoes"/>
-            <img src="https://i.postimg.cc/kXtN9QnX/Apple-Event-September-2024-i-Phone-16-Reviewer-Photo-1-blue-front-back-screen-cameras-SOURCE-Julian.webp" style="position:absolute;bottom:14px;right:14px;width:38px;height:38px;border-radius:50%;object-fit:cover;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.15);" title="IPhone"/>
-            <img src="https://i.postimg.cc/NjDkPgs1/istockphoto-458596075-612x612.jpg" style="position:absolute;bottom:14px;left:14px;width:38px;height:38px;border-radius:50%;object-fit:cover;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.15);" title="Nike"/>
-            <img src="https://i.postimg.cc/nL7chLXM/images.jpg" style="position:absolute;top:14px;left:14px;width:38px;height:38px;border-radius:50%;object-fit:cover;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.15);" title="Electronics"/>
+                <div style="position:relative;width:200px;height:200px;">
+            <!-- Center app logo -->
+            <img src="https://i.postimg.cc/gJhjVfvM/Logo-for-Dark-Master-Store.png" alt="Dark Master Store" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:78px;height:78px;border-radius:20px;object-fit:cover;z-index:3;box-shadow:0 8px 30px rgba(0,0,0,0.18);"/>
+            <!-- Animated dots surrounding logo -->
+            <div id="loadingDots" style="position:absolute;inset:0;z-index:1;"></div>
         </div>
         <div style="text-align:center;">
             <div style="font-weight:900;font-size:20px;color:#111;letter-spacing:-0.5px;">DARK MASTER STORE</div>
@@ -638,7 +643,7 @@
     
 
     <!-- SELL POPUP — smooth white rounded card, shows once per session, dismissible -->
-    <div id="sellPopup" style="display:none;position:fixed;top:80px;right:12px;z-index:60;max-width:260px;background:#fff;border-radius:22px;box-shadow:0 10px 34px rgba(0,0,0,0.16);padding:14px;animation:popIn 0.3s ease;">
+    <div id="sellPopup" style="display:none;position:fixed;top:80px;right:12px;z-index:9998;max-width:260px;background:#fff;border-radius:22px;box-shadow:0 10px 34px rgba(0,0,0,0.16);padding:14px;animation:popIn 0.3s ease;">
         <button onclick="closeSellPopup()" style="position:absolute;top:8px;right:8px;background:#f3f4f6;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;display:flex;align-items:center;justify-content:center;">
             <i data-lucide="x" style="width:16px;height:16px;color:#374151;"></i>
         </button>
@@ -660,12 +665,31 @@
             if(sp) sp.style.display = 'none';
             try { sessionStorage.setItem('dms_sellpopup_dismissed','1'); } catch(e){}
         };
-        if(!sessionStorage.getItem('dms_sellpopup_dismissed')){
-            setTimeout(function(){
-                var sp = document.getElementById('sellPopup');
-                if(sp){ sp.style.display = 'block'; if(window.lucide) lucide.createIcons(); }
-            }, 2500);
-        }
+        function _dmsShowPopups(){
+    // 1st popup — Sell on Dark Master Store (immediately after load) — stays until user closes it
+    if(!sessionStorage.getItem('dms_sellpopup_dismissed')){
+        var sp = document.getElementById('sellPopup');
+        if(sp){ sp.style.display = 'block'; }
+    }
+    if(window.lucide) lucide.createIcons();
+    // 2nd popup — WhatsApp, 2 seconds later — stays until user closes it
+    setTimeout(function(){
+        if(window.openWaPopup) openWaPopup();
+    }, 2000);
+    // 3rd popup — BeelzeChat, 3 seconds later — stays until user closes it
+    setTimeout(function(){
+        if(window.openBcPopup) openBcPopup();
+    }, 3000);
+}
+        // Wait until the loading popup is gone, then show pop-ups one by one
+        var _dmsPopWait = setInterval(function(){
+            var lp = document.getElementById('loadingPopup');
+            if(!lp || lp.style.display === 'none'){
+                clearInterval(_dmsPopWait);
+                _dmsShowPopups();
+            }
+        }, 300);
+
     </script>
 
     <!-- MAIN STORE -->
@@ -723,9 +747,9 @@
         <span id="newSellersBadge" class="hidden absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold"></span>
         <span style="font-size:10px;font-weight:700;color:#000;margin-top:2px;">Sellers</span>
     </button>
-    <button onclick="openSellerInfoPopup()" class="flex flex-col items-center p-1 hover:bg-yellow-500 rounded-lg relative" title="Sell on Dark Master Store">
-        <i data-lucide="badge-dollar-sign" class="w-6 h-6 text-black"></i>
-        <span style="font-size:10px;font-weight:700;color:#000;margin-top:2px;">Sell</span>
+        <button onclick="openSellerInfoPopup()" class="flex flex-col items-center p-1 hover:bg-yellow-500 rounded-lg relative" title="Sell on Dark Master Store">
+        <i data-lucide="dollar-sign" class="w-6 h-6" style="color:#16a34a;"></i>
+        <span style="font-size:10px;font-weight:700;color:#16a34a;margin-top:2px;">Sell</span>
     </button>
     <button onclick="handleProfileClick()" class="flex flex-col items-center p-1 hover:bg-yellow-500 rounded-lg relative">
         <i data-lucide="user" class="w-6 h-6 text-black"></i>
@@ -766,7 +790,7 @@
     <div class="border-t border-gray-200 my-1"></div>
 
     <!-- SELL ON DMS BUTTON -->
-    <button onclick="openSellerInfoPopup()" class="block w-full text-left py-2 px-2 hover:bg-red-50 rounded flex items-center gap-2 text-red-600 font-semibold">
+        <button onclick="closeSellPopup();openSellerInfoPopup()" class="block w-full text-left py-2 px-2 hover:bg-red-50 rounded flex items-center gap-2 text-red-600 font-semibold">
         <i data-lucide="store" class="w-4 h-4 text-red-500"></i>
         Sell on DMS
     </button>
@@ -1174,7 +1198,8 @@
                     <i data-lucide="arrow-left" class="w-5 h-5"></i>
                     Back to Cart
                 </button>
-                <h1 class="text-3xl font-bold mb-8">Checkout</h1>
+                <h1 class="text-3xl font-bold mb-8">Checkout Section</h1>
+
                 
 
 
@@ -1298,7 +1323,7 @@
                         Users
                     </button>
                     <button onclick="showAdminPage('sellers')" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition">
-                        <i data-lucide="store" class="w-5 h-5"></i>
+                        <i data-lucide="dollar-sign" style="width:30px;height:30px;color:white;"></i>
                         Sellers
                     </button>
       
@@ -1328,10 +1353,10 @@
 
         <!-- Header -->
         <div style="text-align:center;margin-bottom:24px;">
-            <div style="background:#facc15;border-radius:50%;width:64px;height:64px;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2v0a2 2 0 0 1-2-2V7"/><path d="M18 12a2 2 0 0 1-2-2V7"/><path d="M6 12a2 2 0 0 1-2-2V7"/><path d="M10 12a2 2 0 0 1-2-2V7"/><path d="M14 12a2 2 0 0 1-2-2V7"/></svg>
-            </div>
-            <h2 style="font-size:22px;font-weight:800;color:#111;margin:0 0 6px;">Sell on Dark Master Store</h2>
+            <div style="background:#16a34a;border-radius:50%;width:64px;height:64px;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;">
+    <i data-lucide="dollar-sign" style="width:30px;height:30px;color:white;"></i>
+</div>
+<h2 style="font-size:22px;font-weight:800;color:#111;margin:0 0 6px;">Sell on Dark Master Store</h2>
             <p style="color:#6b7280;font-size:14px;margin:0;">Join hundreds of South African sellers</p>
         </div>
 
@@ -1460,10 +1485,11 @@
         <div style="background:#f3f4f6;border-radius:14px;padding:14px;margin-bottom:12px;">
                         <p style="font-weight:800;font-size:13px;margin:0 0 8px;color:#111;">Pay R15,000 to this account:</p>
             <div style="font-size:12px;color:#374151;line-height:1.7;">
-                Bank: <strong>GoTyme Bank</strong><br/>
-                Account Name: <strong>Dark Master Store </strong><br/>
-                Account Number: <strong>5300 3587 427</strong><br/>
-                Branch Code: <strong>678 910</strong><br/>
+                <img src="https://media.base44.com/images/public/69d65c79ded115a4ef63649f/dc4ab5958_CPIJO-7f69f481.png" alt="Capitec" style="height:22px;width:auto;object-fit:contain;display:block;margin-bottom:6px;">
+                Bank: <strong>Capitec Bank</strong><br/>
+                Account Name: <strong>L K Ngwepe</strong><br/>
+                Account Number: <strong>2037437125</strong><br/>
+                Branch Code: <strong>470010</strong><br/>
                 Reference: <strong id="sellerRefCode" style="color:#ff6600;">SELL-350</strong>
             </div>
         </div>
@@ -1494,8 +1520,8 @@
 </div>
 
             
-            <button type="button" onclick="showSellerPaySection()" id="showSellerPayBtn" style="width:100%;background:#111;color:#facc15;font-weight:800;padding:14px;border:none;border-radius:12px;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;">
-                <i data-lucide="arrow-right-circle" style="width:18px;height:18px;color:#facc15;"></i> Continue to R350 Payment
+        <button type="button" onclick="showSellerPaySection()" id="showSellerPayBtn" style="width:100%;background:#ffffff;color:#111;font-weight:800;padding:16px;border:none;border-radius:16px;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 10px 30px rgba(0,0,0,0.18),0 2px 6px rgba(0,0,0,0.08);transition:all 0.2s;">
+                <i data-lucide="arrow-right-circle" style="width:20px;height:20px;color:#16a34a;"></i> Pay R15 000
             </button>
             <p style="text-align:center;font-size:12px;color:#9ca3af;">After paying &amp; submitting, we'll verify and create your seller account</p>
         </form>
@@ -1510,8 +1536,8 @@
         </button>
         <div style="text-align:center;margin-bottom:24px;">
             <div style="background:#facc15;border-radius:50%;width:60px;height:60px;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/></svg>
-            </div>
+    <i data-lucide="store" style="width:28px;height:28px;color:black;"></i>
+</div>
             <h2 style="font-size:20px;font-weight:800;color:#111;margin:0 0 4px;">Seller Login</h2>
             <p style="color:#6b7280;font-size:13px;margin:0;">Enter your DMS partner code to access your store</p>
         </div>
@@ -2975,13 +3001,13 @@ window.closeGuestChoice = function() {
             };
         }
     }
-    // Admin/owner default GoTyme bank
+        // Admin/owner default Capitec bank
     const ownerBank = {
-        bank: 'GoTyme Bank',
-        accName: 'Dark Master Store',
-        accNumber: '5300 3587 427',
-        branch: '678 910',
-        accType: 'Business Cheque',
+        bank: 'Capitec Bank',
+        accName: 'L K Ngwepe',
+        accNumber: '2037437125',
+        branch: '470010',
+        accType: 'Savings Account',
         ref: refCode
     };
     const activeBank = sellerBank || ownerBank;
@@ -2991,21 +3017,9 @@ window.closeGuestChoice = function() {
     checkoutContent.innerHTML = `
         <div style="display:flex;flex-direction:column;gap:20px;max-width:560px;margin:0 auto;">
 
-            <!-- CART HEADER -->
-            <div style="display:flex;align-items:center;justify-content:space-between;">
-                <h1 style="font-size:24px;font-weight:900;color:#111;display:flex;align-items:center;gap:10px;">
-                    <i data-lucide="shopping-cart" style="width:24px;height:24px;color:#111;"></i> YOUR CART
-                </h1>
-                <button onclick="showPage('cart')" style="background:#f3f4f6;border:none;border-radius:50%;width:40px;height:40px;cursor:pointer;display:flex;align-items:center;justify-content:center;">
-                    <i data-lucide="x" style="width:18px;height:18px;color:#374151;"></i>
-                </button>
-            </div>
+            
 
-            <!-- ALERT -->
-            <div style="border:2px solid #ff6600;border-radius:14px;padding:14px 16px;background:#fff5eb;display:flex;gap:12px;align-items:flex-start;">
-                <i data-lucide="alert-triangle" style="width:20px;height:20px;color:#ff6600;flex-shrink:0;margin-top:2px;"></i>
-                <p style="font-size:13px;color:#7c2d12;line-height:1.5;margin:0;">Fill in your details, make the EFT deposit at a bank/ATM/app, then screenshot the proof and attach it here. <strong>No order is accepted without deposit proof.</strong></p>
-            </div>
+            
 
             <!-- YOUR DETAILS -->
             <div style="background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:20px;">
@@ -3053,46 +3067,67 @@ window.closeGuestChoice = function() {
                 </form>
             </div>
 
-            <!-- PAYMENT METHOD -->
-            <div style="background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:20px;">
-                <h2 style="font-size:16px;font-weight:800;color:#111;margin:0 0 14px;display:flex;align-items:center;gap:8px;">
-                    <i data-lucide="credit-card" style="width:18px;height:18px;color:#111;"></i> Payment Method
-                </h2>
-
-                <!-- EFT — the only payment method -->
-                <div id="payCard-eft" style="border:2.5px solid #facc15;border-radius:14px;padding:14px;margin-bottom:10px;display:flex;align-items:center;gap:12px;background:#fffdf5;">
-                    <div style="height:40px;width:40px;border-radius:8px;background:#0f766e;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                        <i data-lucide="landmark" style="width:22px;height:22px;color:#fff;"></i>
-                    </div>
-                    <div style="flex:1;">
-                        <p style="font-weight:800;font-size:14px;color:#111;margin:0;">EFT / Bank Transfer</p>
-                        <p style="font-size:11px;color:#6b7280;margin:2px 0 0;">Manual deposit — banking details below</p>
-                    </div>
-                    <span style="background:#16a34a;color:#fff;font-size:10px;font-weight:800;padding:3px 8px;border-radius:20px;">ACTIVE</span>
-                </div>
+            <!-- PAYMENT — goes straight to our Capitec bank box -->
 
             <!-- EFT ONLY: bank details, instruction, proof, confirm (hidden when PayFast active) -->
       <div id="eftDetailsWrapper" style="display:block;">
-                <!-- BANK DETAILS -->
-                <div style="background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:20px;">
-                    <h2 style="font-size:16px;font-weight:800;color:#111;margin:0 0 14px;display:flex;align-items:center;gap:8px;">
-                        <i data-lucide="landmark" style="width:18px;height:18px;color:#111;"></i> Bank Details (EFT)
-                    </h2>
-                    ${showSellerNote ? `<p style="font-size:12px;color:#7c2d12;background:#fff5eb;border:1px solid #ff6600;border-radius:8px;padding:8px 10px;margin:0 0 12px;">This order is from a seller's store — pay into the seller's bank account below.</p>` : ''}
-                    <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;">
-                        <div style="display:flex;justify-content:space-between;border-bottom:1px solid #f3f4f6;padding-bottom:8px;"><span style="color:#9ca3af;">Bank</span><span style="font-weight:700;color:#111;">${activeBank.bank}</span></div>
-                        <div style="display:flex;justify-content:space-between;border-bottom:1px solid #f3f4f6;padding-bottom:8px;"><span style="color:#9ca3af;">Account Name</span><span style="font-weight:700;color:#111;">${activeBank.accName}</span></div>
-                        <div style="display:flex;justify-content:space-between;border-bottom:1px solid #f3f4f6;padding-bottom:8px;"><span style="color:#9ca3af;">Account Number</span><span style="font-weight:700;color:#111;">${activeBank.accNumber}</span></div>
-                        <div style="display:flex;justify-content:space-between;border-bottom:1px solid #f3f4f6;padding-bottom:8px;"><span style="color:#9ca3af;">Branch Code</span><span style="font-weight:700;color:#111;">${activeBank.branch}</span></div>
-                        <div style="display:flex;justify-content:space-between;border-bottom:1px solid #f3f4f6;padding-bottom:8px;"><span style="color:#9ca3af;">Account Type</span><span style="font-weight:700;color:#111;">${activeBank.accType}</span></div>
-                        <div style="display:flex;justify-content:space-between;"><span style="color:#9ca3af;">Reference</span><span style="font-weight:700;color:#ff6600;">${activeBank.ref}</span></div>
+      
+      
+                                <!-- BANK DETAILS -->
+                <div style="background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:14px;">
+                    ${showSellerNote ? `<p style="font-size:12px;color:#7c2d12;background:#fff5eb;border:1px solid #ff6600;border-radius:8px;padding:8px 10px;margin:0 0 12px;">This order is from a seller's store — pay into the seller's bank account below.</p>` : `<div style="display:flex;align-items:center;justify-content:center;gap:10px;background:#fff;border:1px solid #e5e7eb;border-radius:50px;padding:10px 22px;margin-bottom:12px;">
+                        <img src="https://media.base44.com/images/public/69d65c79ded115a4ef63649f/dc4ab5958_CPIJO-7f69f481.png" alt="Capitec" style="height:26px;width:auto;object-fit:contain;">
+                        <div style="display:flex;flex-direction:column;justify-content:center;line-height:1.05;">
+                            <div style="font-size:10px;font-weight:800;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;">Our Bank</div>
+                            <div style="font-size:16px;font-weight:900;color:#111;">Capitec Bank</div>
+                        </div>
+                    </div>
+                    <img src="https://media.base44.com/images/public/69d65c79ded115a4ef63649f/7d778390c_file_00000000b15481f5b93c6a8f3f9cabba.png" alt="Capitec Bank card" style="width:100%;height:auto;display:block;border-radius:16px;margin-bottom:12px;box-shadow:0 8px 24px rgba(0,0,0,0.12);"/>`}
+                    <div style="display:flex;align-items:center;gap:12px;padding-bottom:10px;margin-bottom:2px;border-bottom:1px solid #f3f4f6;">
+                        <img src="https://media.base44.com/images/public/69d65c79ded115a4ef63649f/dc4ab5958_CPIJO-7f69f481.png" alt="Capitec" style="height:26px;width:auto;object-fit:contain;flex-shrink:0;">
+                        <span style="font-size:14px;font-weight:900;color:#111;">Our banking details</span>
+                    </div>
+                    <div style="display:flex;flex-direction:column;">
+                        <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #f3f4f6;"><i data-lucide="landmark" style="width:15px;height:15px;color:#004677;flex-shrink:0;"></i><span style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#6b7280;min-width:92px;flex-shrink:0;">Bank</span><span style="font-size:12.5px;font-weight:900;color:#111;flex:1;min-width:0;">${activeBank.bank}</span><button onclick="navigator.clipboard.writeText('${activeBank.bank}')" style="background:#f5f5f5;border:none;border-radius:50px;padding:3px 10px;font-size:10px;font-weight:800;color:#111;cursor:pointer;flex-shrink:0;">copy</button></div>
+                        <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #f3f4f6;"><i data-lucide="user" style="width:15px;height:15px;color:#004677;flex-shrink:0;"></i><span style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#6b7280;min-width:92px;flex-shrink:0;">Account holder</span><span style="font-size:12.5px;font-weight:900;color:#111;flex:1;min-width:0;">${activeBank.accName}</span><button onclick="navigator.clipboard.writeText('${activeBank.accName}')" style="background:#f5f5f5;border:none;border-radius:50px;padding:3px 10px;font-size:10px;font-weight:800;color:#111;cursor:pointer;flex-shrink:0;">copy</button></div>
+                        <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #f3f4f6;"><i data-lucide="hash" style="width:15px;height:15px;color:#004677;flex-shrink:0;"></i><span style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#6b7280;min-width:92px;flex-shrink:0;">Account no</span><span style="font-size:12.5px;font-weight:900;color:#111;flex:1;min-width:0;">${activeBank.accNumber}</span><button onclick="navigator.clipboard.writeText('${activeBank.accNumber}')" style="background:#f5f5f5;border:none;border-radius:50px;padding:3px 10px;font-size:10px;font-weight:800;color:#111;cursor:pointer;flex-shrink:0;">copy</button></div>
+                        <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #f3f4f6;"><i data-lucide="map-pin" style="width:15px;height:15px;color:#004677;flex-shrink:0;"></i><span style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#6b7280;min-width:92px;flex-shrink:0;">Branch code</span><span style="font-size:12.5px;font-weight:900;color:#111;flex:1;min-width:0;">${activeBank.branch}</span><button onclick="navigator.clipboard.writeText('${activeBank.branch}')" style="background:#f5f5f5;border:none;border-radius:50px;padding:3px 10px;font-size:10px;font-weight:800;color:#111;cursor:pointer;flex-shrink:0;">copy</button></div>
+                        <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #f3f4f6;"><i data-lucide="wallet" style="width:15px;height:15px;color:#004677;flex-shrink:0;"></i><span style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#6b7280;min-width:92px;flex-shrink:0;">Account type</span><span style="font-size:12.5px;font-weight:900;color:#111;flex:1;min-width:0;">${activeBank.accType}</span></div>
+                        <div style="display:flex;align-items:center;gap:8px;padding:7px 0;"><i data-lucide="banknote" style="width:15px;height:15px;color:#004677;flex-shrink:0;"></i><span style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#6b7280;min-width:92px;flex-shrink:0;">Reference</span><span style="font-size:12.5px;font-weight:900;color:#ff6600;flex:1;min-width:0;">${activeBank.ref}</span><button onclick="navigator.clipboard.writeText('${activeBank.ref}')" style="background:#f5f5f5;border:none;border-radius:50px;padding:3px 10px;font-size:10px;font-weight:800;color:#111;cursor:pointer;flex-shrink:0;">copy</button></div>
                     </div>
                 </div>
 
-                <!-- INSTRUCTION -->
-                <div style="background:#fff5eb;border:1px solid #ff6600;border-radius:14px;padding:14px;display:flex;gap:12px;align-items:flex-start;">
-                    <i data-lucide="alert-triangle" style="width:20px;height:20px;color:#ff6600;flex-shrink:0;margin-top:2px;"></i>
-                    <p style="font-size:12px;color:#7c2d12;line-height:1.5;margin:0;">Go make your deposit now (bank / ATM / banking app), then come back here, screenshot the deposit confirmation, and attach it below. <strong>Your order will NOT be submitted without the proof image.</strong></p>
+
+                <!-- HOW TO PAY — Web Builders layout -->
+                <div style="background:#fff;border:1.5px solid #e5e7eb;border-radius:18px;padding:16px;box-shadow:0 4px 16px rgba(0,0,0,0.05);font-size:13px;line-height:1.55;color:#111;">
+                    <div style="display:flex;align-items:center;gap:12px;padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid #e5e7eb;">
+                        <img src="https://media.base44.com/images/public/69d65c79ded115a4ef63649f/dc4ab5958_CPIJO-7f69f481.png" alt="Capitec" style="height:30px;width:auto;object-fit:contain;flex-shrink:0;"/>
+                        <strong style="font-size:15px;font-weight:900;color:#111;">How to pay — follow these steps</strong>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:10px;padding:9px 0;">
+                        <span style="width:22px;height:22px;border-radius:50%;background:#111;color:#fff;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</span>
+                        <i data-lucide="smartphone" style="width:17px;height:17px;color:#004677;flex-shrink:0;"></i>
+                        <div>Open your banking app (Capitec or any other bank) on your phone.</div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:10px;padding:9px 0;">
+                        <span style="width:22px;height:22px;border-radius:50%;background:#111;color:#fff;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</span>
+                        <i data-lucide="send" style="width:17px;height:17px;color:#004677;flex-shrink:0;"></i>
+                        <div>Deposit the exact amount into <strong>this bank account</strong> and use <strong>your reference</strong> above.</div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:10px;padding:9px 0;">
+                        <span style="width:22px;height:22px;border-radius:50%;background:#111;color:#fff;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</span>
+                        <i data-lucide="camera" style="width:17px;height:17px;color:#004677;flex-shrink:0;"></i>
+                        <div>Take a <strong>screenshot</strong> of the successful payment.</div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:10px;padding:9px 0;">
+                        <span style="width:22px;height:22px;border-radius:50%;background:#111;color:#fff;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;">4</span>
+                        <i data-lucide="paperclip" style="width:17px;height:17px;color:#004677;flex-shrink:0;"></i>
+                        <div>Come back here and <strong>attach that screenshot</strong> below, then confirm.</div>
+                    </div>
+                    <div style="display:flex;align-items:flex-start;gap:8px;margin-top:12px;font-size:11.5px;line-height:1.5;color:#4b5563;background:#f8f9fa;border-radius:12px;padding:10px 12px;">
+                        <i data-lucide="clock" style="width:14px;height:14px;color:#004677;flex-shrink:0;margin-top:2px;"></i>
+                        <span style="flex:1;min-width:0;">We will reply within <strong style="font-weight:900;color:#111;">30–60 minutes</strong> after your payment reflects. No screenshot = payment not accepted.</span>
+                    </div>
                 </div>
 
                 <!-- ATTACH PROOF -->
@@ -3145,7 +3180,7 @@ window.closeGuestChoice = function() {
        <!-- SINGLE PAY BUTTON — slim white pill, soft layered shadow -->
             <button onclick="submitCheckout()" id="submitCheckoutBtn" style="width:100%;background:#fff;color:#111;font-weight:700;padding:12px 18px;border:1px solid #fde68a;border-radius:999px;font-size:15px;letter-spacing:0.2px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;box-shadow:0 1px 0 #fff inset, 0 6px 18px rgba(0,0,0,0.10), 0 1px 3px rgba(0,0,0,0.06);margin-bottom:10px;transition:transform 0.15s ease, box-shadow 0.15s ease;" onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 1px 0 #fff inset, 0 10px 24px rgba(0,0,0,0.14), 0 1px 3px rgba(0,0,0,0.06);'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 1px 0 #fff inset, 0 6px 18px rgba(0,0,0,0.10), 0 1px 3px rgba(0,0,0,0.06);'">
                 <span id="payBtnLogoWrap" style="display:inline-flex;align-items:center;justify-content:center;height:22px;">
-                    <div style="height:26px;width:26px;border-radius:8px;background:#0f766e;display:flex;align-items:center;justify-content:center;"><i data-lucide="landmark" style="width:17px;height:17px;color:#fff;"></i></div>
+                    <img src="https://media.base44.com/images/public/69d65c79ded115a4ef63649f/dc4ab5958_CPIJO-7f69f481.png" alt="Capitec" style="height:22px;width:auto;object-fit:contain;flex-shrink:0;"/>
                 </span>
                 <span style="display:inline-flex;align-items:center;gap:9px;">
                     <i data-lucide="lock" style="width:15px;height:15px;color:#16a34a;"></i>
@@ -5610,10 +5645,7 @@ window.toggleReviewText = function(idx) {
 // ============================================================
 
 // --- Seller Info Popup ---
-window.openSellerInfoPopup = function() {
-    document.getElementById('sellerInfoPopup').style.display = 'flex';
-    toggleMobileMenu(false);
-};
+// openSellerInfoPopup is now defined by the wrapper script at the bottom of the page
 window.closeSellerInfoPopup = function() {
     document.getElementById('sellerInfoPopup').style.display = 'none';
 };
@@ -6659,16 +6691,8 @@ window.filterAdminProducts = function(query) {
 // Quick Orders & Sellers popup JS
 const QUICK_PASSWORD = 'DMSVAULT';
 
-window.openQuickOrders = function() {
-    const el = document.getElementById('quickOrdersPopup');
-    el.style.display = 'flex';
-    el.style.flexDirection = 'column';
-    document.getElementById('quickOrdersPasswordSection').style.display = 'flex';
-    document.getElementById('quickOrdersList').style.display = 'none';
-    document.getElementById('quickOrdersPassword').value = '';
-    document.getElementById('quickOrdersError').style.display = 'none';
-    lucide.createIcons();
-};
+// openQuickOrders is now defined by the wrapper script at the bottom of the page
+
 window.closeQuickOrders = function() {
     document.getElementById('quickOrdersPopup').style.display = 'none';
 };
@@ -6777,16 +6801,8 @@ window.deleteQuickOrder = async function(orderId) {
     updateOrdersBadge();
 };
 
-window.openQuickSellers = function() {
-    const el = document.getElementById('quickSellersPopup');
-    el.style.display = 'flex';
-    el.style.flexDirection = 'column';
-    document.getElementById('quickSellersPasswordSection').style.display = 'flex';
-    document.getElementById('quickSellersList').style.display = 'none';
-    document.getElementById('quickSellersPassword').value = '';
-    document.getElementById('quickSellersError').style.display = 'none';
-    lucide.createIcons();
-};
+// openQuickSellers is now defined by the wrapper script at the bottom of the page
+
 window.closeQuickSellers = function() {
     document.getElementById('quickSellersPopup').style.display = 'none';
 };
@@ -7329,6 +7345,184 @@ window.adminLoadAllProducts = async function() {
 });
 
 
+        </script>
+
+    <!-- ===== WHATSAPP + BEELZECHAT POP-UPS & FLOATING ICONS ===== -->
+    <style>
+        @keyframes dmsPopUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+           .dms-wa-bubble, .dms-bc-bubble {
+            position:fixed; z-index:10000; max-width:272px; width:calc(100% - 24px);
+            background:#fff; border-radius:18px; box-shadow:0 12px 38px rgba(0,0,0,0.20);
+            padding:14px; display:none; animation:dmsPopUp 0.35s ease;
+        }
+        .dms-wa-bubble { right:12px; bottom:78px; }
+        .dms-bc-bubble { left:12px; bottom:78px; }
+        .dms-float-btn {
+            position:fixed; z-index:69; width:54px; height:54px; border-radius:50%;
+            display:flex; align-items:center; justify-content:center; cursor:pointer;
+            box-shadow:0 8px 22px rgba(0,0,0,0.25); border:none; padding:0;
+        }
+        .dms-float-wa { right:14px; bottom:16px; background:#25D366; }
+        .dms-float-bc { left:14px; bottom:16px; background:#000; }
+        .dms-float-btn:active { transform:scale(0.92); }
+    </style>
+
+    <!-- WhatsApp pop-up -->
+    <div class="dms-wa-bubble" id="waPopup">
+        <button onclick="closeWaPopup()" style="position:absolute;top:8px;right:8px;background:#f3f4f6;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+            <i data-lucide="x" style="width:16px;height:16px;color:#374151;"></i>
+        </button>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:42px;height:42px;border-radius:50%;flex-shrink:0;object-fit:cover;"/>
+            <span style="font-weight:800;font-size:15px;color:#111;">WhatsApp us</span>
+        </div>
+        <p style="font-size:13px;color:#374151;margin:0 0 12px;font-weight:600;line-height:1.4;">Got a question about us or an order? Chat with us instantly on WhatsApp.</p>
+        <a href="https://wa.me/27687790223?text=Hello%20Dark%20Master%20Store%2C%20I%20am%20coming%20from%20your%20website%20and%20I%20have%20a%20question%20to%20ask." target="_blank" rel="noopener" onclick="closeWaPopup()" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:#25D366;color:#fff;font-weight:800;padding:11px;border-radius:12px;font-size:13px;text-decoration:none;">
+            <i data-lucide="message-circle" style="width:15px;height:15px;color:#fff;"></i> Open WhatsApp
+        </a>
+    </div>
+
+    <!-- BeelzeChat pop-up -->
+    <div class="dms-bc-bubble" id="bcPopup">
+        <button onclick="closeBcPopup()" style="position:absolute;top:8px;right:8px;background:#f3f4f6;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+            <i data-lucide="x" style="width:16px;height:16px;color:#374151;"></i>
+        </button>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <img src="https://media.base44.com/images/public/6a743dea77a7860c317ce663/decc6d67a_1000100703.png" alt="BeelzeChat" style="width:42px;height:42px;border-radius:12px;flex-shrink:0;object-fit:cover;border:1px solid #e5e7eb;"/>
+            <span style="font-weight:800;font-size:15px;color:#111;">BeelzeChat Us</span>
+        </div>
+        <p style="font-size:13px;color:#374151;margin:0 0 12px;font-weight:600;line-height:1.4;"> Chat with Dark Master Store CEO and team from the app that you will always find us available on it .</p>
+        <a href="https://beelzechat.co.za" target="_blank" rel="noopener" onclick="closeBcPopup()" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:#111;color:#fff;font-weight:800;padding:11px;border-radius:12px;font-size:13px;text-decoration:none;">
+            <i data-lucide="crown" style="width:15px;height:15px;color:#facc15;"></i> Open BeelzeChat
+        </a>
+    </div>
+
+    <!-- Floating icons — always visible after the pop-ups close -->
+    <button class="dms-float-btn dms-float-wa" onclick="openWaPopup()" aria-label="WhatsApp us">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:30px;height:30px;object-fit:contain;"/>
+    </button>
+    <button class="dms-float-btn dms-float-bc" onclick="openBcPopup()" aria-label="BeelzeChat us">
+        <img src="https://media.base44.com/images/public/6a743dea77a7860c317ce663/decc6d67a_1000100703.png" alt="BeelzeChat" style="width:30px;height:30px;object-fit:contain;border-radius:7px;"/>
+    </button>
+
+    <script>
+    function _dmsBringToFront(id){
+        var el = document.getElementById(id);
+        if(el) document.body.appendChild(el);
+    }
+    function _dmsCloseAllPopups(){
+        ['waPopup','bcPopup','sellPopup','quickOrdersPopup','quickSellersPopup','sellerInfoPopup','sellerLoginPopup','dmsVaultPopup','customAlert','authModal','adminLoginPopup','imageLightbox'].forEach(function(id){
+            var e = document.getElementById(id);
+            if(e && id !== 'loadingPopup') e.style.display = 'none';
+        });
+    }
+    function openWaPopup(){ _dmsBringToFront('waPopup'); var p=document.getElementById('waPopup'); p.style.display='block'; if(window.lucide) lucide.createIcons(); }
+function closeWaPopup(){ document.getElementById('waPopup').style.display='none'; }
+function openBcPopup(){ _dmsBringToFront('bcPopup'); var p=document.getElementById('bcPopup'); p.style.display='block'; if(window.lucide) lucide.createIcons(); }
+function closeBcPopup(){ document.getElementById('bcPopup').style.display='none'; }
+
+
+    // These wrappers run on every click — they close everything else first, then open ONLY the right popup.
+window.openQuickOrders = function(){
+    _dmsCloseAllPopups();
+    var el = document.getElementById('quickOrdersPopup');
+    _dmsBringToFront('quickOrdersPopup');
+    el.style.display = 'flex'; el.style.flexDirection = 'column';
+    document.getElementById('quickOrdersPasswordSection').style.display = 'flex';
+    document.getElementById('quickOrdersList').style.display = 'none';
+    document.getElementById('quickOrdersPassword').value = '';
+    document.getElementById('quickOrdersError').style.display = 'none';
+    if(window.lucide) lucide.createIcons();
+};
+
+window.openQuickSellers = function(){
+    _dmsCloseAllPopups();
+    var el = document.getElementById('quickSellersPopup');
+    _dmsBringToFront('quickSellersPopup');
+    el.style.display = 'flex'; el.style.flexDirection = 'column';
+    document.getElementById('quickSellersPasswordSection').style.display = 'flex';
+    document.getElementById('quickSellersList').style.display = 'none';
+    document.getElementById('quickSellersPassword').value = '';
+    document.getElementById('quickSellersError').style.display = 'none';
+    if(window.lucide) lucide.createIcons();
+};
+
+window.openSellerInfoPopup = function(){
+    _dmsCloseAllPopups();
+    _dmsBringToFront('sellerInfoPopup');
+    document.getElementById('sellerInfoPopup').style.display = 'flex';
+    if(window.toggleMobileMenu) toggleMobileMenu(false);
+    if(window.lucide) lucide.createIcons();
+};
+
     </script>
+    <style>
+    #quickOrdersPopup, #quickSellersPopup, #waPopup, #bcPopup, #sellerInfoPopup, #sellerLoginPopup, #dmsVaultPopup, #customAlert, #authModal, #adminLoginPopup, #imageLightbox, #loadingPopup, #sellPopup {
+        z-index: 99999 !important;
+    }
+    </style>
+<script>
+setInterval(function(){
+    var m=false;
+    ['authModal','adminLoginPopup','sellerInfoPopup','sellerLoginPopup','dmsVaultPopup','quickOrdersPopup','quickSellersPopup','customAlert','imageLightbox','loadingPopup','sellPopup','waPopup','bcPopup','guestChoicePopup'].forEach(function(id){
+        var e=document.getElementById(id);
+        if(e&&e.style.display!=='none'&&e.style.display!=='')m=true;
+    });
+    document.querySelectorAll('.dms-float-btn').forEach(function(f){
+        f.style.display=m?'none':'flex';
+    });
+},200);
+</script>
+<script>
+var _origOSL = window.openSellerLoginPopup;
+window.openSellerLoginPopup = function(){
+    var el = document.getElementById('sellerLoginPopup');
+    if(el) document.body.appendChild(el);
+    if(_origOSL){ _origOSL(); return; }
+    el.style.display = 'flex';
+    document.getElementById('sellerLoginError').style.display = 'none';
+    document.getElementById('sellerCodeInput').value = '';
+    if(window.toggleMobileMenu) toggleMobileMenu(false);
+};
+var _origODV = window.openDmsVault;
+window.openDmsVault = function(){
+    var el = document.getElementById('dmsVaultPopup');
+    if(el) document.body.appendChild(el);
+    if(_origODV){ _origODV(); return; }
+    el.style.display = 'flex';
+    document.getElementById('vaultLoginSection').style.display = 'block';
+    document.getElementById('vaultCreateSection').style.display = 'none';
+    document.getElementById('vaultPasswordInput').value = '';
+    document.getElementById('vaultLoginError').style.display = 'none';
+    document.getElementById('generatedCodeBox').style.display = 'none';
+    if(window.toggleMobileMenu) toggleMobileMenu(false);
+};
+
+(function(){
+    const container = document.getElementById('loadingDots');
+    if(!container) return;
+    const cx = 100, cy = 100;
+    const rings = [
+        { radius: 92, count: 14, sizeStart: 12, sizeEnd: 6 },
+        { radius: 76, count: 12, sizeStart: 10, sizeEnd: 5 },
+        { radius: 62, count: 10, sizeStart: 8, sizeEnd: 4 }
+    ];
+    let html = '';
+    rings.forEach(function(ring, ri){
+        for(let i=0; i<ring.count; i++){
+            const angle = (i / ring.count) * Math.PI * 2 - Math.PI/2;
+            const x = cx + Math.cos(angle) * ring.radius;
+            const y = cy + Math.sin(angle) * ring.radius;
+            const t = i / ring.count;
+            const size = ring.sizeStart - (ring.sizeStart - ring.sizeEnd) * t;
+            const delay = ((i * 0.12) + (ri * 0.4)).toFixed(2);
+            html += '<div class="dms-dot" style="width:'+size+'px;height:'+size+'px;left:'+x+'px;top:'+y+'px;animation-delay:'+delay+'s;"></div>';
+        }
+    });
+    container.innerHTML = html;
+})();
+
+
+</script>
 </body>
 </html>

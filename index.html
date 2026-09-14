@@ -45,10 +45,13 @@
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { overflow-x: hidden; max-width: 100vw; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; }
+
         
-        .product-card { transition: all 0.3s; }
-        .product-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .product-card { transition: box-shadow 0.3s; }
+        .product-card:hover { box-shadow: 0 12px 28px rgba(0,0,0,0.12); }
+        .product-card:active { transform: none; }
         
         .combo-image-grid {
             display: grid;
@@ -918,7 +921,7 @@
             <div class="py-16 bg-gray-50">
                 <div class="max-w-7xl mx-auto px-4">
                     <h2 class="text-3xl font-bold text-center mb-12">Shop by Category</h2>
-                    <div id="categoriesGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+                    <div id="categoriesGrid" style="display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:8px;scrollbar-width:none;"></div>
                 </div>
             </div>
             
@@ -950,15 +953,15 @@
             <div class="py-16 bg-gray-50">
                 <div class="max-w-7xl mx-auto px-4">
              <h2 class="text-3xl font-bold text-center mb-4">Discover More</h2>
-                    <div id="moreProducts" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
-                   <div class="text-center mt-4">
-                        <button onclick="showPage('products')" class="bg-yellow-400 text-black px-3 py-1.5 text-xs rounded-md font-semibold hover:bg-yellow-500 inline-flex items-center gap-1">
+                    <div id="moreProducts" class="grid grid-cols-2 lg:grid-cols-4 gap-6"></div>
+                   <div class="text-center mt-8">
+                        <button onclick="showPage('products')" class="bg-yellow-400 text-black px-6 py-3 text-sm rounded-full font-bold hover:bg-yellow-500 inline-flex items-center gap-2 shadow-lg">
                         View All Products
-                       <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                       <i data-lucide="arrow-right" class="w-4 h-4"></i>
                    </button>
-                    </div>
-                </div>
-            </div>
+                     </div>
+                 </div>
+             </div>
             
             
 
@@ -2413,44 +2416,31 @@ window.addEventListener('scroll', () => {
         function renderHomePage() {
             const categoriesGrid = document.getElementById('categoriesGrid');
             categoriesGrid.innerHTML = window.appState.categories.map(cat => `
-                <div class="category-card bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer hover:shadow-xl transition" onclick="filterByCategory('${cat.id}')">
-                    <div class="relative aspect-square">
-                        <img src="${cat.image || 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400'}" 
-                             alt="${cat.name}" 
-                             class="w-full h-full object-cover" />
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-4 text-white">
-                            <h3 class="font-bold text-lg">${cat.name}</h3>
-                            ${cat.description ? `<p class="text-sm opacity-90 mt-1">${cat.description}</p>` : ''}
+                <div onclick="filterByCategory('${cat.id}')" style="flex:0 0 130px;scroll-snap-align:start;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,0.08);cursor:pointer;transition:transform 0.2s;border:1px solid #f3f4f6;">
+                    <div style="position:relative;width:130px;height:130px;">
+                        <img src="${cat.image || 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400'}" alt="${cat.name}" style="width:100%;height:100%;object-fit:cover;"/>
+                        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.8),transparent);"></div>
+                        <div style="position:absolute;bottom:0;left:0;right:0;padding:10px;color:#fff;">
+                            <h3 style="font-weight:800;font-size:13px;margin:0;line-height:1.2;">${cat.name}</h3>
                         </div>
                     </div>
                 </div>
             `).join('');
 
-            // Shuffle products randomly (no duplicate IDs) so the store looks fresh each load
-// Random order (no duplicate products) — new products stay on top for 1 day, then join the random pool
-const allProducts = window._randomPool ? [...window._randomPool] : [...window.appState.products];
-// Load 2 products at a time so the home page streams 2-by-2, not everything at once
-let _shown = 0;
-const _batch = 2;
-renderProductGrid('featuredProducts', allProducts.slice(0, _batch));
-_shown = _batch;
-if (window._homeStreamTimer) clearInterval(window._homeStreamTimer);
-window._homeStreamTimer = setInterval(() => {
-    _shown += _batch;
-    if (_shown >= allProducts.length) {
-        renderProductGrid('featuredProducts', allProducts);
-        clearInterval(window._homeStreamTimer);
-        return;
-    }
-    renderProductGrid('featuredProducts', allProducts.slice(0, _shown));
-}, 350);
+                        // Show only 6 featured products, then a View All button — no streaming flood
+            const allProducts = window._randomPool ? [...window._randomPool] : [...window.appState.products];
+            renderProductGrid('featuredProducts', (window._randomPool || window.appState.products || []).slice(0, 6));
+             renderProductGrid('moreProducts', (window._randomPool || window.appState.products || []).slice(6, 12));
+
             
             lucide.createIcons();
         }
         
         
-        
+        // Discover More — only 6 products
+            renderProductGrid('featuredProducts', (window._randomPool || window.appState.products || []).slice(0, 6));
+            renderProductGrid('moreProducts', (window._randomPool || window.appState.products || []).slice(6, 12));
+
         
         
         
@@ -2565,7 +2555,8 @@ window._homeStreamTimer = setInterval(() => {
         // Show product detail with clickable images
         window.showProductDetail = function(productId) {
             const product = window.appState.products.find(p => p.id === productId);
-            if (!product) return;
+            if (!product) { showAlert('Sorry — this product could not be added. Refresh and try again.'); return; }
+
 
             window.appState.currentProduct = product;
             const images = product.images || [];
@@ -2754,10 +2745,12 @@ ${product.colors ? `
   
   
 
-        // Add to cart
+        // Add to cart — searches ALL product sources so it never fails on the home page
         window.addToCart = function(productId, quantity = 1) {
-            const product = window.appState.products.find(p => p.id === productId);
-            if (!product) return;
+            const product = window.appState.products.find(p => p.id === productId)
+                         || (window._randomPool || []).find(p => p.id === productId)
+                         || (window.HARDCODED_PRODUCTS || []).find(p => p.id === productId);
+            if (!product) { console.warn('addToCart: product not found', productId); return; }
 
             const existingItem = window.appState.cart.find(item => item.id === productId);
             
@@ -2773,10 +2766,53 @@ ${product.colors ? `
                 });
             }
 
-            localStorage.setItem('darkmaster_cart', JSON.stringify(window.appState.cart));
+            try { localStorage.setItem('darkmaster_cart', JSON.stringify(window.appState.cart)); } catch(e) {}
             updateCartDisplay();
-            showAlert(`${product.name} added to cart!`);
+            showAddedToCartPopup(product);
         };
+
+        // Custom "Added to Cart" popup — white card, app logo, flashing dots, product pic + name
+        window.showAddedToCartPopup = function(product) {
+            // Remove any existing popup
+            const old = document.getElementById('addedToCartPopup');
+            if (old) old.remove();
+
+            const popup = document.createElement('div');
+            popup.id = 'addedToCartPopup';
+            popup.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.45);display:flex;align-items:center;justify-content:center;padding:20px;';
+            popup.innerHTML = `
+                <div style="background:#fff;border-radius:24px;padding:26px 22px;max-width:300px;width:100%;text-align:center;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.3);animation:popIn 0.3s ease;">
+                    <button onclick="closeAddedToCartPopup()" style="position:absolute;top:12px;right:12px;background:#f3f4f6;border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+                        <i data-lucide="x" style="width:16px;height:16px;color:#374151;"></i>
+                    </button>
+                    <!-- App logo + flashing dots -->
+                    <div style="position:relative;width:72px;height:72px;margin:0 auto 14px;">
+                        <div style="position:absolute;inset:0;border-radius:50%;">
+                            <div style="position:absolute;top:50%;left:50%;width:10px;height:10px;border-radius:50%;background:#facc15;transform:translate(-50%,-50%);animation:dmsDotSplash 3.5s ease-in-out infinite;"></div>
+                            <div style="position:absolute;top:50%;left:50%;width:8px;height:8px;border-radius:50%;background:#facc15;transform:translate(-50%,-50%);animation:dmsDotSplash 3.5s ease-in-out infinite 0.5s;opacity:0.6;"></div>
+                        </div>
+                        <img src="https://i.postimg.cc/gJhjVfvM/Logo-for-Dark-Master-Store.png" alt="Dark Master Store" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:12px;object-fit:cover;z-index:2;box-shadow:0 4px 14px rgba(0,0,0,0.18);"/>
+                    </div>
+                    <!-- Product picture + name -->
+                    <img src="${product.images?.[0] || 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=200'}" alt="${product.name}" style="width:70px;height:70px;object-fit:cover;border-radius:14px;margin:0 auto 10px;display:block;box-shadow:0 4px 12px rgba(0,0,0,0.12);"/>
+                    <p style="font-size:13px;font-weight:700;color:#374151;margin:0 0 4px;line-height:1.3;">${product.name}</p>
+                    <h3 style="font-size:17px;font-weight:900;color:#111;margin:0 0 14px;">Added to Cart</h3>
+                    <button onclick="closeAddedToCartPopup();showPage('cart')" style="width:100%;background:#facc15;color:#111;font-weight:800;padding:12px;border:none;border-radius:12px;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px;">
+                        <i data-lucide="shopping-cart" style="width:16px;height:16px;"></i> View Cart
+                    </button>
+                    <button onclick="closeAddedToCartPopup()" style="width:100%;background:#fff;color:#6b7280;font-weight:700;padding:10px;border:1.5px solid #e5e7eb;border-radius:12px;font-size:13px;cursor:pointer;">Keep Shopping</button>
+                </div>`;
+            document.body.appendChild(popup);
+            lucide.createIcons();
+            // Auto-close after 2.5s
+            window._addedToCartTimer = setTimeout(() => closeAddedToCartPopup(), 2500);
+        };
+        window.closeAddedToCartPopup = function() {
+            if (window._addedToCartTimer) { clearTimeout(window._addedToCartTimer); window._addedToCartTimer = null; }
+            const p = document.getElementById('addedToCartPopup');
+            if (p) p.remove();
+        };
+
 
         // Update cart display
         function updateCartDisplay() {
@@ -2814,32 +2850,29 @@ ${product.colors ? `
             const grandTotal = subtotal;
 
             cartContent.innerHTML = `
-                <div class="grid lg:grid-cols-3 gap-8">
-                    <div class="lg:col-span-2 space-y-4">
+                <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+                    <div class="xl:col-span-2 space-y-4 w-full">
                         ${window.appState.cart.map(item => `
-                            <div class="bg-white p-4 rounded-lg shadow">
-                                <div class="flex items-start gap-4">
-                                    <img src="${item.image}" alt="${item.name}" class="w-24 h-24 object-cover rounded-md flex-shrink-0" />
+                               <div class="bg-white p-5 rounded-lg shadow w-full">
+                                <div class="flex items-center gap-3">
+                                    <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-cover rounded-md flex-shrink-0" />
                                     <div class="flex-1 min-w-0">
-                                        <h3 class="font-semibold mb-1 line-clamp-2">${item.name}</h3>
-                                        <p class="text-gray-600 text-sm mb-3">R${item.price.toFixed(2)} each</p>
-                                        <div class="flex items-center gap-3">
+                                        <h3 class="font-semibold text-sm truncate mb-0.5">${item.name}</h3>
+                                        <p class="text-gray-500 text-xs mb-2">R${item.price.toFixed(2)} each</p>
+                                        <div class="flex items-center justify-between gap-2">
                                             <div class="flex items-center border rounded-lg">
-                                                <button onclick="updateCartQuantity('${item.id}', ${item.quantity - 1})" class="px-3 py-2 hover:bg-gray-100">
-                                                    <i data-lucide="minus" class="w-4 h-4"></i>
+                                                <button onclick="updateCartQuantity('${item.id}', ${item.quantity - 1})" class="px-2 py-1.5 hover:bg-gray-100">
+                                                    <i data-lucide="minus" class="w-3.5 h-3.5"></i>
                                                 </button>
-                                                <span class="px-4 py-2 font-medium border-x">${item.quantity}</span>
-                                                <button onclick="updateCartQuantity('${item.id}', ${item.quantity + 1})" class="px-3 py-2 hover:bg-gray-100">
-                                                    <i data-lucide="plus" class="w-4 h-4"></i>
+                                                <span class="px-3 py-1.5 font-medium text-sm border-x">${item.quantity}</span>
+                                                <button onclick="updateCartQuantity('${item.id}', ${item.quantity + 1})" class="px-2 py-1.5 hover:bg-gray-100">
+                                                    <i data-lucide="plus" class="w-3.5 h-3.5"></i>
                                                 </button>
                                             </div>
-                                            <div class="flex-1"></div>
-                                            <div class="text-right">
-                                                <p class="font-bold text-lg">R${(item.price * item.quantity).toFixed(2)}</p>
-                                            </div>
+                                            <p class="font-bold text-base">R${(item.price * item.quantity).toFixed(2)}</p>
                                         </div>
-                                        <button onclick="removeFromCart('${item.id}')" class="mt-3 text-red-500 text-sm hover:text-red-700 flex items-center gap-1">
-                                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                        <button onclick="removeFromCart('${item.id}')" class="mt-2 text-red-500 text-xs hover:text-red-700 flex items-center gap-1">
+                                            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
                                             Remove
                                         </button>
                                     </div>
@@ -2847,7 +2880,7 @@ ${product.colors ? `
                             </div>
                         `).join('')}
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow h-fit">
+                        <div class="bg-white p-5 rounded-lg shadow h-fit w-full">
                         <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
                             <i data-lucide="receipt" class="w-5 h-5"></i>
                             Order Summary
@@ -3015,7 +3048,8 @@ window.closeGuestChoice = function() {
     
 
     checkoutContent.innerHTML = `
-        <div style="display:flex;flex-direction:column;gap:20px;max-width:560px;margin:0 auto;">
+        <div style="display:flex;flex-direction:column;gap:20px;max-width:560px;margin:0 auto;width:100%;box-sizing:border-box;">
+
 
             
 
@@ -3031,7 +3065,7 @@ window.closeGuestChoice = function() {
                         <label style="font-size:12px;font-weight:700;color:#374151;display:block;margin-bottom:6px;">Full Name</label>
                         <input required name="fullName" value="${draft?.fullName||''}" placeholder="Full name" style="width:100%;padding:12px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;box-sizing:border-box;" onfocus="this.style.borderColor='#111'" onblur="this.style.borderColor='#e5e7eb'" />
                     </div>
-                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;">
                         <div>
                             <label style="font-size:12px;font-weight:700;color:#374151;display:block;margin-bottom:6px;">Phone</label>
                             <input required name="phone" value="${draft?.phone||''}" placeholder="+27..." style="width:100%;padding:12px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;box-sizing:border-box;" onfocus="this.style.borderColor='#111'" onblur="this.style.borderColor='#e5e7eb'" />
@@ -7358,8 +7392,8 @@ window.adminLoadAllProducts = async function() {
         .dms-wa-bubble { right:12px; bottom:78px; }
         .dms-bc-bubble { left:12px; bottom:78px; }
         .dms-float-btn {
-            position:fixed; z-index:69; width:54px; height:54px; border-radius:50%;
-            display:flex; align-items:center; justify-content:center; cursor:pointer;
+            position:fixed !important; z-index:99990 !important; width:54px; height:54px; border-radius:50%;
+            display:flex !important; align-items:center; justify-content:center; cursor:pointer;
             box-shadow:0 8px 22px rgba(0,0,0,0.25); border:none; padding:0;
         }
         .dms-float-wa { right:14px; bottom:16px; background:#25D366; }
@@ -7462,16 +7496,36 @@ window.openSellerInfoPopup = function(){
     }
     </style>
 <script>
-setInterval(function(){
-    var m=false;
-    ['authModal','adminLoginPopup','sellerInfoPopup','sellerLoginPopup','dmsVaultPopup','quickOrdersPopup','quickSellersPopup','customAlert','imageLightbox','loadingPopup','sellPopup','waPopup','bcPopup','guestChoicePopup'].forEach(function(id){
-        var e=document.getElementById(id);
-        if(e&&e.style.display!=='none'&&e.style.display!=='')m=true;
-    });
-    document.querySelectorAll('.dms-float-btn').forEach(function(f){
-        f.style.display=m?'none':'flex';
-    });
-},200);
+(function(){
+    function makeBtn(id, side, bg, imgSrc, altText, onClick, imgSize){
+        var b = document.createElement('button');
+        b.id = id;
+        b.setAttribute('aria-label', altText);
+        var size = imgSize || 30;
+        b.innerHTML = '<img src="'+imgSrc+'" alt="'+altText+'" style="width:'+size+'px;height:'+size+'px;object-fit:cover;border-radius:10px;pointer-events:none;"/>';
+        b.onclick = function(e){ e.stopPropagation(); e.preventDefault(); if(window[onClick]) window[onClick](); };
+        document.body.appendChild(b);
+        b.style.cssText = 'position:fixed;'+side+':14px;bottom:16px;width:54px;height:54px;border-radius:50%;background:'+bg+';display:flex;align-items:center;justify-content:center;border:1.5px solid rgba(0,0,0,0.10);padding:0;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,0.25);z-index:99998;touch-action:manipulation;-webkit-tap-highlight-color:transparent;';
+        return b;
+    }
+    function draw(){
+        if(!document.getElementById('dmsFloatWa'))  makeBtn('dmsFloatWa','right','#25D366','https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg','WhatsApp us','openWaPopup');
+        if(!document.getElementById('dmsFloatBc'))  makeBtn('dmsFloatBc','left','#fff','https://media.base44.com/images/public/6a743dea77a7860c317ce663/decc6d67a_1000100703.png','BeelzeChat us','openBcPopup',42);
+    }
+    if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', draw); } else { draw(); }
+    setInterval(function(){
+        draw();
+        ['dmsFloatWa','dmsFloatBc'].forEach(function(id){
+            var b = document.getElementById(id);
+            if(!b) return;
+            b.style.display = 'flex';
+            b.style.opacity = '1';
+            b.style.visibility = 'visible';
+            b.style.pointerEvents = 'auto';
+            b.style.zIndex = '99998';
+        });
+    },500);
+})();
 </script>
 <script>
 var _origOSL = window.openSellerLoginPopup;

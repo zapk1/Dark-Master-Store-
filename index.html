@@ -3138,10 +3138,34 @@ window.closeGuestChoice = function() {
                 </form>
             </div>
 
-            <!-- PAYMENT — goes straight to our Capitec bank box -->
+            <!-- PAYMENT METHOD — PayFast (default) or Capitec EFT -->
+            <div style="background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:16px;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+                    <i data-lucide="credit-card" style="width:18px;height:18px;color:#111;"></i>
+                    <h2 style="font-size:15px;font-weight:800;color:#111;margin:0;">Payment Method</h2>
+                </div>
+                <!-- PayFast box (DEFAULT) -->
+                <div onclick="selectCheckoutPayMethod('payfast')" id="checkoutPayCard-payfast" style="border:1px solid #facc15;border-radius:14px;padding:14px;margin-bottom:10px;cursor:pointer;display:flex;align-items:center;gap:12px;background:#fefce8;">
+                    <img src="https://media.base44.com/images/public/6a28cde8c2f5c1a2f471d7d5/6a0738be2_images2.jpeg" alt="PayFast" style="height:40px;width:auto;object-fit:contain;flex-shrink:0;border-radius:8px;" />
+                    <div style="flex:1;">
+                        <p style="font-weight:800;font-size:14px;color:#111;margin:0;">PayFast</p>
+                        <p style="font-size:11px;color:#6b7280;margin:2px 0 0;">Card / Instant EFT — fast &amp; automatic</p>
+                    </div>
+                    <span id="checkoutPfBadge" style="background:#facc15;color:#111;font-size:10px;font-weight:800;padding:3px 8px;border-radius:20px;">ACTIVE</span>
+                </div>
+                <!-- Capitec EFT box -->
+                <div onclick="selectCheckoutPayMethod('eft')" id="checkoutPayCard-eft" style="border:1.5px solid #e5e7eb;border-radius:14px;padding:14px;cursor:pointer;display:flex;align-items:center;gap:12px;background:#fff;">
+                    <img src="https://media.base44.com/images/public/69d65c79ded115a4ef63649f/dc4ab5958_CPIJO-7f69f481.png" alt="Capitec" style="height:40px;width:auto;object-fit:contain;flex-shrink:0;border-radius:8px;" />
+                    <div style="flex:1;">
+                        <p style="font-weight:800;font-size:14px;color:#111;margin:0;">Capitec Bank (EFT)</p>
+                        <p style="font-size:11px;color:#6b7280;margin:2px 0 0;">Manual deposit — details below</p>
+                    </div>
+                    <span id="checkoutEftBadge" style="display:none;background:#facc15;color:#111;font-size:10px;font-weight:800;padding:3px 8px;border-radius:20px;">ACTIVE</span>
+                </div>
+            </div>
 
             <!-- EFT ONLY: bank details, instruction, proof, confirm (hidden when PayFast active) -->
-      <div id="eftDetailsWrapper" style="display:block;">
+      <div id="eftDetailsWrapper" style="display:none;">
       
       
                                 <!-- BANK DETAILS -->
@@ -3250,34 +3274,144 @@ window.closeGuestChoice = function() {
             <!-- SINGLE PAY BUTTON — white, soft "misty" shadow edge, method logo -->
        <!-- SINGLE PAY BUTTON — slim white pill, soft layered shadow -->
             <button onclick="submitCheckout()" id="submitCheckoutBtn" style="width:100%;background:#fff;color:#111;font-weight:700;padding:12px 18px;border:1px solid #fde68a;border-radius:999px;font-size:15px;letter-spacing:0.2px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;box-shadow:0 1px 0 #fff inset, 0 6px 18px rgba(0,0,0,0.10), 0 1px 3px rgba(0,0,0,0.06);margin-bottom:10px;transition:transform 0.15s ease, box-shadow 0.15s ease;" onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 1px 0 #fff inset, 0 10px 24px rgba(0,0,0,0.14), 0 1px 3px rgba(0,0,0,0.06);'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 1px 0 #fff inset, 0 6px 18px rgba(0,0,0,0.10), 0 1px 3px rgba(0,0,0,0.06);'">
-                <span id="payBtnLogoWrap" style="display:inline-flex;align-items:center;justify-content:center;height:22px;">
-                    <img src="https://media.base44.com/images/public/69d65c79ded115a4ef63649f/dc4ab5958_CPIJO-7f69f481.png" alt="Capitec" style="height:22px;width:auto;object-fit:contain;flex-shrink:0;"/>
+                                <span id="payBtnLogoWrap" style="display:inline-flex;align-items:center;justify-content:center;height:22px;">
+                    <img src="https://media.base44.com/images/public/6a28cde8c2f5c1a2f471d7d5/6a0738be2_images2.jpeg" alt="PayFast" style="height:22px;width:auto;object-fit:contain;flex-shrink:0;"/>
                 </span>
                 <span style="display:inline-flex;align-items:center;gap:9px;">
                     <i data-lucide="lock" style="width:15px;height:15px;color:#16a34a;"></i>
-                    <span id="payBtnText">Confirm EFT Order</span>
+                    <span id="payBtnText">Pay with PayFast</span>
                 </span>
             </button>
             <p style="text-align:center;font-size:11px;color:#9ca3af;margin:0 0 24px;">Your details are saved on this device. If you leave to make the deposit, come back and you'll still be here.</p>
 
         </div>
     `;
-        // Save reference code for this checkout
+                // Save reference code for this checkout
     window.appState._checkoutRef = refCode;
     window.appState._checkoutBank = activeBank;
-    window.appState._paymentMethod = 'eft';
+    window.appState._paymentMethod = 'payfast';
     lucide.createIcons();
+    selectCheckoutPayMethod('payfast');
 }
 
 
 
-// EFT only — no PayFast at checkout
+// ===== PAYMENT METHOD SELECTOR — PayFast default, Capitec EFT optional =====
+window.selectCheckoutPayMethod = function(method) {
+    window.appState._paymentMethod = method;
+    const pfCard = document.getElementById('checkoutPayCard-payfast');
+    const eftCard = document.getElementById('checkoutPayCard-eft');
+    const pfBadge = document.getElementById('checkoutPfBadge');
+    const eftBadge = document.getElementById('checkoutEftBadge');
+    const eftWrap = document.getElementById('eftDetailsWrapper');
+    const logo = document.querySelector('#payBtnLogoWrap img');
+    const btnText = document.getElementById('payBtnText');
+if (method === 'payfast') {
+        pfCard.style.border = '1px solid #facc15'; pfCard.style.background = '#fefce8';
+        eftCard.style.border = '1px solid #e5e7eb'; eftCard.style.background = '#fff';
+        pfBadge.style.display = 'inline-block'; eftBadge.style.display = 'none';
+        eftWrap.style.display = 'none';
+        if (logo) logo.src = 'https://media.base44.com/images/public/6a28cde8c2f5c1a2f471d7d5/6a0738be2_images2.jpeg';
+        if (btnText) btnText.textContent = 'Pay with PayFast';
+    } else {
+        pfCard.style.border = '1px solid #e5e7eb'; pfCard.style.background = '#fff';
+        eftCard.style.border = '1px solid #facc15'; eftCard.style.background = '#fefce8';
+        pfBadge.style.display = 'none'; eftBadge.style.display = 'inline-block';
+        eftWrap.style.display = 'block';
+        if (logo) logo.src = 'https://media.base44.com/images/public/69d65c79ded115a4ef63649f/dc4ab5958_CPIJO-7f69f481.png';
+        if (btnText) btnText.textContent = 'Confirm EFT Order';
+    }
+    lucide.createIcons();
+};
+
+// Submit — routes to PayFast (default) or the manual EFT flow
 window.submitCheckout = function() {
-    completeOrder();
+    if (window.appState._paymentMethod === 'payfast') {
+        payCheckoutWithPayfast();
+    } else {
+        completeOrder();
+    }
 };
 
 // ===== PAYFAST — CHECKOUT =====
 const PAYFAST_WORKER_URL = 'https://payfastpayment.white-mouse-5467.workers.dev';
+
+// ===== PAYFAST CHECKOUT — charges the EXACT cart total =====
+window.payCheckoutWithPayfast = async function() {
+    const form = document.getElementById('checkoutForm');
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    const formData = new FormData(form);
+    const fullName = formData.get('fullName') || '';
+    const email = formData.get('email') || '';
+    const phone = formData.get('phone') || '';
+    const province = formData.get('province') || '';
+    const city = formData.get('city') || '';
+    const suburb = formData.get('suburb') || '';
+    const address = formData.get('address') || '';
+
+    const subtotal = window.appState.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const grandTotal = subtotal + DELIVERY_FEE;
+    if (grandTotal <= 0) { showAlert('Your cart is empty.'); return; }
+
+    const orderRef = window.appState._checkoutRef || ('DM-' + Math.random().toString(36).slice(2, 8).toUpperCase());
+
+    const btn = document.getElementById('submitCheckoutBtn');
+    const oldHTML = btn.innerHTML;
+    btn.disabled = true;
+    btn.textContent = 'Redirecting to PayFast...';
+
+    try {
+        // Save the order as pending BEFORE redirect so the store never loses it
+        await addDoc(collection(db, 'orders'), {
+            fullName, phone, email, province, city, suburb, address,
+            userId: window.appState.user?.uid || null,
+            userEmail: window.appState.user?.email || email,
+            items: window.appState.cart,
+            total: grandTotal,
+            subtotal,
+            deliveryFee: DELIVERY_FEE,
+            paymentMethod: 'PayFast',
+            paymentRef: orderRef,
+            status: 'pending',
+            createdAt: new Date().toISOString(),
+            attended: false
+        });
+
+        const res = await fetch(PAYFAST_WORKER_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                amount: grandTotal.toFixed(2),
+                itemName: 'Dark Master Store Order ' + orderRef,
+                itemDesc: 'Order checkout - ' + window.appState.cart.map(i => i.name + ' x' + i.quantity).join(', ').slice(0, 100),
+                orderRef: orderRef,
+                email: email,
+                nameFirst: fullName.split(' ')[0]
+            })
+        });
+        const data = await res.json();
+        if (!data.url || !data.fields) { throw new Error('Could not start PayFast payment'); }
+
+        // PayFast needs a form POST, not a redirect
+        const pf = document.createElement('form');
+        pf.method = 'POST';
+        pf.action = data.url;
+        Object.entries(data.fields).forEach(([k, v]) => {
+            const inp = document.createElement('input');
+            inp.type = 'hidden'; inp.name = k; inp.value = v;
+            pf.appendChild(inp);
+        });
+        document.body.appendChild(pf);
+        pf.submit();
+    } catch (err) {
+        showAlert('PayFast error: ' + err.message);
+        btn.disabled = false;
+        btn.innerHTML = oldHTML;
+        lucide.createIcons();
+    }
+};
+
 
 
 
@@ -7433,23 +7567,23 @@ window.adminLoadAllProducts = async function() {
             display:flex !important; align-items:center; justify-content:center; cursor:pointer;
             box-shadow:0 8px 22px rgba(0,0,0,0.25); border:none; padding:0;
         }
-        .dms-float-wa { right:14px; bottom:16px; background:#25D366; }
+        .dms-float-wa { right:14px; bottom:16px; background:#ffffff; }
         .dms-float-bc { left:14px; bottom:16px; background:#000; }
         .dms-float-btn:active { transform:scale(0.92); }
     </style>
 
-    <!-- WhatsApp pop-up -->
+        <!-- Email pop-up (was WhatsApp) -->
     <div class="dms-wa-bubble" id="waPopup">
         <button onclick="closeWaPopup()" style="position:absolute;top:8px;right:8px;background:#f3f4f6;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;display:flex;align-items:center;justify-content:center;">
             <i data-lucide="x" style="width:16px;height:16px;color:#374151;"></i>
         </button>
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:42px;height:42px;border-radius:50%;flex-shrink:0;object-fit:cover;"/>
-            <span style="font-weight:800;font-size:15px;color:#111;">WhatsApp us</span>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg" alt="Email" style="width:42px;height:42px;border-radius:50%;flex-shrink:0;object-fit:contain;background:#fff;border:1px solid #e5e7eb;"/>
+            <span style="font-weight:800;font-size:15px;color:#111;">Email us</span>
         </div>
-        <p style="font-size:13px;color:#374151;margin:0 0 12px;font-weight:600;line-height:1.4;">Got a question about us or an order? Chat with us instantly on WhatsApp.</p>
-        <a href="https://wa.me/27687790223?text=Hello%20Dark%20Master%20Store%2C%20I%20am%20coming%20from%20your%20website%20and%20I%20have%20a%20question%20to%20ask." target="_blank" rel="noopener" onclick="closeWaPopup()" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:#25D366;color:#fff;font-weight:800;padding:11px;border-radius:12px;font-size:13px;text-decoration:none;">
-            <i data-lucide="message-circle" style="width:15px;height:15px;color:#fff;"></i> Open WhatsApp
+        <p style="font-size:13px;color:#374151;margin:0 0 12px;font-weight:600;line-height:1.4;">Got a question about us or an order? Send us an email and we'll get back to you fast.</p>
+        <a href="mailto:darkmasterstore.za@beelzeapps.co.za?subject=Hello%20Dark%20Master%20Store" onclick="closeWaPopup()" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:#111;color:#facc15;font-weight:800;padding:11px;border-radius:12px;font-size:13px;text-decoration:none;">
+            <i data-lucide="mail" style="width:15px;height:15px;color:#facc15;"></i> darkmasterstore.za@beelzeapps.co.za
         </a>
     </div>
 
@@ -7469,8 +7603,8 @@ window.adminLoadAllProducts = async function() {
     </div>
 
     <!-- Floating icons — always visible after the pop-ups close -->
-    <button class="dms-float-btn dms-float-wa" onclick="openWaPopup()" aria-label="WhatsApp us">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:30px;height:30px;object-fit:contain;"/>
+        <button class="dms-float-btn dms-float-wa" onclick="openWaPopup()" aria-label="Email us">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg" alt="Email" style="width:30px;height:30px;object-fit:contain;"/>
     </button>
     <button class="dms-float-btn dms-float-bc" onclick="openBcPopup()" aria-label="BeelzeChat us">
         <img src="https://media.base44.com/images/public/6a743dea77a7860c317ce663/decc6d67a_1000100703.png" alt="BeelzeChat" style="width:30px;height:30px;object-fit:contain;border-radius:7px;"/>
@@ -7546,7 +7680,7 @@ window.openSellerInfoPopup = function(){
         return b;
     }
     function draw(){
-        if(!document.getElementById('dmsFloatWa'))  makeBtn('dmsFloatWa','right','#25D366','https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg','WhatsApp us','openWaPopup');
+                if(!document.getElementById('dmsFloatWa'))  makeBtn('dmsFloatWa','right','#ffffff','https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg','Email us','openWaPopup');
         if(!document.getElementById('dmsFloatBc'))  makeBtn('dmsFloatBc','left','#fff','https://media.base44.com/images/public/6a743dea77a7860c317ce663/decc6d67a_1000100703.png','BeelzeChat us','openBcPopup',42);
     }
     if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', draw); } else { draw(); }

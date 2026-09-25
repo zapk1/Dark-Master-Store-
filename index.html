@@ -2470,16 +2470,26 @@ window.addEventListener('scroll', () => {
             lucide.createIcons();
         }
 
-        // ═══ AUTO STOCK MANAGER ═══
-        // Each product gets a random stock of 1 or 2. Every 3 hours it drops by 1.
-        // At 0 the product is out of stock. After another 3 hours it restocks to 1 or 2.
+                // ═══ AUTO STOCK MANAGER ═══
+        // 2% of products are out of stock at any time (rotates every 2 hours).
+        // Available products show 1–6 in stock. Out-of-stock lasts one 2-hour cycle.
         window.DMS_STOCK = JSON.parse(localStorage.getItem('dms_auto_stock') || '{}');
-        const DMS_STOCK_CYCLE_MS = 3 * 60 * 60 * 1000; // 3 hours
+        const DMS_STOCK_CYCLE_MS = 2 * 60 * 60 * 1000; // 2 hours
+        // Stable hash per product so the same id always maps to the same slot
+        function _dmsStockHash(id) {
+            let h = 0;
+            const str = String(id || '');
+            for (let i = 0; i < str.length; i++) { h = (h * 31 + str.charCodeAt(i)) | 0; }
+            return Math.abs(h) % 100;
+        }
         window.dmsGetStock = function(productId) {
             const now = Date.now();
+            const windowIndex = Math.floor(now / DMS_STOCK_CYCLE_MS);
+            // Rotating 2%: a different random 2% of products is "outable" each 2-hour window
+            const canGoOut = ((_dmsStockHash(productId) + windowIndex) % 100) < 2;
             let s = window.DMS_STOCK[productId];
             if (!s) {
-                s = { qty: Math.random() < 0.5 ? 1 : 2, lastChange: now };
+                s = { qty: Math.floor(Math.random() * 6) + 1, lastChange: now }; // start 1–6
                 window.DMS_STOCK[productId] = s;
                 try { localStorage.setItem('dms_auto_stock', JSON.stringify(window.DMS_STOCK)); } catch(e){}
             }
@@ -2487,16 +2497,56 @@ window.addEventListener('scroll', () => {
             if (cycles > 0) {
                 let qty = s.qty;
                 for (let i = 0; i < cycles; i++) {
-                    if (qty > 0) { qty--; }
-                    else { qty = Math.random() < 0.5 ? 1 : 2; }
+                    if (qty > 0) {
+                        qty--;
+                        // 98% never reach 0 — restock straight back to 1–6
+                        if (qty === 0 && !canGoOut) qty = Math.floor(Math.random() * 6) + 1;
+                    } else {
+                        // Was out of stock last cycle → restock to 1–6
+                        qty = Math.floor(Math.random() * 6) + 1;
+                    }
                 }
                 s.qty = qty;
                 s.lastChange = now;
                 window.DMS_STOCK[productId] = s;
                 try { localStorage.setItem('dms_auto_stock', JSON.stringify(window.DMS_STOCK)); } catch(e){}
             }
-            return s.qty;
+                        return s.qty;
         };
+
+        // ═══ AUTO SOLD COUNTER ═══
+        // Persists in localStorage — never resets. Starts at a random 2–566 per product,
+        // then grows by a random +1–3 every 3 days per product.
+        window.DMS_SOLD = JSON.parse(localStorage.getItem('dms_auto_sold') || '{}');
+        const DMS_SOLD_CYCLE_MS = 3 * 24 * 60 * 60 * 1000; // 3 days
+        function _dmsSoldHash(id) {
+            let h = 0;
+            const str = String(id || '');
+            for (let i = 0; i < str.length; i++) { h = (h * 31 + str.charCodeAt(i)) | 0; }
+            return Math.abs(h);
+        }
+        window.dmsGetSold = function(productId) {
+            const now = Date.now();
+            let rec = window.DMS_SOLD[productId];
+            if (!rec) {
+                rec = { sold: (_dmsSoldHash(productId) % 565) + 2, lastChange: now }; // 2–566
+                window.DMS_SOLD[productId] = rec;
+                try { localStorage.setItem('dms_auto_sold', JSON.stringify(window.DMS_SOLD)); } catch(e){}
+            }
+            const cycles = Math.floor((now - rec.lastChange) / DMS_SOLD_CYCLE_MS);
+            if (cycles > 0) {
+                // +1–3 sold per 3-day cycle, deterministic per cycle so reloading doesn't inflate it
+                let add = 0;
+                for (let i = 0; i < cycles; i++) { add += (_dmsSoldHash(productId + '-' + (Math.floor(rec.lastChange / DMS_SOLD_CYCLE_MS) + i)) % 3) + 1; }
+                rec.sold += add;
+                rec.lastChange = now;
+                window.DMS_SOLD[productId] = rec;
+                try { localStorage.setItem('dms_auto_sold', JSON.stringify(window.DMS_SOLD)); } catch(e){}
+            }
+            return rec.sold;
+        };
+
+
 
         // Create product card HTML with COMBO support
         function createProductCard(product) {
@@ -2547,8 +2597,11 @@ window.addEventListener('scroll', () => {
                 ${inStock ? 'In Stock' : 'Out of Stock'}
             </span>
         </div>
-        <div style="font-size:11px;font-weight:700;color:${inStock ? '#ef4444' : '#9ca3af'};background:${inStock ? '#fef2f2' : '#f3f4f6'};padding:2px 8px;border-radius:99px;display:inline-flex;align-items:center;gap:3px;white-space:nowrap;align-self:flex-start;max-width:100%;overflow:hidden;text-overflow:ellipsis;">
+        <div style="font-size:11px;font-weight:700;${_dmsQty >= 3 ? 'color:#16a34a;background:#f0fdf4' : _dmsQty > 0 ? 'color:#ef4444;background:#fef2f2' : 'color:#9ca3af;background:#f3f4f6'};padding:2px 8px;border-radius:99px;display:inline-flex;align-items:center;gap:3px;white-space:nowrap;align-self:flex-start;max-width:100%;overflow:hidden;text-overflow:ellipsis;">
             <i data-lucide="package" style="width:10px;height:10px;flex-shrink:0;"></i>${inStock ? 'Only ' + _dmsQty + ' left' : '0 left'}
+        </div>
+        <div style="font-size:11px;font-weight:800;color:#000;background:#facc15;padding:2px 8px;border-radius:99px;display:inline-flex;align-items:center;gap:3px;white-space:nowrap;align-self:flex-start;max-width:100%;overflow:hidden;text-overflow:ellipsis;">
+            <i data-lucide="trending-up" style="width:10px;height:10px;color:#000;flex-shrink:0;"></i>${dmsGetSold(product.id)} sold
         </div>
     </div>
                         <div class="flex items-center gap-2 mb-3">

@@ -487,7 +487,7 @@
         <!-- Brand images in a circle around logo -->
                 <div style="position:relative;width:200px;height:200px;">
             <!-- Center app logo -->
-            <img src="https://i.postimg.cc/gJhjVfvM/Logo-for-Dark-Master-Store.png" alt="Dark Master Store" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:78px;height:78px;border-radius:20px;object-fit:cover;z-index:3;box-shadow:0 8px 30px rgba(0,0,0,0.18);"/>
+            <img src="https://media.base44.com/images/public/6a229080e7ef797967332f6a/71dfa2b0c_1000125769.png" alt="Dark Master Store" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:110px;height:auto;max-width:80%;object-fit:contain;z-index:3;"/>
             <!-- Animated dots surrounding logo -->
             <div id="loadingDots" style="position:absolute;inset:0;z-index:1;"></div>
         </div>
@@ -2640,7 +2640,9 @@ window.addEventListener('scroll', () => {
 
         // Show product detail with clickable images
         window.showProductDetail = function(productId) {
-            const product = window.appState.products.find(p => p.id === productId);
+            const product = window.appState.products.find(p => p.id === productId)
+             || (window._randomPool || []).find(p => p.id === productId)
+             || (window.HARDCODED_PRODUCTS || []).find(p => p.id === productId);
             if (!product) { showAlert('Sorry — this product could not be added. Refresh and try again.'); return; }
 
 

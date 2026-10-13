@@ -2789,9 +2789,9 @@ ${product.colors ? `
         return `
         <div style="background:#ffffff;border:1px solid #f3f4f6;border-radius:16px;padding:16px;box-shadow:0 2px 10px rgba(0,0,0,0.04);">
           <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;">
-            ${rev.avatar
-              ? `<img src="${rev.avatar}" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid #f3f4f6;"/>`
-              : `<div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#facc15,#f59e0b);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;color:#111;flex-shrink:0;">${initial}</div>`}
+                        ${rev.avatar
+              ? `<img src="${rev.avatar}" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid #f3f4f6;background:#fff;" onerror="reviewAvatarFallback(this)"/>`
+              : `<div style="width:44px;height:44px;border-radius:50%;background:#fff;border:1.5px solid #e5e7eb;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i data-lucide="user" style="width:22px;height:22px;color:#9ca3af;"></i></div>`}
             <div style="flex:1;min-width:0;">
               <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
                 <p style="font-weight:700;font-size:14px;color:#111;margin:0;">${rev.name || 'Anonymous'}</p>
@@ -5116,21 +5116,36 @@ window.selectBudget = function(value, label) {
     filterProducts();
 };
 
+// === CATEGORY FIX — never freezes again ===
+// The shopper goes to the products page IMMEDIATELY, a spinner shows while the
+// full product list loads ONCE, and ensureAllProductsLoaded already has its own
+// try/catch + fallback to what's loaded — so a slow/offline database can never
+// freeze the app again. It always shows something.
 window.filterByCategory = async function(categoryId) {
-    // Load ALL products from Firestore so the category filter has everything to filter
-    if (!window._allProductsLoaded) {
-        const allSnap = await getDocs(collection(db, 'products'));
-        const allProds = allSnap.docs.map(d => ({ id: d.id, ...d.data() }));
-        window.appState.products = [...window.HARDCODED_PRODUCTS, ...allProds];
+    showPage('products');
+    if (!_allProductsCache) showSearchLoading('allProductsGrid');
+    try {
+        await ensureAllProductsLoaded();
         window._allProductsLoaded = true;
         window.allProductsLoaded = true;
-        console.log(`Category filter: loaded all ${allProds.length} products from Firestore`);
+    } catch (e) {
+        console.error('Category filter: full load failed, using loaded products instead:', e);
     }
-    // Render the products page FIRST — it rebuilds the dropdown and resets the value,
-    // so we must set the selected category AFTER this, not before.
-    showPage('products');
     document.getElementById('categoryFilter').value = categoryId;
     document.getElementById('categoryLabel').textContent = window.appState.categories.find(c=>c.id===categoryId)?.name || 'All Categories';
+    filterProducts();
+};
+
+// This function was called by the category dropdown but NEVER existed —
+// tapping a category there did nothing. Same safe never-freeze loading.
+window.selectCategory = async function(value, label) {
+    document.getElementById('categoryFilter').value = value;
+    document.getElementById('categoryLabel').textContent = label;
+    document.getElementById('categoryDropdown').classList.add('hidden');
+    if (value && !_allProductsCache) {
+        showSearchLoading('allProductsGrid');
+        try { await ensureAllProductsLoaded(); window._allProductsLoaded = true; } catch (e) {}
+    }
     filterProducts();
 };
 
@@ -5595,6 +5610,94 @@ const REVIEW_TEXT_TEMPLATES = [
   "♥️♥️♥️ {ITEM} is pure excellence."
 ];
 
+// ============================================================
+// REVIEWER PHOTO POOL — 57 real picture URLs: South African people of
+// different cultures plus everyday pictures people use online (cars, dogs,
+// houses, nature). Only the URL LINK is saved with a review — no image
+// data ever enters the database, so it stays light. "Create a Review"
+// picks a random one automatically.
+// ============================================================
+const REVIEWER_PHOTO_POOL = [
+  // Dark Master Store customer photos — hosted on Base44 storage
+  "https://media.base44.com/images/public/6a78753829e5437c7aa56560/7decac272_Screenshot_20261013_112214_Instagram.jpg",
+  "https://media.base44.com/images/public/6a78753829e5437c7aa56560/968b5c3b2_Screenshot_20261013_112419_Instagram.jpg",
+  "https://media.base44.com/images/public/6a78753829e5437c7aa56560/9b2d9e316_Screenshot_20261013_112655_Instagram.jpg",
+  "https://media.base44.com/images/public/6a78753829e5437c7aa56560/71d3227f8_Screenshot_20261013_113031_Instagram.jpg",
+  "https://media.base44.com/images/public/6a78753829e5437c7aa56560/94d50ca2e_Screenshot_20261013_112247_Instagram.jpg",
+  "https://media.base44.com/images/public/6a78753829e5437c7aa56560/54de0d46a_Screenshot_20261013_112339_Instagram.jpg",
+  "https://media.base44.com/images/public/6a78753829e5437c7aa56560/1060c8f32_Screenshot_20261013_112511_Instagram.jpg",
+  "https://media.base44.com/images/public/6a78753829e5437c7aa56560/06356356b_Screenshot_20261013_112826_Instagram.jpg",
+  "https://media.base44.com/images/public/6a78753829e5437c7aa56560/4fe8b6d9d_Screenshot_20261013_112853_Instagram.jpg",
+  // Real people
+  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80",
+  "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=200&q=80",
+  "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?w=200&q=80",
+  "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=200&q=80",
+  "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80",
+  "https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?w=200&q=80",
+  "https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=200&q=80",
+  "https://images.unsplash.com/photo-1504199367641-aba8151af406?w=200&q=80",
+  "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=200&q=80",
+  "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200&q=80",
+  "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=200&q=80",
+  "https://images.unsplash.com/photo-1463453091185-61582044d556?w=200&q=80",
+  "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=200&q=80",
+  "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80",
+  "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=200&q=80",
+  "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&q=80",
+  "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=200&q=80",
+  "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80",
+  "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=200&q=80",
+  "https://images.unsplash.com/photo-1534308143481-c55f00be8bd7?w=200&q=80",
+  "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80",
+  "https://images.unsplash.com/photo-1480455624313-e29b44bbfde1?w=200&q=80",
+  "https://images.unsplash.com/photo-1488716820095-cbe80883c496?w=200&q=80",
+  "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=200&q=80",
+  "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=200&q=80",
+  "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=200&q=80",
+  "https://images.unsplash.com/photo-1485893226355-9a1c32a0c81e?w=200&q=80",
+  "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&q=80",
+  "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80",
+  "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=200&q=80",
+  "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?w=200&q=80",
+  "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&q=80",
+  "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&q=80",
+  "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&q=80",
+  "https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=200&q=80",
+  "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=200&q=80",
+  "https://images.unsplash.com/photo-1552058544-f2b08422138a?w=200&q=80",
+  "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?w=200&q=80",
+  "https://images.unsplash.com/photo-1546961329-78bef0414d7c?w=200&q=80",
+  "https://images.unsplash.com/photo-1554151228-14d9def656e4?w=200&q=80",
+  "https://images.unsplash.com/photo-1521119989659-a83eee488004?w=200&q=80",
+  "https://images.unsplash.com/photo-1566492031773-4f4e4def7ecc?w=200&q=80",
+  "https://images.unsplash.com/photo-1590086782957-93c06ef21604?w=200&q=80",
+  "https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?w=200&q=80",
+  "https://images.unsplash.com/photo-1500917293891-ef795e70e1aa?w=200&q=80",
+  "https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?w=200&q=80",
+  // Everyday pictures people use online
+  "https://images.unsplash.com/photo-1552053831-71594a27632d?w=200&q=80",
+  "https://images.unsplash.com/photo-1514888286974-6c03e2ca0a32?w=200&q=80",
+  "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=200&q=80",
+  "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=200&q=80",
+  "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=200&q=80",
+  "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=200&q=80",
+  "https://images.unsplash.com/photo-1494976388531-d1058496c608?w=200&q=80",
+  "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=200&q=80",
+  "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=200&q=80",
+  "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=200&q=80",
+  "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=200&q=80"
+];
+
+// Broken reviewer picture → clean white Lucide person icon (no yellow circle)
+window.reviewAvatarFallback = function(img) {
+  var d = document.createElement('div');
+  d.style.cssText = 'width:44px;height:44px;border-radius:50%;background:#fff;border:1.5px solid #e5e7eb;display:flex;align-items:center;justify-content:center;flex-shrink:0;';
+  d.innerHTML = '<i data-lucide="user" style="width:22px;height:22px;color:#9ca3af;"></i>';
+  img.replaceWith(d);
+  lucide.createIcons();
+};
+
 // ---------- Helpers ----------
 function _randItem(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
 function _randNum(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
@@ -5835,7 +5938,8 @@ window.autoCreateReview = function() {
   const rating = Math.random() < 0.85 ? 5 : 4;
 
   // addReviewRow pre-fills every field when passed an existingReview object
-  addReviewRow({ name: fullName, email, text, location, rating, avatar: '' });
+  // Avatar = random picture URL from the saved pool (only the URL link is stored)
+  addReviewRow({ name: fullName, email, text, location, rating, avatar: _randItem(REVIEWER_PHOTO_POOL) });
 };
 
 

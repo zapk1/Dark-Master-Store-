@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="google-site-verification" content="PASTE_YOUR_VERIFICATION_CODE_FROM_SEARCH_CONSOLE" />
     
-    <title>Dark Master Store</title>
+    <title>Dark Master Store T-Shirts | Gradient, Mini Honey Block &amp; Honey Block Tees</title>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#FFDE24">
     <link rel="icon" href="https://i.postimg.cc/gJhjVfvM/Logo-for-Dark-Master-Store.png" type="image/png">
@@ -27,19 +26,19 @@
 
     
 <title>Dark Master Store</title>
-<meta name="description" content=" South African Online Marketplace . Free nationwide delivery on every order across South Africa." />
-<meta name="keywords" content="phone covers, phone pouches, Samsung cases, iPhone cases, Oppo cases, Huawei cases, phone repairs, screen repair, PAXI delivery, South Africa, Dark Master Store" />
+<meta name="description" content="Dark Master Store — our own brand of premium t-shirts. Shop the Dark Master Gradient T-Shirt, Dark Master Mini Honey Block T-Shirt and Dark Master Honey Block T-Shirt. Free nationwide delivery in South Africa." />
+<meta name="keywords" content="Dark Master Gradient T-shirt, Dark Master Mini Honey Block T-shirt, Dark Master Honey Block T-shirt, Dark Master t-shirt, Dark Master tee, Dark Master Store, t-shirts South Africa" />
 <meta name="robots" content="index, follow" />
 <meta name="author" content="Dark Master Store" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Dark Master Store" />
 <meta property="og:url" content="https://darkmasterstore.beelzeapps.co.za/" />
 <meta property="og:title" content="Dark Master Store — South African Online Marketplace " />
-<meta property="og:description" content="Premium phone pouches for Samsung, Oppo, Huawei & iPhone. We also fix phones. PAXI delivery R60 flat nationwide." />
+<meta property="og:description" content="Our own brand t-shirts: Dark Master Gradient T-Shirt, Dark Master Mini Honey Block T-Shirt and Dark Master Honey Block T-Shirt. Free nationwide delivery in South Africa." />
 <meta property="og:image" content="https://media.base44.com/images/public/6a28f4751d95187a70703132/f47dbd0b6_61e5u2YCCBL.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Dark Master Store — King of Phone Covers" />
-<meta name="twitter:description" content="Premium phone pouches for Samsung, Oppo, Huawei & iPhone. We also fix phones. PAXI delivery R60 flat nationwide." />
+<meta property="og:image" content="https://base44.app/api/apps/6aa31690faf5aa774b988d3d/files/mp/public/6aa31690faf5aa774b988d3d/1f64df40c_darkmaster-banner-1.png" />
 <meta property="twitter:image" content="https://darkmasterstore.beelzeapps.co.za/logo.png" />
     
     
@@ -472,6 +471,26 @@
     font-size: 14px;
 }
 
+/* ===== DANGER ZONE â€” small fit buttons, 1px shimmering border (same colours as the loading popup) ===== */
+@keyframes dmsDzShimmer { 0% { background-position: 0 0, 0% 50%; } 100% { background-position: 0 0, 300% 50%; } }
+@keyframes dmsDzLogoPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+.dms-dz-head { display:flex; flex-direction:column; align-items:center; text-align:center; gap:6px; margin-bottom:20px; }
+.dms-dz-head img { width:56px; height:56px; object-fit:contain; animation:dmsDzLogoPulse 3.5s ease-in-out infinite; }
+.dms-dz-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(148px,1fr)); gap:8px; margin-bottom:10px; }
+.dms-dz-btn {
+    display:inline-flex; align-items:center; justify-content:center; gap:6px;
+    padding:8px 13px; border-radius:9px; font-size:12.5px; font-weight:700; color:#111;
+    background:#fff; border:1px solid transparent;
+    background-image: linear-gradient(#fff,#fff), linear-gradient(90deg, #c7d2fe,#fbbf24,#f472b6,#34d399,#60a5fa,#c7d2fe);
+    background-origin:border-box; background-clip:padding-box,border-box;
+    background-size:100% 100%, 300% 100%;
+    animation:dmsDzShimmer 5s linear infinite;
+    cursor:pointer; transition:transform .15s ease, box-shadow .15s ease;
+}
+.dms-dz-btn:hover { transform:translateY(-1px); box-shadow:0 4px 12px rgba(17,17,17,0.12); }
+.dms-dz-btn:disabled { opacity:.55; cursor:default; transform:none; box-shadow:none; }
+.dms-dz-btn-danger { color:#dc2626; }
+.dms-dz-btn i, .dms-dz-btn svg { width:14px; height:14px; }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -815,14 +834,14 @@
 
         <!-- HOME PAGE -->
         <div id="homePage" class="page">
-   <!-- Promotional Banners — Phone Pouches -->
+   <!-- Promotional Banners — Dark Master T-Shirts -->
             <div class="banner-carousel">
                 <div class="banner-slide active">
-                    <img src="https://media.base44.com/images/public/6a28f4751d95187a70703132/f47dbd0b6_61e5u2YCCBL.jpg" alt="Samsung Phone Pouch">
+                    <img src="https://base44.app/api/apps/6aa31690faf5aa774b988d3d/files/mp/public/6aa31690faf5aa774b988d3d/1f64df40c_darkmaster-banner-1.png" alt="Shop Dark Master T-Shirts">
                     <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent flex items-center">
                         <div class="text-white px-8 md:px-16 max-w-2xl">
-                            <h2 class="text-4xl md:text-6xl font-bold mb-4">King of Phone Covers</h2>
-                            <p class="text-xl mb-6">Premium pouches for Samsung, Oppo, Huawei & iPhone</p>
+                            <h2 class="text-4xl md:text-6xl font-bold mb-4">Shop Dark Master T-Shirts</h2>
+                            <p class="text-xl mb-6">Our own brand — designed &amp; printed in South Africa</p>
                             <button onclick="showPage('products')" class="bg-yellow-400 text-black px-8 py-3 rounded-lg font-bold hover:bg-yellow-500">
                                 Shop Now
                             </button>
@@ -830,11 +849,11 @@
                     </div>
                 </div>
                 <div class="banner-slide">
-                    <img src="https://media.base44.com/images/public/6a28f4751d95187a70703132/8e8b2d64a_61h9agILGwL_AC_UF10001000_QL80_.jpg" alt="iPhone Clear Case">
+                    <img src="https://base44.app/api/apps/6aa31690faf5aa774b988d3d/files/mp/public/6aa31690faf5aa774b988d3d/362a9b4fc_darkmaster-banner-2.jpg" alt="Dark Master Gradient T-Shirt">
                     <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent flex items-center">
                         <div class="text-white px-8 md:px-16 max-w-2xl">
-                            <h2 class="text-4xl md:text-6xl font-bold mb-4">Clear Shock-Proof Cases</h2>
-                            <p class="text-xl mb-6">Reinforced corners · We also fix phones</p>
+                            <h2 class="text-4xl md:text-6xl font-bold mb-4">Dark Master Gradient T-Shirt</h2>
+                            <p class="text-xl mb-6">Bold gradient print · Premium cotton</p>
                             <button onclick="showPage('products')" class="bg-yellow-400 text-black px-8 py-3 rounded-lg font-bold hover:bg-yellow-500">
                                 Shop Now
                             </button>
@@ -842,11 +861,11 @@
                     </div>
                 </div>
                 <div class="banner-slide">
-                    <img src="https://media.base44.com/images/public/6a28f4751d95187a70703132/158420f47_887a9645fb0dbf1382cd945e464d0b23.jpg" alt="Samsung Bumper Case">
+                    <img src="https://base44.app/api/apps/6aa31690faf5aa774b988d3d/files/mp/public/6aa31690faf5aa774b988d3d/807d37904_darkmaster-banner-3.png" alt="Dark Master Mini Honey Block T-Shirt">
                     <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent flex items-center">
                         <div class="text-white px-8 md:px-16 max-w-2xl">
-                            <h2 class="text-4xl md:text-6xl font-bold mb-4">Free Delivery Nationwide</h2>
-                            <p class="text-xl mb-6">Free pouch delivery on every order</p>
+                            <h2 class="text-4xl md:text-6xl font-bold mb-4">Dark Master Mini Honey Block T-Shirt</h2>
+                            <p class="text-xl mb-6">Subtle honeycomb hex · Everyday fit</p>
                             <button onclick="showPage('products')" class="bg-yellow-400 text-black px-8 py-3 rounded-lg font-bold hover:bg-yellow-500">
                                 Shop Now
                             </button>
@@ -854,23 +873,11 @@
                     </div>
                 </div>
                 <div class="banner-slide">
-                    <img src="https://media.base44.com/images/public/6a28f4751d95187a70703132/55dacd20e_618FlbtOUbL1.jpg" alt="iPhone Protective Case">
+                    <img src="https://base44.app/api/apps/6aa31690faf5aa774b988d3d/files/mp/public/6aa31690faf5aa774b988d3d/22efdcc9b_darkmaster-banner-4.png" alt="Dark Master Honey Block T-Shirt">
                     <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent flex items-center">
                         <div class="text-white px-8 md:px-16 max-w-2xl">
-                            <h2 class="text-4xl md:text-6xl font-bold mb-4">We Also Fix Phones</h2>
-                            <p class="text-xl mb-6">Covers + repairs under one roof</p>
-                            <button onclick="showPage('products')" class="bg-yellow-400 text-black px-8 py-3 rounded-lg font-bold hover:bg-yellow-500">
-                                Shop Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="banner-slide">
-                    <img src="https://media.base44.com/images/public/6a28f4751d95187a70703132/0c6f4801d_1-93dc2f55f0-a07bumperrcl.jpg" alt="Samsung Clear Bumper Case">
-                    <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent flex items-center">
-                        <div class="text-white px-8 md:px-16 max-w-2xl">
-                            <h2 class="text-4xl md:text-6xl font-bold mb-4">Best Prices</h2>
-                            <p class="text-xl mb-6">Quality pouches, unbeatable value</p>
+                            <h2 class="text-4xl md:text-6xl font-bold mb-4">Dark Master Honey Block T-Shirt</h2>
+                            <p class="text-xl mb-6">The original honeycomb drop</p>
                             <button onclick="showPage('products')" class="bg-yellow-400 text-black px-8 py-3 rounded-lg font-bold hover:bg-yellow-500">
                                 Shop Now
                             </button>
@@ -986,7 +993,7 @@
 </h4>
 <p class="text-gray-400 text-sm flex items-center gap-2 mt-2">
     <i data-lucide="mail" class="w-4 h-4 text-yellow-400"></i>
-    sales@darkmasterstore.beelzeapps.co.za
+    darkmasterstore@beelzeapps.co.za
 </p>
 <p class="text-gray-400 text-sm flex items-center gap-2 mt-2">
     <i data-lucide="phone" class="w-4 h-4 text-yellow-400"></i>
@@ -994,7 +1001,7 @@
 </p>
 <p class="text-gray-400 text-sm flex items-center gap-2 mt-2">
     <i data-lucide="mail" class="w-4 h-4 text-yellow-400"></i>
-    darkmasterstore@gmail.com
+    darkmasterstore@beelzeapps.co.za
 </p>
                     </div>
                 </div>
@@ -1052,7 +1059,7 @@
             </p>
             <p class="flex items-start gap-2">
                 <i data-lucide="mail" class="w-4 h-4 text-yellow-400 flex-shrink-0 mt-0.5"></i>
-                <span><strong class="text-gray-300">Disputes</strong> — Email <span class="text-yellow-400">darkmasterstore@gmail.com</span> or WhatsApp <span class="text-yellow-400">+27 68 779 0223</span>.</span>
+                <span><strong class="text-gray-300">Disputes</strong> — Email <span class="text-yellow-400">darkmasterstore@beelzeapps.co.za</span> or WhatsApp <span class="text-yellow-400">+27 68 779 0223</span>.</span>
             </p>
         </div>
     </div>
@@ -1331,6 +1338,10 @@
                     <button onclick="showAdminPage('sellers')" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition">
                         <i data-lucide="dollar-sign" style="width:30px;height:30px;color:white;"></i>
                         Sellers
+                    </button>
+                    <button onclick="showAdminPage('danger')" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-red-900 transition text-red-400">
+                        <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+                        Danger Zone
                     </button>
       
                 </nav>
@@ -2590,7 +2601,7 @@ window.addEventListener('scroll', () => {
                         ${badgesHTML}
                     </div>
                 <div class="p-2">
-    <h3 class="font-semibold text-sm mb-1 line-clamp-2">${product.name}</h3>
+    <h3 class="font-semibold text-sm mb-1" style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.4em;line-height:1.2em;">${product.name}</h3>
    <div class="flex flex-col gap-1 mb-2">
         <div class="flex items-center gap-2" style="white-space:nowrap;">
             <i data-lucide="check-circle" class="w-4 h-4 ${inStock ? 'text-green-500 fill-green-500' : 'text-red-500'}" style="flex-shrink:0;"></i>
@@ -4143,8 +4154,85 @@ ${msg.orderSummary && msg.orderSummary.items && msg.orderSummary.items.length > 
                 renderAdminMessages();
             } else if (pageName === 'users') {
                 renderAdminUsers();
+            } else if (pageName === 'danger') {
+                renderAdminDangerZone();
             }
             
+            lucide.createIcons();
+        };
+
+                // ===== DANGER ZONE — real Firestore deletes =====
+        const DMS_WIPE_TARGETS = [
+            { key: 'products', label: 'Products' },
+            { key: 'orders', label: 'Orders' },
+            { key: 'categories', label: 'Categories' },
+            { key: 'messages', label: 'Messages' },
+            { key: 'users', label: 'Users' },
+            { key: 'sellers', label: 'Sellers' },
+            { key: 'seller_applications', label: 'Seller Applications' }
+        ];
+
+        async function dmsWipeCollection(name, btn) {
+            const original = btn ? btn.innerHTML : null;
+            if (btn) { btn.disabled = true; btn.innerHTML = 'Deleting...'; }
+            try {
+                const snap = await getDocs(collection(db, name));
+                for (const d of snap.docs) { await deleteDoc(doc(db, name, d.id)); }
+                return snap.size;
+            } catch (err) {
+                console.error('Wipe failed for ' + name + ':', err);
+                showAlert('❌ ' + name + ': ' + err.message);
+                return 0;
+            } finally {
+                if (btn) { btn.disabled = false; btn.innerHTML = original; }
+            }
+        }
+
+        window.wipeCollection = async function (name, label, btn) {
+            if (!confirm('PERMANENTLY delete ALL ' + label + ' from the Firestore database?\n\nThis cannot be undone.')) return;
+            const n = await dmsWipeCollection(name, btn);
+            showAlert('✅ Deleted ' + n + ' ' + label.toLowerCase() + ' from Firebase');
+            await loadAllData();
+            renderAdminDashboard();
+        };
+
+        window.wipeAllStoreData = async function (btn) {
+            if (!confirm('WIPE EVERYTHING?\n\nProducts, orders, categories, messages, users, sellers and seller applications will be deleted from Firestore FOREVER.')) return;
+            const original = btn ? btn.innerHTML : null;
+            if (btn) { btn.disabled = true; btn.innerHTML = 'Wiping everything...'; }
+            let total = 0;
+            const report = [];
+            for (const t of DMS_WIPE_TARGETS) {
+                const n = await dmsWipeCollection(t.key, null);
+                total += n;
+                report.push(t.label + ': ' + n);
+            }
+            if (btn) { btn.disabled = false; btn.innerHTML = original; }
+            showAlert('✅ Wiped ' + total + ' documents from Firebase\n\n' + report.join('\n'));
+            await loadAllData();
+            renderAdminDashboard();
+        };
+
+        window.renderAdminDangerZone = function () {
+            document.getElementById('adminContent').innerHTML = `
+                <div class="dms-dz-head">
+                    <img src="https://media.base44.com/images/public/6a229080e7ef797967332f6a/71dfa2b0c_1000125769.png" alt="Dark Master Store" />
+                    <h1 class="text-2xl font-bold">Danger Zone</h1>
+                    <p class="text-sm text-gray-500" style="max-width:460px;">These buttons delete documents from the live Firestore database â€” not just from this screen.</p>
+                </div>
+                <div class="dms-dz-grid">
+                    ${DMS_WIPE_TARGETS.map(t => `
+                        <button onclick="wipeCollection('${t.key}', '${t.label}', this)" class="dms-dz-btn dms-dz-btn-danger" title="Delete every document in ${t.key}">
+                            <i data-lucide="trash-2"></i> Delete ${t.label}
+                        </button>
+                    `).join('')}
+                </div>
+                <div style="text-align:center;margin-top:14px;">
+                    <button onclick="wipeAllStoreData(this)" class="dms-dz-btn dms-dz-btn-danger" style="padding:9px 16px;font-size:13px;">
+                        <i data-lucide="alert-triangle"></i> Wipe ALL store data
+                    </button>
+                </div>
+            `;
             lucide.createIcons();
         };
 
@@ -4569,7 +4657,7 @@ function showProductForm(product = null) {
                     </div>
                     <div>
                         <label class="block text-sm font-medium mb-2">Original Price (ZAR)</label>
-                        <input type="number" step="0.01" name="original_price" value="${product?.original_price || ''}" class="w-full px-4 py-3 border rounded-lg" placeholder="0.00" />
+                        <input type="number" step="0.01" name="original_price" value="${product?.original_price ?? 0}" class="w-full px-4 py-3 border rounded-lg" placeholder="0.00" />
                     </div>
                 </div>
 
@@ -6575,7 +6663,7 @@ function renderSellerAddProduct(seller, product = null) {
                 </div>
                 <div>
                     <label style="font-weight:600;font-size:13px;display:block;margin-bottom:6px;">Original Price (ZAR)</label>
-                    <input type="number" step="0.01" name="original_price" value="${product?.original_price||''}" placeholder="0.00" style="width:100%;padding:12px 14px;border:2px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;box-sizing:border-box;" onfocus="this.style.borderColor='#facc15'" onblur="this.style.borderColor='#e5e7eb'"/>
+                    <input type="number" step="0.01" name="original_price" value="${product?.original_price ?? 0}" placeholder="0.00" style="width:100%;padding:12px 14px;border:2px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;box-sizing:border-box;" onfocus="this.style.borderColor='#facc15'" onblur="this.style.borderColor='#e5e7eb'"/>
                 </div>
             </div>
 
@@ -6653,7 +6741,7 @@ function renderSellerAddProduct(seller, product = null) {
             name: formData.get('name'),
             description: formData.get('description'),
             price: parseFloat(formData.get('price')),
-            original_price: formData.get('original_price') ? parseFloat(formData.get('original_price')) : null,
+            original_price: parseFloat(formData.get('original_price')) || 0,
             category_id: formData.get('category_id'),
             colors: formData.get('colors') || '',
             in_stock: formData.get('in_stock') === 'on',
@@ -6856,6 +6944,7 @@ window.showAdminPage = function(pageName) {
     else if (pageName === 'messages') { renderAdminMessages(); }
     else if (pageName === 'users') { renderAdminUsers(); }
     else if (pageName === 'sellers') { renderAdminSellers(); }
+    else if (pageName === 'danger') { renderAdminDangerZone(); }
     lucide.createIcons();
 };
 

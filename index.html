@@ -2640,7 +2640,7 @@ window.addEventListener('scroll', () => {
 
 
                         <div class="flex gap-2">
-                     <button onclick="event.stopPropagation(); ${inStock ? ((product.sizes && product.sizes.length) ? `showProductDetail('${product.id}')` : `addToCart('${product.id}')`) : 'showAlert(\'Out of Stock\')'}" 
+                     <button onclick="event.stopPropagation(); ${inStock ? `addToCart('${product.id}')` : 'showAlert(\'Out of Stock\')'}" 
     class="w-full ${inStock ? 'bg-yellow-400 hover:bg-yellow-500' : 'bg-gray-300 cursor-not-allowed'} text-black font-bold py-2 px-3 rounded-lg transition flex items-center justify-center gap-2 text-sm"
     ${!inStock ? 'disabled' : ''}>
     <i data-lucide="shopping-cart" class="w-4 h-4"></i>
@@ -2899,10 +2899,9 @@ ${product.colors ? `
             size = (size || '').trim();
             color = (color || '').trim();
 
-            // a size must be chosen when the product has sizes
+            // adding straight from a product card — use the first available size
             if (product.sizes && product.sizes.length && !size) {
-                showAlert('Please choose a size first.');
-                return;
+                size = String(product.sizes[0]).trim();
             }
 
             const variant = [size ? 'Size: ' + size : '', color ? 'Colour: ' + color : ''].filter(Boolean).join(' · ');

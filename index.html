@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <title>Dark Master Store T-Shirts | Gradient, Mini Honey Block &amp; Honey Block Tees</title>
+    <title>Dark Master Store | T-Shirts, Phone Accessories &amp; Motivation Gear</title>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#FFDE24">
     <link rel="icon" href="https://media.base44.com/images/public/6a368605043ab211ab6e969d/656de048b_1000115603.png" type="image/png">
@@ -28,19 +28,19 @@
 
     
 <title>Dark Master Store</title>
-<meta name="description" content="Dark Master Store — our own brand of premium t-shirts. Shop the Dark Master Gradient T-Shirt, Dark Master Mini Honey Block T-Shirt and Dark Master Honey Block T-Shirt. Free nationwide delivery in South Africa." />
-<meta name="keywords" content="Dark Master Gradient T-shirt, Dark Master Mini Honey Block T-shirt, Dark Master Honey Block T-shirt, Dark Master t-shirt, Dark Master tee, Dark Master Store, t-shirts South Africa" />
+<meta name="description" content="Dark Master Store — one shop for our own brand t-shirts, phone accessories and motivation gear. Free nationwide delivery in South Africa." />
+<meta name="keywords" content="Dark Master t-shirts, Dark Master Store, phone accessories South Africa, phone covers, motivation gear, motivational apparel, online store South Africa" />
 <meta name="robots" content="index, follow" />
 <meta name="author" content="Dark Master Store" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Dark Master Store" />
 <meta property="og:url" content="https://darkmasterstore.beelzeapps.co.za/" />
 <meta property="og:title" content="Dark Master Store — South African Online Marketplace " />
-<meta property="og:description" content="Our own brand t-shirts: Dark Master Gradient T-Shirt, Dark Master Mini Honey Block T-Shirt and Dark Master Honey Block T-Shirt. Free nationwide delivery in South Africa." />
+<meta property="og:description" content="Shop Dark Master t-shirts, phone accessories and motivation gear. Free nationwide delivery in South Africa." />
 <meta property="og:image" content="https://media.base44.com/images/public/6a368605043ab211ab6e969d/656de048b_1000115603.png" />
 <meta property="og:image:secure_url" content="https://media.base44.com/images/public/6a368605043ab211ab6e969d/656de048b_1000115603.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Dark Master Store — King of Phone Covers" />
+<meta name="twitter:title" content="Dark Master Store — T-Shirts, Accessories &amp; Motivation" />
 <meta property="og:image" content="https://media.base44.com/images/public/6a368605043ab211ab6e969d/656de048b_1000115603.png" />
 <meta property="twitter:image" content="https://media.base44.com/images/public/6a368605043ab211ab6e969d/656de048b_1000115603.png" />
     
@@ -751,7 +751,7 @@
                     DARK MASTER STORE
                     <img src="https://flagcdn.com/w40/za.png" alt="South Africa" style="width:26px;height:auto;border-radius:3px;display:inline-block;vertical-align:middle;" />
                 </h1>
-         <p style="font-size:11px;font-weight:600;color:rgba(0,0,0,0.7);margin:2px 0 0;letter-spacing:0.2px;">South African Online Marketplace </p>
+         <p style="font-size:11px;font-weight:600;color:rgba(0,0,0,0.7);margin:2px 0 0;letter-spacing:0.2px;">T-Shirts · Phone Accessories · Motivation </p>
             </div>
             
             <div class="w-10"></div>
@@ -2707,12 +2707,12 @@ window.addEventListener('scroll', () => {
                         <p class="text-gray-700 mb-6">${product.description || ''}</p>
                         <div class="flex items-center gap-4 mb-6">
                             <span class="font-semibold">Quantity:</span>
-                            <div class="flex items-center border rounded-lg">
-                                <button onclick="let q=document.getElementById('qty'); q.value=Math.max(1, parseInt(q.value)-1)" class="px-4 py-2 hover:bg-gray-100">
+                            <div class="flex items-center" style="border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;">
+                                <button onclick="let q=document.getElementById('qty'); q.value=Math.max(1, parseInt(q.value)-1)" style="padding:8px 14px;background:#fff;border:none;border-right:1px solid #e5e7eb;cursor:pointer;">
                                     <i data-lucide="minus" class="w-4 h-4"></i>
                                 </button>
-                                <input id="qty" type="number" value="1" min="1" class="w-16 text-center border-x py-2" />
-                                <button onclick="let q=document.getElementById('qty'); q.value=parseInt(q.value)+1" class="px-4 py-2 hover:bg-gray-100">
+                                <input id="qty" type="number" value="1" min="1" style="width:56px;text-align:center;border:none;outline:none;padding:8px 0;font-weight:700;" />
+                                <button onclick="let q=document.getElementById('qty'); q.value=parseInt(q.value)+1" style="padding:8px 14px;background:#fff;border:none;border-left:1px solid #e5e7eb;cursor:pointer;">
                                     <i data-lucide="plus" class="w-4 h-4"></i>
                                 </button>
                             </div>
@@ -2740,7 +2740,7 @@ ${(product.sizes && product.sizes.length) ? `
     <div class="flex flex-wrap gap-2" id="sizeOptions">
       ${product.sizes.map(size => `
         <button type="button" onclick="selectSize('${size}', this)"
-          style="min-width:46px;padding:7px 12px;border:2px solid #e5e7eb;border-radius:10px;font-weight:700;font-size:13px;background:#fff;cursor:pointer;">
+          style="min-width:46px;padding:7px 12px;border:1px solid #e5e7eb;border-radius:10px;font-weight:700;font-size:13px;background:#fff;cursor:pointer;">
           ${size}
         </button>`).join('')}
     </div>
@@ -2759,7 +2759,7 @@ ${product.colors ? `
         return `
         
         <button onclick="selectColor('${color}', this)"
-  style="display:flex;align-items:center;gap:6px;padding:6px 12px;border:2px solid transparent;border-radius:30px;font-weight:600;font-size:13px;background:#f9fafb;cursor:pointer;transition:all 0.2s;">
+    style="display:flex;align-items:center;gap:6px;padding:6px 12px;border:1px solid #e5e7eb;border-radius:10px;font-weight:600;font-size:13px;background:#f9fafb;cursor:pointer;transition:all 0.2s;">
   <span style="width:18px;height:18px;border-radius:50%;background:${hex};border:1px solid ${hex==='#ffffff'?'#d1d5db':'transparent'};flex-shrink:0;display:inline-block;box-shadow:0 1px 3px rgba(0,0,0,0.2);"></span>
   ${color}
 </button>`;
@@ -2791,8 +2791,8 @@ ${product.colors ? `
                             Free delivery on every order — no matter how many items.
                         </div>
                         ${inStock ? `
-                        <button onclick="addToCart('${product.id}', parseInt(document.getElementById('qty').value), (document.getElementById('selectedSize')||{}).value, (document.getElementById('selectedColor')||{}).value)
-                                class="w-full bg-yellow-400 text-black font-bold py-4 rounded-lg hover:bg-yellow-500 text-lg flex items-center justify-center gap-2 transition">
+<button type="button" onclick="dmsAddToCart('${product.id}')"
+                                style="width:100%;background:#facc15;color:#111;font-weight:800;padding:14px;border:1px solid #111;border-radius:10px;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;">
                             <i data-lucide="shopping-cart" class="w-5 h-5"></i>
                             Add to Cart
                         </button>` : `
@@ -2865,12 +2865,34 @@ ${product.colors ? `
   
   
 
+        // Robust handler — reads the page itself, auto-picks a single size, shows every error
+        window.dmsAddToCart = function(productId) {
+            try {
+                const qtyEl = document.getElementById('qty');
+                const sizeEl = document.getElementById('selectedSize');
+                const colorEl = document.getElementById('selectedColor');
+                const qty = parseInt(qtyEl && qtyEl.value, 10) || 1;
+                let size = sizeEl ? (sizeEl.value || '') : '';
+                let color = colorEl ? (colorEl.value || '') : '';
+                const product = window.appState.products.find(p => p.id === productId)
+                             || (window._randomPool || []).find(p => p.id === productId)
+                             || (window.HARDCODED_PRODUCTS || []).find(p => p.id === productId)
+                             || window.appState.currentProduct;
+                if (product && product.sizes && product.sizes.length === 1) size = product.sizes[0];
+                if (product && product.sizes && product.sizes.length > 1 && !size) { showAlert('Please choose a size first.'); return; }
+                window.addToCart(productId, qty, size, color);
+            } catch (err) {
+                showAlert('Could not add to cart: ' + err.message);
+            }
+        };
+
         // Add to cart — searches ALL product sources so it never fails on the home page
         window.addToCart = function(productId, quantity = 1, size = '', color = '') {
             const product = window.appState.products.find(p => p.id === productId)
                          || (window._randomPool || []).find(p => p.id === productId)
-                         || (window.HARDCODED_PRODUCTS || []).find(p => p.id === productId);
-            if (!product) { console.warn('addToCart: product not found', productId); return; }
+                         || (window.HARDCODED_PRODUCTS || []).find(p => p.id === productId)
+                         || window.appState.currentProduct;
+            if (!product) { showAlert('Product not found. Please refresh the page.'); return; }
             // Auto stock check — block if out of stock
             if (window.dmsGetStock(productId) <= 0) { showAlert('This product just ran out of stock. Try again later.'); return; }
 
@@ -7134,11 +7156,11 @@ window.deleteSellerAccount = async function(sellerId) {
 // Override the selectColor function to show actual color visually
 window.selectColor = function(color, btn) {
     document.querySelectorAll('#colorOptions button').forEach(b => {
-        b.style.borderColor = 'transparent';
+                b.style.borderColor = '#e5e7eb';
         b.style.boxShadow = 'none';
     });
     btn.style.borderColor = '#111';
-    btn.style.boxShadow = '0 0 0 3px rgba(0,0,0,0.15)';
+    btn.style.boxShadow = 'none';
     document.getElementById('selectedColor').value = color;
 };
 

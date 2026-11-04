@@ -92,9 +92,9 @@
             object-position: center;
         }
         
-        .scroll-to-top {
+            .scroll-to-top {
             position: fixed;
-            bottom: 80px;
+            bottom: calc(80px + env(safe-area-inset-bottom, 0px));
             right: 20px;
             background: #fbbf24;
             color: #000;
@@ -371,6 +371,15 @@
 
 
 
+#authModal,#adminLoginPopup,#sellPopup,#sellerInfoPopup,#sellerLoginPopup,#dmsVaultPopup,#dmsSellerPopup,#quickOrdersPopup,#quickSellersPopup,#waPopup,#bcPopup,#customAlert,#imageLightbox{position:fixed !important;z-index:2147483600 !important;}
+#loadingPopup{z-index:2147483601 !important;}
+#dmsVaultBtn{position:fixed !important;z-index:2147483500 !important;}
+#dmsSellerPopup button,#sellerInfoPopup button,#sellPopup button,#sellerLoginPopup button,#dmsVaultPopup button,#quickOrdersPopup button,#quickSellersPopup button{opacity:1 !important;visibility:visible !important;overflow:visible !important;text-indent:0 !important;line-height:1.3 !important;height:auto !important;min-height:36px;}
+#dmsSellerPopup button svg,#sellerInfoPopup button svg,#sellPopup button svg{width:16px !important;height:16px !important;flex:0 0 16px !important;}
+#dmsSellerPopup [data-lucide],#sellerInfoPopup [data-lucide],#sellPopup [data-lucide]{width:20px !important;height:20px !important;}
+
+
+
 /* Custom Alert */
 #customAlert {
     display: none;
@@ -518,7 +527,7 @@
 .dms-dz-btn i, .dms-dz-btn svg { width:14px; height:14px; }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-50 dms-loading">
     
 <!-- LOADING POPUP - CENTERED -->
 <div id="loadingPopup" style="
@@ -577,7 +586,7 @@
                 <i data-lucide="x" style="width:22px;height:22px;color:#374151;"></i>
             </button>
             <div style="max-width:420px;margin:0 auto;padding:32px 28px 32px;display:flex;flex-direction:column;align-items:center;min-height:100vh;justify-content:center;">
-                <img src="https://i.postimg.cc/gJhjVfvM/Logo-for-Dark-Master-Store.png" alt="Dark Master Store" style="width:84px;height:84px;border-radius:20px;object-fit:cover;margin-bottom:14px;box-shadow:0 8px 24px rgba(0,0,0,0.12);"/>
+                <img src="https://media.base44.com/images/public/6a229080e7ef797967332f6a/71dfa2b0c_1000125769.png" alt="Dark Master Store" style="width:84px;height:84px;border-radius:20px;object-fit:cover;margin-bottom:14px;box-shadow:0 8px 24px rgba(0,0,0,0.12);"/>
                 <h1 style="font-size:25px;font-weight:900;color:#111;margin:0 0 4px;text-align:center;" id="authTitle">Welcome Back</h1>
                 <p style="font-size:14px;color:#6b7280;margin:0 0 8px;text-align:center;" id="authSubtitle">Login to your account</p>
                 <div style="width:56px;height:4px;background:#facc15;border-radius:99px;margin-bottom:24px;"></div>
@@ -701,7 +710,7 @@
                 <span style="font-weight:800;font-size:14px;color:#111;">Sell on Dark Master Store</span>
             </div>
         </div>
-        <p style="font-size:13px;color:#374151;margin:0 0 12px;font-weight:600;">Sell on Dark Master Store from <strong style="color:#16a34a;">R2,000</strong></p>
+        <p style="font-size:13px;color:#374151;margin:0 0 12px;font-weight:600;">Sell on Dark Master Store from <strong style="color:#16a34a;">R1,500</strong></p>
         <button onclick="closeSellPopup();openSellerInfoPopup()" style="width:100%;background:#111;color:#facc15;font-weight:800;padding:10px;border:none;border-radius:12px;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;">
             <i data-lucide="arrow-right" style="width:14px;height:14px;"></i> Start Selling
         </button>
@@ -713,20 +722,8 @@
             try { sessionStorage.setItem('dms_sellpopup_dismissed','1'); } catch(e){}
         };
         function _dmsShowPopups(){
-    // 1st popup — Sell on Dark Master Store (immediately after load) — stays until user closes it
-    if(!sessionStorage.getItem('dms_sellpopup_dismissed')){
-        var sp = document.getElementById('sellPopup');
-        if(sp){ sp.style.display = 'block'; }
-    }
+    // side pop-ups removed — only the seller invite popup is shown, after loading
     if(window.lucide) lucide.createIcons();
-    // 2nd popup — WhatsApp, 2 seconds later — stays until user closes it
-    setTimeout(function(){
-        if(window.openWaPopup) openWaPopup();
-    }, 2000);
-    // 3rd popup — BeelzeChat, 3 seconds later — stays until user closes it
-    setTimeout(function(){
-        if(window.openBcPopup) openBcPopup();
-    }, 3000);
 }
         // Wait until the loading popup is gone, then show pop-ups one by one
         var _dmsPopWait = setInterval(function(){
@@ -735,7 +732,16 @@
                 clearInterval(_dmsPopWait);
                 _dmsShowPopups();
             }
-        }, 300);
+}, 300);
+
+        // Keep the floating icons hidden while the loading screen is up
+        document.body.classList.add('dms-loading');
+
+                // Failsafe: only unlock if loadAllData truly hangs — normally hideLoading() does it (and opens the seller popup)
+        setTimeout(function(){
+            if (window._dmsAppReady) return;
+            if (window.hideLoading) window.hideLoading();
+        }, 45000);
 
     </script>
 
@@ -1027,7 +1033,7 @@
 
 
 <!-- More Products -->
-            <div class="py-16 bg-gray-50">
+            <div class="py-16 bg-gray-50" id="moreProductsSection">
                 <div class="max-w-7xl mx-auto px-4">
              <h2 class="text-3xl font-bold text-center mb-4">Discover More</h2>
                     <div id="moreProducts" class="grid grid-cols-2 lg:grid-cols-4 gap-6"></div>
@@ -1456,7 +1462,7 @@
                     <i data-lucide="badge-check" style="width:20px;height:20px;color:#111;"></i>
                 </div>
                 <div>
-                    <p style="font-weight:700;font-size:14px;color:#111;margin:0;">R2,000 — 30 Days Full Access</p>
+                    <p style="font-weight:700;font-size:14px;color:#111;margin:0;">R1,500 — 30 Days Full Access</p>
                     <p style="font-size:12px;color:#6b7280;margin:0;">One-time payment. Includes everything — no extra fees</p>
                 </div>
             </div>
@@ -1475,7 +1481,7 @@
                 </div>
                 <div>
                     <p style="font-weight:700;font-size:14px;color:#111;margin:0;">We market your products for you</p>
-                    <p style="font-size:12px;color:#6b7280;margin:0;">You don't need to run ads — it's all included in the R2,000</p>
+                    <p style="font-size:12px;color:#6b7280;margin:0;">You don't need to run ads — Pay R1,500 — 30 Days Full Access</p>
                 </div>
             </div>
             <div style="display:flex;align-items:center;gap:12px;background:#f0fdf4;border-radius:14px;padding:14px;">
@@ -1566,13 +1572,13 @@
 
     <!-- PAYFAST BUTTON (default) -->
     <button type="button" onclick="paySellerWithPayfast()" id="sellerPayfastBtn" style="width:100%;background:#dc2626;color:#fff;font-weight:800;padding:14px;border:none;border-radius:12px;font-size:15px;cursor:pointer;margin-top:12px;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 14px rgba(220,38,38,0.35);">
-                <i data-lucide="credit-card" style="width:18px;height:18px;color:#fff;"></i> Pay R2,000 with PayFast
+                <i data-lucide="credit-card" style="width:18px;height:18px;color:#fff;"></i> Pay R1,500 with PayFast
     </button>
 
     <!-- EFT WRAPPER — hidden until EFT is selected -->
     <div id="sellerEftWrapper" style="display:none;margin-top:12px;">
         <div style="background:#f3f4f6;border-radius:14px;padding:14px;margin-bottom:12px;">
-                        <p style="font-weight:800;font-size:13px;margin:0 0 8px;color:#111;">Pay R2,000 to this account:</p>
+                        <p style="font-weight:800;font-size:13px;margin:0 0 8px;color:#111;">Pay R1,500 to this account:</p>
             <div style="font-size:12px;color:#374151;line-height:1.7;">
                 <img src="https://media.base44.com/images/public/69d65c79ded115a4ef63649f/dc4ab5958_CPIJO-7f69f481.png" alt="Capitec" style="height:22px;width:auto;object-fit:contain;display:block;margin-bottom:6px;">
                 Bank: <strong>Capitec Bank</strong><br/>
@@ -1583,7 +1589,7 @@
             </div>
         </div>
         <div style="background:#fff5eb;border:1px solid #ff6600;border-radius:12px;padding:10px;margin-bottom:12px;">
-            <p style="font-size:12px;color:#7c2d12;margin:0;">Make the R2,000 deposit, screenshot the proof, then attach it below and submit.</p>
+            <p style="font-size:12px;color:#7c2d12;margin:0;">Make the R1,500 deposit, screenshot the proof, then attach it below and submit.</p>
         </div>
         <input type="file" id="sellerProofInput" accept="image/*" style="display:none;" onchange="handleSellerProofUpload(this)" />
         <div id="sellerProofArea" onclick="document.getElementById('sellerProofInput').click()" style="border:2px dashed #e5e7eb;border-radius:12px;padding:20px;text-align:center;cursor:pointer;">
@@ -1610,7 +1616,7 @@
 
             
         <button type="button" onclick="showSellerPaySection()" id="showSellerPayBtn" style="width:100%;background:#ffffff;color:#111;font-weight:800;padding:16px;border:none;border-radius:16px;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 10px 30px rgba(0,0,0,0.18),0 2px 6px rgba(0,0,0,0.08);transition:all 0.2s;">
-                <i data-lucide="arrow-right-circle" style="width:20px;height:20px;color:#16a34a;"></i> Pay R2 000
+                <i data-lucide="arrow-right-circle" style="width:20px;height:20px;color:#16a34a;"></i> Pay R1 500
             </button>
             <p style="text-align:center;font-size:12px;color:#9ca3af;">After paying &amp; submitting, we'll verify and create your seller account</p>
         </form>
@@ -1704,6 +1710,8 @@
 </div>
     
     
+    </div><!-- restores the lost </div> for #sellerInfoPopup — without it every popup below is trapped inside a hidden modal -->
+
     <div id="customAlert" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:9999;align-items:center;justify-content:center;">
     <div style="background:#ffffff;border-radius:24px;padding:32px 28px;max-width:320px;width:90%;position:relative;box-shadow:0 30px 80px rgba(0,0,0,0.15);border:2px solid #f3f4f6;animation:popIn 0.3s cubic-bezier(0.34,1.56,0.64,1);">
         <button onclick="closeCustomAlert()" style="position:absolute;top:14px;right:14px;background:#f3f4f6;border:none;cursor:pointer;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;">
@@ -1718,43 +1726,73 @@
 
     
 
-<div id="social-proof-popup" style="
-    position:fixed;
-    top:20px;
-    left:20px;
-    transform:translateX(-400px);
-    transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
-    z-index:9998;
-    max-width:340px;
-    background:white;
-    border-radius:14px;
-    box-shadow:0 4px 20px rgba(0,0,0,0.12);
-    padding:12px 14px;
-    display:flex;
-    align-items:flex-start;
-    gap:10px;
-    border-left:3px solid #facc15;
-    cursor:grab;
-">
-    <div style="flex-shrink:0;">
-        <img id="sp-avatar" src="" alt="" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid #f3f4f6;">
-    </div>
-    <div style="flex:1;min-width:0;">
-        <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px;">
-            <span id="sp-name" style="font-weight:700;font-size:13px;color:#111;"></span>
-        </div>
-        <div style="display:flex;align-items:center;gap:4px;margin-bottom:3px;">
-            <i data-lucide="map-pin" style="width:12px;height:12px;color:#64748b;flex-shrink:0;"></i>
-            <span id="sp-location" style="font-size:11px;color:#64748b;"></span>
-        </div>
-        <div id="sp-message" style="font-size:12px;color:#334155;line-height:1.4;margin-bottom:4px;"></div>
-        <div id="sp-stars" style="color:#facc15;font-size:13px;margin-bottom:2px;"></div>
-        <div id="sp-time" style="font-size:10px;color:#94a3af;"></div>
-    </div>
-    <button onclick="dismissSocialProof()" style="background:none;border:none;cursor:pointer;padding:4px;flex-shrink:0;">
-        ✕
+<!-- SELLER INVITE POPUP — appears after loading, background blurred -->
+<div id="dmsSellerPopup" style="display:none;position:fixed;inset:0;z-index:2147483000;align-items:center;justify-content:center;padding:18px;background:rgba(17,17,17,0.38);-webkit-backdrop-filter:blur(9px);backdrop-filter:blur(9px);">
+  <div style="position:relative;width:100%;max-width:380px;max-height:92vh;overflow-y:auto;background:#fff;border-radius:28px;padding:30px 22px 24px;text-align:center;box-shadow:0 26px 70px rgba(0,0,0,0.30);animation:popIn 0.34s cubic-bezier(0.34,1.56,0.64,1);">
+
+    <button onclick="closeSellerPopup()" aria-label="Close" style="position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;background:#f3f4f6;border:1px solid #e5e7eb;display:flex;align-items:center;justify-content:center;cursor:pointer;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
     </button>
+
+    <img src="https://media.base44.com/images/public/6a229080e7ef797967332f6a/71dfa2b0c_1000125769.png" alt="Dark Master Store" style="width:150px;height:auto;max-width:80%;object-fit:contain;display:block;margin:0 auto 18px;"/>
+
+        <h2 style="margin:0 0 18px;font-size:19px;font-weight:900;color:#111;letter-spacing:-0.4px;line-height:1.35;text-align:center;">Start selling on Dark Master Store for <span style="color:#16a34a;">R1,500</span> every month</h2>
+
+    <div style="display:flex;flex-direction:column;gap:10px;text-align:left;margin-bottom:20px;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="width:32px;height:32px;flex-shrink:0;border-radius:10px;background:#fef9c3;display:flex;align-items:center;justify-content:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </span>
+        <span style="font-size:12.5px;font-weight:700;color:#374151;line-height:1.35;">Sell to thousands of shoppers already on the store , Make 2-10+ Sales a day </span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="width:32px;height:32px;flex-shrink:0;border-radius:10px;background:#dcfce7;display:flex;align-items:center;justify-content:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+        </span>
+        <span style="font-size:12.5px;font-weight:700;color:#374151;line-height:1.35;">Secure payments and weekly payouts</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="width:32px;height:32px;flex-shrink:0;border-radius:10px;background:#e0f2fe;display:flex;align-items:center;justify-content:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+        </span>
+        <span style="font-size:12.5px;font-weight:700;color:#374151;line-height:1.35;">We handle delivery & We market your products</span>
+      </div>
+    </div>
+
+    <button onclick="closeSellerPopup();openSellerInfoPopup();" style="width:100%;display:flex;align-items:center;justify-content:center;gap:8px;background:#111;color:#facc15;font-weight:900;font-size:14px;letter-spacing:0.5px;padding:13px;border:none;border-radius:14px;cursor:pointer;margin-bottom:9px;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="#facc15"/></svg>
+      SELL
+    </button>
+    <button onclick="closeSellerPopup();" style="width:100%;display:flex;align-items:center;justify-content:center;gap:8px;background:#fff;color:#111;font-weight:900;font-size:14px;letter-spacing:0.5px;padding:13px;border:1px solid #e5e7eb;border-radius:14px;cursor:pointer;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      BUY
+    </button>
+  </div>
 </div>
+<script>
+  window.openSellerPopup = function(){ var el = document.getElementById('dmsSellerPopup'); if(!el) return; el.style.display = 'flex'; if(window.lucide) lucide.createIcons(); };
+  window.closeSellerPopup = function(){ var el = document.getElementById('dmsSellerPopup'); if(el) el.style.display = 'none'; };
+
+  // Show the seller invite once the loading screen is gone (works even if the data load stalls)
+    // Show the seller invite no matter what the loading screen does (fires once, with a failsafe)
+  (function(){
+    function fire(){
+      if (window._dmsSellerShown) return;
+      var el = document.getElementById('dmsSellerPopup');
+      if (!el) return;
+      window._dmsSellerShown = true;
+      el.style.display = 'flex';
+      if (window.lucide) lucide.createIcons();
+    }
+    window.openSellerPopup = function(){ window._dmsSellerShown = false; fire(); };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function(){ setTimeout(fire, 2200); });
+    } else {
+      setTimeout(fire, 2200);
+    }
+    setTimeout(fire, 7000);   // failsafe — shows even if the first timer is missed
+  })();
+</script>
 
 
     <!-- QUICK ORDERS POPUP -->
@@ -2073,6 +2111,7 @@ window.HARDCODED_CATEGORIES = [];
             _dmsIndex = 0;
             let sx = 0, dx = 0, dragging = false;
             const track = slider.querySelector('.dms-slider-track');
+            if (!track) return;
             track.addEventListener('touchstart', e => { sx = e.touches[0].clientX; dragging = true; track.style.transition = 'none'; }, { passive: true });
             track.addEventListener('touchmove', e => { if (dragging) dx = e.touches[0].clientX - sx; }, { passive: true });
             track.addEventListener('touchend', () => {
@@ -2294,13 +2333,22 @@ window.HARDCODED_CATEGORIES = [];
     try {
         setLoadingProgress(25, 'Fetching store...');
         console.log('🔎 [LOAD] Fetching categories from Firestore...');
-        const [categoriesSnapshot, productsSnapshot] = await Promise.all([
-            getDocs(collection(db, 'categories')),
-            getDocs(collection(db, 'products'))
-        ]);
+                // 1) CATEGORIES — load in full first
+        const categoriesSnapshot = await getDocs(collection(db, 'categories'));
+        setLoadingProgress(55, 'Loading products...');
+
+        // 2) PRODUCTS — first 24 from Firestore, the rest keep coming two-by-two on scroll
+        const FIRST_PAGE = 24;
+        const productsSnapshot = await getDocs(query(collection(db, 'products'), limit(FIRST_PAGE)));
+        window._dmsLastProductDoc = productsSnapshot.docs.length
+            ? productsSnapshot.docs[productsSnapshot.docs.length - 1]
+            : null;
+        window._dmsProductsDone = productsSnapshot.docs.length < FIRST_PAGE;
+
 
         const firestoreCategories = categoriesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         const firestoreProducts = productsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
 
         console.log('📂 [LOAD] Categories fetched:', firestoreCategories.length);
         console.log('🛒 [LOAD] Products fetched:', firestoreProducts.length);
@@ -2333,21 +2381,22 @@ window.HARDCODED_CATEGORIES = [];
         window._randomPool = [...fresh, ...rest];
         window._poolIndex = 0;
 
-        // The app still receives products 2 at a time, exactly like before
-        const firstBatch = window._randomPool.slice(0, 2);
+        const firstBatch = window._randomPool.slice(0, 24);
         window._poolIndex = firstBatch.length;
         window.appState.products = [...window.HARDCODED_PRODUCTS];
         firstBatch.forEach(p => {
             if (!window.appState.products.find(x => x.id === p.id)) window.appState.products.push(p);
         });
-        window._allProductsLoaded = window._poolIndex >= window._randomPool.length;
+                window._allProductsLoaded = window._dmsProductsDone === true;
         window._isLoadingMore = false;
 
 
         renderHomePage();
         updateCartDisplay();
-                hideLoading();
-        console.log('🎉 [LOAD] Background load complete. Total products:', window.appState.products.length);
+        window._dmsAppReady = true;
+        hideLoading();
+        console.log('🎉 [LOAD] Ready on screen. Products:', window.appState.products.length);
+
 
         // Detect return from Payfast
         const params = new URLSearchParams(window.location.search);
@@ -2399,6 +2448,10 @@ function hideLoading() {
     setTimeout(() => {
         const popup = document.getElementById('loadingPopup');
         if (popup) popup.style.display = 'none';
+        if (!window._dmsSellerShown && window.openSellerPopup) {
+            window._dmsSellerShown = true;
+            setTimeout(openSellerPopup, 400);
+        }
     }, 500);
 }
 
@@ -2425,26 +2478,29 @@ async function loadMoreProducts() {
     window._isLoadingMore = true;
 
     try {
-        // Next 2 from the random pool — new products first, then random, never the same product twice
-        const pool = window._randomPool || [];
-        const newProducts = pool.slice(window._poolIndex, window._poolIndex + 2);
-        window._poolIndex += newProducts.length;
-
-        if (newProducts.length > 0) {
-            newProducts.forEach(p => {
-                if (!window.appState.products.find(x => x.id === p.id)) {
-                    window.appState.products.push(p);
-                }
-            });
-            console.log(`Loaded ${newProducts.length} more products (total: ${window.appState.products.length})`);
+        // Next 2 straight from Firestore, continuing after the last product we already showed
+        let q = query(collection(db, 'products'), limit(2));
+        if (window._dmsLastProductDoc) {
+            q = query(collection(db, 'products'), startAfter(window._dmsLastProductDoc), limit(2));
         }
-        if (window._poolIndex >= pool.length) {
+        const snap = await getDocs(q);
+        const newProducts = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+
+        if (snap.docs.length) {
+            window._dmsLastProductDoc = snap.docs[snap.docs.length - 1];
+        }
+        if (snap.docs.length < 2) {
             window._allProductsLoaded = true;
-            console.log('All products loaded from Firestore');
+            window._dmsProductsDone = true;
         }
 
+        newProducts.forEach(p => {
+            if (!window.appState.products.find(x => x.id === p.id)) window.appState.products.push(p);
+            window._randomPool = window._randomPool || [];
+            if (!window._randomPool.find(x => x.id === p.id)) window._randomPool.push(p);
+        });
+        if (newProducts.length) console.log('Loaded ' + newProducts.length + ' more products (total: ' + window.appState.products.length + ')');
 
-        // Append new cards to the products grid if on products page
         const grid = document.getElementById('allProductsGrid');
         if (grid && window.appState.currentPage === 'products') {
             const currentSearch = document.getElementById('productsSearchInput')?.value || '';
@@ -2516,7 +2572,11 @@ window.addEventListener('scroll', () => {
                         // Show only 6 featured products, then a View All button — no streaming flood
             const allProducts = window._randomPool ? [...window._randomPool] : [...window.appState.products];
             renderProductGrid('featuredProducts', (window._randomPool || window.appState.products || []).slice(0, 6));
-             renderProductGrid('moreProducts', (window._randomPool || window.appState.products || []).slice(6, 12));
+             const _moreSet = (window._randomPool || window.appState.products || []).slice(6, 12);
+             const _moreSection = document.getElementById('moreProductsSection');
+             if (_moreSection) _moreSection.style.display = _moreSet.length ? '' : 'none';
+             if (_moreSet.length) renderProductGrid('moreProducts', _moreSet);
+
 
             
             window._dmsRendered = window._dmsRendered || {}; window._dmsRendered.home = true;
@@ -3017,7 +3077,7 @@ ${product.colors ? `
                             <div style="position:absolute;top:50%;left:50%;width:10px;height:10px;border-radius:50%;background:#facc15;transform:translate(-50%,-50%);animation:dmsDotSplash 3.5s ease-in-out infinite;"></div>
                             <div style="position:absolute;top:50%;left:50%;width:8px;height:8px;border-radius:50%;background:#facc15;transform:translate(-50%,-50%);animation:dmsDotSplash 3.5s ease-in-out infinite 0.5s;opacity:0.6;"></div>
                         </div>
-                        <img src="https://i.postimg.cc/gJhjVfvM/Logo-for-Dark-Master-Store.png" alt="Dark Master Store" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:12px;object-fit:cover;z-index:2;box-shadow:0 4px 14px rgba(0,0,0,0.18);"/>
+                        <img src="https://media.base44.com/images/public/6a229080e7ef797967332f6a/71dfa2b0c_1000125769.png" alt="Dark Master Store" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:12px;object-fit:cover;z-index:2;box-shadow:0 4px 14px rgba(0,0,0,0.18);"/>
                     </div>
                     <!-- Product picture + name -->
                     <img src="${product.images?.[0] || 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=200'}" alt="${product.name}" style="width:70px;height:70px;object-fit:cover;border-radius:14px;margin:0 auto 10px;display:block;box-shadow:0 4px 12px rgba(0,0,0,0.12);"/>
@@ -3171,7 +3231,7 @@ window.showGuestChoice = function() {
             <button onclick="closeGuestChoice()" style="position:absolute;top:14px;right:14px;background:#f3f4f6;border:none;border-radius:50%;width:34px;height:34px;cursor:pointer;display:flex;align-items:center;justify-content:center;">
                 <i data-lucide="x" style="width:18px;height:18px;color:#374151;"></i>
             </button>
-            <img src="https://i.postimg.cc/gJhjVfvM/Logo-for-Dark-Master-Store.png" alt="Dark Master Store" style="width:64px;height:64px;border-radius:16px;object-fit:cover;margin:4px auto 14px;display:block;box-shadow:0 6px 18px rgba(0,0,0,0.12);"/>
+            <img src="https://media.base44.com/images/public/6a229080e7ef797967332f6a/71dfa2b0c_1000125769.png" alt="Dark Master Store" style="width:64px;height:64px;border-radius:16px;object-fit:cover;margin:4px auto 14px;display:block;box-shadow:0 6px 18px rgba(0,0,0,0.12);"/>
             <h2 style="font-size:20px;font-weight:900;color:#111;margin:0 0 6px;">Checkout</h2>
             <p style="font-size:13px;color:#6b7280;margin:0 0 22px;">Login to track your order, or continue as a guest.</p>
             <div style="display:flex;flex-direction:column;gap:10px;">
@@ -5614,6 +5674,7 @@ let spIndex = 0;
 let spTimeout;
 
 function showSocialProof() {
+    return; // removed — replaced by the seller invite popup
     if (window.spDismissed) return; // Respect the X button
     const data = socialProofData[Math.floor(Math.random() * socialProofData.length)];
 
@@ -5664,34 +5725,8 @@ window.dismissSocialProof = function() {
 // Make sure to declare the timeout variable in the global scope
 window.spTimeout = null; 
 
-// DRAGGABLE — add this below
-const popup = document.getElementById('social-proof-popup');
-let isDragging = false, startX, startY, origX, origY;
+// social-proof popup removed — the seller invite popup is triggered after loading
 
-popup.addEventListener('mousedown', (e) => {
-    if (e.target.closest('button')) return;
-    isDragging = true;
-    startX = e.clientX;
-    startY = e.clientY;
-    const rect = popup.getBoundingClientRect();
-    origX = rect.left;
-    origY = rect.top;
-    popup.style.cursor = 'grabbing';
-});
-
-document.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
-    popup.style.left = (origX + e.clientX - startX) + 'px';
-    popup.style.top = (origY + e.clientY - startY) + 'px';
-    popup.style.bottom = 'auto';
-});
-
-document.addEventListener('mouseup', () => {
-    isDragging = false;
-    popup.style.cursor = 'grab';
-});
-
-setTimeout(showSocialProof,  5000);
 
 
 
@@ -6396,7 +6431,7 @@ window.paySellerWithPayfast = async function() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                amount: '2000.00',
+                amount: '1500.00',
                 itemName: 'DMS Seller Subscription ' + ref,
                 itemDesc: 'Monthly seller subscription - Dark Master Store',
                 orderRef: ref,
@@ -6433,7 +6468,7 @@ document.getElementById('sellerApplyForm').onsubmit = async function(e) {
         return;
     }
     const proofUrl = document.getElementById('sellerProofUrl').value;
-        if (!proofUrl) { showAlert('Please attach your R2,000 deposit proof.'); return; }
+        if (!proofUrl) { showAlert('Please attach your R1,500 deposit proof.'); return; }
 
     const btn = e.target.querySelector('button[type="submit"]');
     btn.textContent = 'Submitting...';
@@ -6455,15 +6490,15 @@ document.getElementById('sellerApplyForm').onsubmit = async function(e) {
         await addDoc(collection(db, 'seller_applications'), {
             name, store, email, phone, location, products,
             proofImage: proofUrl,
-            fee: 15000,
+            fee: 1500,
             refCode: document.getElementById('sellerRefCode').textContent,
             status: 'pending',
             createdAt: new Date().toISOString()
         });
 
         // Open email to darkmasterstore.za with confirmation message
-        const subject = encodeURIComponent('Seller Application - R2,000 Paid - ' + name);
-        const body = encodeURIComponent(`I paid R2,000 for selling online please check me out on the system and create a selling account for me.`);
+        const subject = encodeURIComponent('Seller Application - R1,500 Paid - ' + name);
+        const body = encodeURIComponent(`I paid R1,500 for selling online please check me out on the system and create a selling account for me.`);
         window.location.href = `mailto:darkmasterstore.za@beelzeapps.co.za?subject=${subject}&body=${body}`;
 
 
@@ -7218,6 +7253,47 @@ window.deleteSellerAccount = async function(sellerId) {
     }
 };
 
+
+
+
+
+(function(){
+  var IDS=['authModal','adminLoginPopup','sellPopup','sellerInfoPopup','sellerLoginPopup','dmsVaultPopup','dmsSellerPopup','quickOrdersPopup','quickSellersPopup','waPopup','bcPopup','customAlert','imageLightbox'];
+
+  function lift(el){
+    el.style.position='fixed';
+    el.style.inset='0';
+    el.style.zIndex='2147483600';
+    el.style.alignItems='center';
+    el.style.justifyContent='center';
+  }
+
+  function prep(){
+    IDS.forEach(function(id){
+      var el=document.getElementById(id);
+      if(!el) return;
+      if(el.parentNode!==document.body){ document.body.appendChild(el); }
+      lift(el);
+    });
+    if(window.lucide) lucide.createIcons();
+  }
+
+    window.dmsOpen=function(id){
+    var el=document.getElementById(id);
+    if(!el){ return false; }
+    if(el.parentNode!==document.body){ document.body.appendChild(el); }
+    lift(el);
+    el.style.display='flex';
+    if(window.lucide) lucide.createIcons();
+    return true;
+  };
+
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',prep); } else { prep(); }
+  setTimeout(prep,1500);
+})();
+
+
+
 // ============================================================
 // COLORS — Show real color swatches on product detail page
 // ============================================================
@@ -7961,11 +8037,16 @@ window.adminLoadAllProducts = async function() {
 };
 // =============================================
 
-        // Initialize app
-        loadAllData().then(() => {
-    updateOrdersBadge();
-    updateSellersBadge();
-});
+         // Initialize app
+        try {
+            loadAllData().then(() => {
+                updateOrdersBadge();
+                updateSellersBadge();
+            }).catch(function(e){ console.error(e); hideLoading(); });
+        } catch (e) {
+            console.error('Startup failed:', e);
+            hideLoading();
+        }
 
 
         </script>
@@ -7980,8 +8061,8 @@ window.adminLoadAllProducts = async function() {
         }
         .dms-wa-bubble { right:12px; bottom:78px; }
         .dms-bc-bubble { left:12px; bottom:78px; }
-        .dms-float-btn {
-            position:fixed !important; z-index:99990 !important; width:54px; height:54px; border-radius:50%;
+                        .dms-float-btn {
+            position:fixed !important; z-index:9998 !important; width:54px; height:54px; border-radius:50%;
             display:flex !important; align-items:center; justify-content:center; cursor:pointer;
             box-shadow:0 8px 22px rgba(0,0,0,0.25); border:none; padding:0;
         }
@@ -7996,7 +8077,14 @@ window.adminLoadAllProducts = async function() {
         @keyframes dmsFloatOutLeft { from { transform:translateX(0); opacity:1; } to { transform:translateX(-100vw); opacity:0; } }
         .dms-float-in { animation:dmsFloatInLeft 0.6s cubic-bezier(.22,1,.36,1) both !important; }
         .dms-float-out { animation:dmsFloatOutLeft 0.5s ease-in both !important; }
-        .dms-float-gone { display:none !important; opacity:0 !important; visibility:hidden !important; pointer-events:none !important; }
+        dms-float-gone { display:none !important; opacity:0 !important; visibility:hidden !important; pointer-events:none !important; }
+        /* the loader always covers everything, and no icon or card may show until it is gone */
+        body #loadingPopup { z-index: 2147483000 !important; }
+        body.dms-loading .dms-float-btn,
+        body.dms-loading #dmsFloatWa,
+        body.dms-loading #dmsFloatBc,
+        body.dms-loading .dms-wa-bubble,
+        body.dms-loading .dms-bc-bubble { display: none !important; }
     </style>
 
         <!-- Email pop-up (was WhatsApp) -->
@@ -8029,13 +8117,7 @@ window.adminLoadAllProducts = async function() {
         </a>
     </div>
 
-    <!-- Floating icons — always visible after the pop-ups close -->
-        <button class="dms-float-btn dms-float-wa" onclick="openWaPopup()" aria-label="Email us">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg" alt="Email" style="width:30px;height:30px;object-fit:contain;"/>
-    </button>
-    <button class="dms-float-btn dms-float-bc" onclick="openBcPopup()" aria-label="BeelzeChat us">
-        <img src="https://media.base44.com/images/public/6a743dea77a7860c317ce663/decc6d67a_1000100703.png" alt="BeelzeChat" style="width:30px;height:30px;object-fit:contain;border-radius:7px;"/>
-    </button>
+    <!-- floating icons removed -->
 
     <script>
     function _dmsBringToFront(id){
@@ -8082,7 +8164,13 @@ window.openQuickSellers = function(){
 window.openSellerInfoPopup = function(){
     _dmsCloseAllPopups();
     _dmsBringToFront('sellerInfoPopup');
-    document.getElementById('sellerInfoPopup').style.display = 'flex';
+    var el = document.getElementById('sellerInfoPopup');
+    el.style.display = 'flex';
+    // always land on the application form, never on a leftover payment section
+    var pay = document.getElementById('sellerPaySection'); if (pay) pay.style.display = 'none';
+    var payBtn = document.getElementById('showSellerPayBtn'); if (payBtn) payBtn.style.display = 'flex';
+    var err = document.getElementById('applyError'); if (err) err.style.display = 'none';
+    if(el.scrollTop) el.scrollTop = 0;
     if(window.toggleMobileMenu) toggleMobileMenu(false);
     if(window.lucide) lucide.createIcons();
 };
@@ -8095,6 +8183,7 @@ window.openSellerInfoPopup = function(){
     </style>
 <script>
 (function(){
+    return; // floating icons removed
     function makeBtn(id, side, bg, imgSrc, altText, onClick, imgSize){
         var b = document.createElement('button');
         b.id = id;
@@ -8179,6 +8268,7 @@ window.openDmsVault = function(){
 /* Round pop-up buttons: both float in from the left, stay 20 seconds, slide away.
    The arrow button brings them back. The two message cards also close themselves after 20 seconds. */
 (function(){
+    return; // floating icon fade in / fade out removed
     var SHOW_MS = 20000;
     var OUT_MS  = 500;
     var hideTimer = null;

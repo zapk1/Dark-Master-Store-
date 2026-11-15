@@ -32,7 +32,7 @@
 <meta name="keywords" content="Dark Master Store, electronics South Africa, Bluetooth speakers, portable fan, gadgets online, phone cases, iPhone covers, MagSafe case, phone accessories South Africa, beauty products, cosmetics, backpacks, bags, t-shirts, online store South Africa" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
 <meta name="author" content="Dark Master Store" />
-<link rel="canonical" href__="https://darkmasterstore.beelzeapps.co.za/" />
+<link rel="canonical" href="https://darkmasterstore.beelzeapps.co.za/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Dark Master Store" />
 <meta property="og:url" content="https://darkmasterstore.beelzeapps.co.za/" />
@@ -710,7 +710,7 @@
                 <span style="font-weight:800;font-size:14px;color:#111;">Sell on Dark Master Store</span>
             </div>
         </div>
-        <p style="font-size:13px;color:#374151;margin:0 0 12px;font-weight:600;">Sell on Dark Master Store from <strong style="color:#16a34a;">R1,500</strong></p>
+        <p style="font-size:13px;color:#374151;margin:0 0 12px;font-weight:600;">Sell on Dark Master Store forever for <strong style="color:#16a34a;">R450,000</strong>
         <button onclick="closeSellPopup();openSellerInfoPopup()" style="width:100%;background:#111;color:#facc15;font-weight:800;padding:10px;border:none;border-radius:12px;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;">
             <i data-lucide="arrow-right" style="width:14px;height:14px;"></i> Start Selling
         </button>
@@ -1451,8 +1451,8 @@
             <div style="background:#16a34a;border-radius:50%;width:64px;height:64px;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;">
     <i data-lucide="dollar-sign" style="width:30px;height:30px;color:white;"></i>
 </div>
-<h2 style="font-size:22px;font-weight:800;color:#111;margin:0 0 6px;">Sell on Dark Master Store</h2>
-            <p style="color:#6b7280;font-size:14px;margin:0;">Join hundreds of South African sellers</p>
+<h2 style="font-size:22px;font-weight:800;color:#111;margin:0 0 6px;">Start Selling on Dark Master Store Forever</h2>
+            <p style="color:#6b7280;font-size:14px;margin:0;">Buy a licence to sell on Dark Master Store forever — R450,000 once off</p>
         </div>
 
         <!-- Benefits -->
@@ -1462,7 +1462,7 @@
                     <i data-lucide="badge-check" style="width:20px;height:20px;color:#111;"></i>
                 </div>
                 <div>
-                    <p style="font-weight:700;font-size:14px;color:#111;margin:0;">R1,500 — 30 Days Full Access</p>
+                    <p style="font-weight:700;font-size:14px;color:#111;margin:0;">R450,000 — Lifetime Seller Licence</p>
                     <p style="font-size:12px;color:#6b7280;margin:0;">One-time payment. Includes everything — no extra fees</p>
                 </div>
             </div>
@@ -1481,7 +1481,7 @@
                 </div>
                 <div>
                     <p style="font-weight:700;font-size:14px;color:#111;margin:0;">We market your products for you</p>
-                    <p style="font-size:12px;color:#6b7280;margin:0;">You don't need to run ads — Pay R1,500 — 30 Days Full Access</p>
+                    <p style="font-size:12px;color:#6b7280;margin:0;">You don't need to run ads — one payment of R450,000, then sell forever</p>
                 </div>
             </div>
             <div style="display:flex;align-items:center;gap:12px;background:#f0fdf4;border-radius:14px;padding:14px;">
@@ -1516,7 +1516,7 @@
                 </div>
                                 <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#374151;">
                     <span style="background:#facc15;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px;flex-shrink:0;">2</span>
-                    Pay R2,000 — 30 Days Full Access
+                    Pay R450,000 once off by EFT — sell forever
                 </div>
                 <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#374151;">
                     <span style="background:#facc15;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px;flex-shrink:0;">3</span>
@@ -1549,8 +1549,11 @@
 
 
                         <div id="sellerPaySection" style="display:none;margin-top:16px;">
-    <!-- PAYMENT METHOD — PayFast default, EFT optional -->
-    <div onclick="selectSellerPayMethod('payfast')" id="sellerPayCard-payfast" style="border:2.5px solid #dc2626;border-radius:14px;padding:14px;margin-bottom:10px;cursor:pointer;display:flex;align-items:center;gap:12px;background:#fef2f2;">
+    <!-- EFT ONLY — PayFast cannot process an R450,000 transaction -->
+    <div style="background:#fef2f2;border:1px solid #fecaca;border-radius:12px;padding:10px 12px;margin-bottom:12px;">
+        <p style="font-size:12px;color:#991b1b;margin:0;font-weight:700;">Bank transfer (EFT) only — one payment of R450,000, then sell forever.</p>
+    </div>
+    <div onclick="selectSellerPayMethod('payfast')" id="sellerPayCard-payfast" style="display:none;border:2.5px solid #dc2626; border-radius:14px;padding:14px;margin-bottom:10px;cursor:pointer;display:flex;align-items:center;gap:12px;background:#fef2f2;">
         <img src="https://media.base44.com/images/public/6a51d96fee42dc8f3ecba289/1d0e3b189_White-on-Blue-2-1-1-1.jpg" alt="PayFast" style="height:40px;width:auto;object-fit:contain;flex-shrink:0;border-radius:8px;" />
         <div style="flex:1;">
             <p style="font-weight:800;font-size:14px;color:#111;margin:0;">PayFast</p>
@@ -1571,14 +1574,14 @@
     </div>
 
     <!-- PAYFAST BUTTON (default) -->
-    <button type="button" onclick="paySellerWithPayfast()" id="sellerPayfastBtn" style="width:100%;background:#dc2626;color:#fff;font-weight:800;padding:14px;border:none;border-radius:12px;font-size:15px;cursor:pointer;margin-top:12px;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 14px rgba(220,38,38,0.35);">
+    <button type="button" onclick="paySellerWithPayfast()" id="sellerPayfastBtn" style="display:none;width:100%;background:#dc2626;color:#fff;font-weight:800;padding:14px;border:none;border-radius:12px;font-size:15px;cursor:pointer;margin-top:12px;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 14px rgba(220,38,38,0.35);">
                 <i data-lucide="credit-card" style="width:18px;height:18px;color:#fff;"></i> Pay R1,500 with PayFast
     </button>
 
     <!-- EFT WRAPPER — hidden until EFT is selected -->
     <div id="sellerEftWrapper" style="display:none;margin-top:12px;">
         <div style="background:#f3f4f6;border-radius:14px;padding:14px;margin-bottom:12px;">
-                        <p style="font-weight:800;font-size:13px;margin:0 0 8px;color:#111;">Pay R1,500 to this account:</p>
+                        <p style="font-weight:800;font-size:13px;margin:0 0 8px;color:#111;">Pay R450,000 to this account:</p>
             <div style="font-size:12px;color:#374151;line-height:1.7;">
                 <img src="https://media.base44.com/images/public/69d65c79ded115a4ef63649f/dc4ab5958_CPIJO-7f69f481.png" alt="Capitec" style="height:22px;width:auto;object-fit:contain;display:block;margin-bottom:6px;">
                 Bank: <strong>Capitec Bank</strong><br/>
@@ -1589,7 +1592,7 @@
             </div>
         </div>
         <div style="background:#fff5eb;border:1px solid #ff6600;border-radius:12px;padding:10px;margin-bottom:12px;">
-            <p style="font-size:12px;color:#7c2d12;margin:0;">Make the R1,500 deposit, screenshot the proof, then attach it below and submit.</p>
+            <p style="font-size:12px;color:#7c2d12;margin:0;">Make the R450,000 once-off deposit, screenshot the proof, then attach it below and submit.</p>
         </div>
         <input type="file" id="sellerProofInput" accept="image/*" style="display:none;" onchange="handleSellerProofUpload(this)" />
         <div id="sellerProofArea" onclick="document.getElementById('sellerProofInput').click()" style="border:2px dashed #e5e7eb;border-radius:12px;padding:20px;text-align:center;cursor:pointer;">
@@ -1615,9 +1618,14 @@
 </div>
 
             
-        <button type="button" onclick="showSellerPaySection()" id="showSellerPayBtn" style="width:100%;background:#ffffff;color:#111;font-weight:800;padding:16px;border:none;border-radius:16px;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 10px 30px rgba(0,0,0,0.18),0 2px 6px rgba(0,0,0,0.08);transition:all 0.2s;">
-                <i data-lucide="arrow-right-circle" style="width:20px;height:20px;color:#16a34a;"></i> Pay R1 500
+        <div style="display:flex;gap:10px;">
+            <button type="button" onclick="showSellerPaySection()" id="showSellerPayBtn" style="flex:1;background:#ffffff;color:#111;font-weight:800;padding:16px;border:none;border-radius:16px;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 10px 30px rgba(0,0,0,0.18),0 2px 6px rgba(0,0,0,0.08);transition:all 0.2s;">
+                <i data-lucide="arrow-right-circle" style="width:20px;height:20px;color:#16a34a;"></i> Pay
             </button>
+            <a href="mailto:darkmasterstore.za@beelzeapps.co.za?subject=I%20want%20to%20buy%20a%20licence%20to%20sell%20on%20Dark%20master%20store%20forever&amp;body=I%20want%20to%20buy%20a%20licence%20to%20sell%20on%20Dark%20master%20store%20forever.%0D%0A%0D%0A" style="flex:1;background:#111;color:#facc15;font-weight:800;padding:16px;border-radius:16px;font-size:15px;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:8px;">
+                <i data-lucide="mail" style="width:20px;height:20px;color:#facc15;" stroke-width="1"></i> Email Us
+            </a>
+        </div>
             <p style="text-align:center;font-size:12px;color:#9ca3af;">After paying &amp; submitting, we'll verify and create your seller account</p>
         </form>
     </div>
@@ -1736,7 +1744,8 @@
 
     <img src="https://media.base44.com/images/public/6a229080e7ef797967332f6a/71dfa2b0c_1000125769.png" alt="Dark Master Store" style="width:150px;height:auto;max-width:80%;object-fit:contain;display:block;margin:0 auto 18px;"/>
 
-        <h2 style="margin:0 0 18px;font-size:19px;font-weight:900;color:#111;letter-spacing:-0.4px;line-height:1.35;text-align:center;">Start selling on Dark Master Store for <span style="color:#16a34a;">R1,500</span> every month</h2>
+        <h2 style="margin:0 0 8px;font-size:19px;font-weight:900;color:#111;letter-spacing:-0.4px;line-height:1.35;text-align:center;">Start selling on Dark Master Store forever</h2>
+    <p style="margin:0 0 18px;font-size:13px;font-weight:700;color:#16a34a;text-align:center;line-height:1.4;">Buy a licence to sell on Dark Master Store forever — R450,000 once off</p>
 
     <div style="display:flex;flex-direction:column;gap:10px;text-align:left;margin-bottom:20px;">
       <div style="display:flex;align-items:center;gap:10px;">
@@ -1773,25 +1782,7 @@
   window.openSellerPopup = function(){ var el = document.getElementById('dmsSellerPopup'); if(!el) return; el.style.display = 'flex'; if(window.lucide) lucide.createIcons(); };
   window.closeSellerPopup = function(){ var el = document.getElementById('dmsSellerPopup'); if(el) el.style.display = 'none'; };
 
-  // Show the seller invite once the loading screen is gone (works even if the data load stalls)
-    // Show the seller invite no matter what the loading screen does (fires once, with a failsafe)
-  (function(){
-    function fire(){
-      if (window._dmsSellerShown) return;
-      var el = document.getElementById('dmsSellerPopup');
-      if (!el) return;
-      window._dmsSellerShown = true;
-      el.style.display = 'flex';
-      if (window.lucide) lucide.createIcons();
-    }
-    window.openSellerPopup = function(){ window._dmsSellerShown = false; fire(); };
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', function(){ setTimeout(fire, 2200); });
-    } else {
-      setTimeout(fire, 2200);
-    }
-    setTimeout(fire, 7000);   // failsafe — shows even if the first timer is missed
-  })();
+    // The SELL invite only opens from hideLoading(), once the app has fully loaded.
 </script>
 
 
@@ -2334,12 +2325,11 @@ window.HARDCODED_CATEGORIES = [];
         setLoadingProgress(25, 'Fetching store...');
         console.log('🔎 [LOAD] Fetching categories from Firestore...');
                 // 1) CATEGORIES — load in full first
-        const categoriesSnapshot = await getDocs(collection(db, 'categories'));
-        setLoadingProgress(55, 'Loading products...');
-
-        // 2) PRODUCTS — first 24 from Firestore, the rest keep coming two-by-two on scroll
-        const FIRST_PAGE = 24;
-        const productsSnapshot = await getDocs(query(collection(db, 'products'), limit(FIRST_PAGE)));
+        const FIRST_PAGE = 2;
+        const [categoriesSnapshot, productsSnapshot] = await Promise.all([
+            getDocs(collection(db, 'categories')),
+            getDocs(query(collection(db, 'products'), limit(FIRST_PAGE)))
+        ]);
         window._dmsLastProductDoc = productsSnapshot.docs.length
             ? productsSnapshot.docs[productsSnapshot.docs.length - 1]
             : null;
@@ -2501,6 +2491,8 @@ async function loadMoreProducts() {
         });
         if (newProducts.length) console.log('Loaded ' + newProducts.length + ' more products (total: ' + window.appState.products.length + ')');
 
+        if (window.appState.currentPage === 'home' && newProducts.length) window.dmsAppendHomeProducts(newProducts);
+
         const grid = document.getElementById('allProductsGrid');
         if (grid && window.appState.currentPage === 'products') {
             const currentSearch = document.getElementById('productsSearchInput')?.value || '';
@@ -2516,9 +2508,26 @@ async function loadMoreProducts() {
     window._isLoadingMore = false;
 }
 
+window.dmsAppendHomeProducts = function(list) {
+    if (!list || !list.length) return;
+    const featured = document.getElementById('featuredProducts');
+    const more = document.getElementById('moreProducts');
+    if (!featured) return;
+    const roomInFeatured = Math.max(0, 6 - featured.children.length);
+    const forFeatured = list.slice(0, roomInFeatured);
+    const forMore = list.slice(roomInFeatured);
+    if (forFeatured.length) featured.insertAdjacentHTML('beforeend', forFeatured.map(createProductCard).join(''));
+    if (forMore.length && more) {
+        const section = document.getElementById('moreProductsSection');
+        if (section) section.style.display = '';
+        more.insertAdjacentHTML('beforeend', forMore.map(createProductCard).join(''));
+    }
+    if (window.lucide) lucide.createIcons();
+};
+
 window.addEventListener('scroll', () => {
     const nearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 600;
-    if (nearBottom && window.appState.currentPage === 'products') {
+    if (nearBottom && (window.appState.currentPage === 'products' || window.appState.currentPage === 'home')) {
         loadMoreProducts();
     }
 });
@@ -6323,7 +6332,7 @@ window.showSellerPaySection = function() {
     document.getElementById('sellerRefCode').textContent = ref;
     document.getElementById('showSellerPayBtn').style.display = 'none';
     document.getElementById('sellerPaySection').style.display = 'block';
-    selectSellerPayMethod('payfast');   // PayFast is always the default
+    selectSellerPayMethod('eft');   // EFT only — R450,000 once off
     lucide.createIcons();
 };
 
@@ -6420,7 +6429,7 @@ window.paySellerWithPayfast = async function() {
         // Save application as pending so admin sees it immediately
         await addDoc(collection(db, 'seller_applications'), {
             name, store, email, phone, location, products,
-            fee: 2000,
+            fee: 450000,
             refCode: ref,
             paymentMethod: 'PayFast',
             status: 'pending',
@@ -6431,8 +6440,8 @@ window.paySellerWithPayfast = async function() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                amount: '1500.00',
-                itemName: 'DMS Seller Subscription ' + ref,
+                amount: '450000.00',
+                itemName: 'DMS Lifetime Seller Licence ' + ref,
                 itemDesc: 'Monthly seller subscription - Dark Master Store',
                 orderRef: ref,
                 email: email,
@@ -6468,7 +6477,7 @@ document.getElementById('sellerApplyForm').onsubmit = async function(e) {
         return;
     }
     const proofUrl = document.getElementById('sellerProofUrl').value;
-        if (!proofUrl) { showAlert('Please attach your R1,500 deposit proof.'); return; }
+        if (!proofUrl) { showAlert('Please attach your R450,000 deposit proof.'); return; }
 
     const btn = e.target.querySelector('button[type="submit"]');
     btn.textContent = 'Submitting...';
@@ -6490,7 +6499,7 @@ document.getElementById('sellerApplyForm').onsubmit = async function(e) {
         await addDoc(collection(db, 'seller_applications'), {
             name, store, email, phone, location, products,
             proofImage: proofUrl,
-            fee: 1500,
+            fee: 450000,
             refCode: document.getElementById('sellerRefCode').textContent,
             status: 'pending',
             createdAt: new Date().toISOString()

@@ -28,7 +28,7 @@
 
     
 <title>Dark Master Store | Electronics, Phone Accessories, Beauty &amp; T-Shirts</title>
-<meta name="description" content="Dark Master Store is a South African online store for electronics, Bluetooth speakers, phone cases, gadgets, beauty essentials, bags and our own Dark Master t-shirts. Free nationwide delivery." />
+<meta name="description" content="Dark Master Store is a marketplace that sells products straight from the factories of popular brands — Nike, Kappa, Dark Master, Louis Vuitton, Dolce &amp; Gabbana, Diesel, Lacoste and more — at up to 50% off factory prices." />
 <meta name="keywords" content="Dark Master Store, electronics South Africa, Bluetooth speakers, portable fan, gadgets online, phone cases, iPhone covers, MagSafe case, phone accessories South Africa, beauty products, cosmetics, backpacks, bags, t-shirts, online store South Africa" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
 <meta name="author" content="Dark Master Store" />
@@ -38,7 +38,7 @@
 <meta property="og:url" content="https://darkmasterstore.beelzeapps.co.za/" />
 <meta property="og:locale" content="en_ZA" />
 <meta property="og:title" content="Dark Master Store — Electronics, Phone Accessories, Beauty &amp; T-Shirts" />
-<meta property="og:description" content="Shop electronics, Bluetooth speakers, phone cases, gadgets, beauty essentials, bags and Dark Master t-shirts — one South African store with free nationwide delivery." />
+<meta property="og:description" content="Factory-direct marketplace: Nike, Kappa, Dark Master, Louis Vuitton, Dolce &amp; Gabbana, Diesel, Lacoste and more — up to 50% off factory prices, free delivery." />
 <meta property="og:image" content="https://media.base44.com/images/public/6a368605043ab211ab6e969d/656de048b_1000115603.png" />
 <meta property="og:image:secure_url" content="https://media.base44.com/images/public/6a368605043ab211ab6e969d/656de048b_1000115603.png" />
 <meta property="og:image:alt" content="Dark Master Store — electronics, phone accessories, beauty and t-shirts" />
@@ -52,7 +52,7 @@
   "@type": "OnlineStore",
   "name": "Dark Master Store",
   "url": "https://darkmasterstore.beelzeapps.co.za/",
-  "description": "South African online store for electronics, phone accessories, beauty, bags and apparel.",
+    "description": "A marketplace that sells products from the factories of popular brands like Nike, Kappa, Dark Master, Louis Vuitton, Dolce & Gabbana, Diesel and Lacoste, at up to 50% off factory prices.",
   "areaServed": "ZA",
   "currenciesAccepted": "ZAR",
   "paymentAccepted": "Card, EFT, Cash on Delivery",
@@ -525,6 +525,84 @@
 .dms-dz-btn:disabled { opacity:.55; cursor:default; transform:none; box-shadow:none; }
 .dms-dz-btn-danger { color:#dc2626; }
 .dms-dz-btn i, .dms-dz-btn svg { width:14px; height:14px; }
+
+/* ===== Thin black & white buttons — 1px icons ===== */
+.dms-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 14px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;border:1px solid #e5e7eb;background:#fff;color:#111;transition:all .15s;}
+.dms-btn:hover{background:#f9fafb;border-color:#111;}
+.dms-btn-dark{background:#111;color:#fff;border-color:#111;}
+.dms-btn-dark:hover{background:#000;color:#facc15;border-color:#000;}
+.dms-btn-danger{color:#dc2626;border-color:#fecaca;}
+.dms-btn-danger:hover{background:#fef2f2;border-color:#dc2626;}
+.dms-btn i,.dms-btn svg{width:14px;height:14px;stroke-width:1;flex-shrink:0;}
+.dms-icon-btn{width:32px;height:32px;padding:0;border:1px solid #e5e7eb;background:#fff;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;}
+.dms-icon-btn:hover{border-color:#111;background:#f9fafb;}
+.dms-icon-btn i,.dms-icon-btn svg{width:14px;height:14px;stroke-width:1;color:#111;}
+.dms-icon-btn.danger i,.dms-icon-btn.danger svg{color:#dc2626;}
+
+/* ===== Brand strip: small squares drifting right → left ===== */
+.brand-strip{position:relative;overflow:hidden;background:#fff;padding:14px 0;margin:10px 0;border-top:1px solid #f3f4f6;border-bottom:1px solid #f3f4f6;}
+.brand-track{display:flex;width:max-content;gap:10px;animation:brandScroll 60s linear infinite;}
+.brand-track:hover{animation-play-state:paused;}
+.brand-box{width:104px;height:104px;flex:0 0 104px;border:1px solid #e5e7eb;border-radius:12px;background:#fff;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.brand-box img{width:100%;height:100%;object-fit:contain;padding:8px;display:block;}
+@keyframes brandScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* ===== HERO SHOWCASE — slow right → left ===== */
+.dms-hero{position:relative;height:340px;margin:14px;border-radius:22px;overflow:hidden;background:#fff;box-shadow:0 14px 40px rgba(0,0,0,0.18);}
+.dms-hero-slide{position:absolute;inset:0;opacity:0;transform:translateX(70px) scale(1.05);transition:opacity 1s ease,transform 1.6s ease;}
+.dms-hero-slide.active{opacity:1;transform:translateX(0) scale(1);}
+.dms-hero-slide.leaving{opacity:0;transform:translateX(-70px) scale(1.02);}
+.dms-hero-slide img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
+.dms-hero-cap{position:absolute;left:0;right:0;bottom:0;padding:52px 20px 22px;background:linear-gradient(to top,rgba(0,0,0,0.75),rgba(0,0,0,0));color:#fff;}
+.dms-hero-cap h2{margin:0;font-size:20px;font-weight:900;letter-spacing:-0.4px;line-height:1.2;}
+.dms-hero-cap p{margin:5px 0 0;font-size:12px;font-weight:600;color:rgba(255,255,255,0.85);}
+.dms-hero-dots{position:absolute;bottom:10px;left:0;right:0;display:flex;justify-content:center;gap:5px;z-index:3;}
+.dms-hero-dot{width:16px;height:3px;border-radius:99px;background:rgba(255,255,255,0.4);transition:background .3s,width .3s;}
+.dms-hero-dot.active{background:#fff;width:26px;}
+@media(min-width:768px){.dms-hero{height:430px;margin:18px;}}
+/* ===== THIN BLACK & WHITE BUTTONS — 1px icons ===== */
+button.bg-yellow-400,button[style*="background:#facc15"]{background:#fff !important;color:#111 !important;border:1px solid #111 !important;border-radius:10px !important;font-weight:700 !important;}
+button.bg-yellow-400:hover,button[style*="background:#facc15"]:hover{background:#111 !important;color:#fff !important;}
+button.bg-yellow-400 svg,button[style*="background:#facc15"] svg{width:14px !important;height:14px !important;stroke-width:1 !important;}
+button.bg-yellow-400:hover svg,button[style*="background:#facc15"]:hover svg{stroke:#fff !important;}
+#customAlertOk{background:#111 !important;color:#fff !important;border:1px solid #111 !important;}
+
+/* ===== WIDE WHITE PICKERS — shop + country ===== */
+.dms-pick{position:fixed;inset:0;background:rgba(17,17,17,.45);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);z-index:2147483500;display:none;align-items:flex-end;justify-content:center;}
+.dms-pick.on{display:flex;}
+.dms-pick-card{background:#fff;width:100%;max-width:560px;max-height:86vh;border-radius:24px 24px 0 0;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 -12px 40px rgba(0,0,0,.22);}
+@media(min-width:640px){.dms-pick{align-items:center;padding:20px;}.dms-pick-card{border-radius:24px;max-height:80vh;}}
+.dms-pick-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:15px 16px;border-bottom:1px solid #f1f1f1;flex-shrink:0;}
+.dms-pick-head h3{font-size:15px;font-weight:800;margin:0;color:#111;display:flex;align-items:center;gap:8px;}
+.dms-pick-head h3 i,.dms-pick-head h3 svg{width:16px;height:16px;stroke-width:1;}
+.dms-pick-close{width:34px;height:34px;border-radius:50%;background:#f5f5f5;border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.dms-pick-close i,.dms-pick-close svg{width:16px;height:16px;stroke-width:1;color:#111;}
+.dms-pick-body{overflow-y:auto;-webkit-overflow-scrolling:touch;padding:8px 10px 18px;}
+.dms-pick-group{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#9ca3af;padding:12px 8px 6px;}
+.dms-pick-row{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:#fff;border:1px solid #f1f1f1;border-radius:12px;padding:11px 12px;margin-bottom:6px;cursor:pointer;font-family:inherit;font-size:13.5px;font-weight:700;color:#111;}
+.dms-pick-row:hover{background:#fafafa;border-color:#111;}
+.dms-pick-row.sel{border-color:#111;background:#fafafa;}
+.dms-pick-row i,.dms-pick-row svg{width:15px;height:15px;stroke-width:1;flex-shrink:0;color:#111;}
+.dms-pick-row .lbl{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.dms-pick-row .code{margin-left:auto;font-size:10.5px;font-weight:800;color:#6b7280;background:#f3f4f6;border-radius:99px;padding:3px 8px;flex-shrink:0;}
+
+/* ===== WIDE PICKER BUTTON + SMOOTH FLAG TOGGLES ===== */
+.dms-wide-btn{width:100%;display:flex;align-items:center;gap:10px;padding:12px 14px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;font-size:13.5px;font-weight:700;color:#111;cursor:pointer;font-family:inherit;text-align:left;box-sizing:border-box;}
+.dms-wide-btn:hover{border-color:#111;}
+.dms-wide-btn i,.dms-wide-btn svg{width:16px;height:16px;stroke-width:1;flex-shrink:0;}
+.dms-wide-btn .chev{color:#9ca3af;margin-left:auto;}
+.dms-flag{position:relative;display:flex;align-items:center;gap:7px;padding:9px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:11px;cursor:pointer;font-size:12.5px;font-weight:700;color:#111;transition:background .15s ease,border-color .15s ease;}
+.dms-flag:hover{border-color:#111;}
+.dms-flag input{position:absolute;opacity:0;width:0;height:0;pointer-events:none;}
+.dms-flag i,.dms-flag svg{width:14px;height:14px;stroke-width:1;flex-shrink:0;color:#111;}
+.dms-flag.on{background:#111;border-color:#111;color:#fff;}
+.dms-flag.on i,.dms-flag.on svg{color:#fff;}
+.dms-rev-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px;}
+.dms-rev-grid > *:nth-child(n+3){grid-column:1/-1;}
+
+
+
+
+
     </style>
 </head>
 <body class="bg-gray-50 dms-loading">
@@ -780,13 +858,18 @@
                     DARK MASTER STORE
                     <img src="https://flagcdn.com/w40/za.png" alt="South Africa" style="width:26px;height:auto;border-radius:3px;display:inline-block;vertical-align:middle;" />
                 </h1>
-         <p style="font-size:11px;font-weight:600;color:rgba(0,0,0,0.7);margin:2px 0 0;letter-spacing:0.2px;"> South African Marketplace</p>
+         <p style="font-size:11px;font-weight:600;color:rgba(0,0,0,0.7);margin:2px 0 0;letter-spacing:0.2px;"> Shop products from factories</p>
             </div>    
         </div>
         
                 <!-- Icons below name — each with a small matching label -->
 <div class="flex items-center justify-center gap-2">
+    <button onclick="showPage('home')" class="flex flex-col items-center p-1 hover:bg-yellow-500 rounded-lg" title="Home">
+        <i data-lucide="home" class="w-6 h-6 text-black"></i>
+        <span style="font-size:10px;font-weight:700;color:#000;margin-top:2px;">Home</span>
+    </button>
     <button onclick="openQuickOrders()" class="flex flex-col items-center p-1 hover:bg-yellow-500 rounded-lg relative" title="New Orders">
+
         <i data-lucide="package" class="w-6 h-6 text-black"></i>
         <span id="newOrdersBadge" class="hidden absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold"></span>
         <span style="font-size:10px;font-weight:700;color:#000;margin-top:2px;">Orders</span>
@@ -864,106 +947,19 @@
 
         <!-- HOME PAGE -->
         <div id="homePage" class="page">
-   <!-- Promotional Banners — Everything Store: Electronics, Phone Accessories, Beauty, Bags & T-Shirts -->
-            <div class="banner-carousel">
-                <div class="banner-slide active">
-                    <img src="https://media.base44.com/images/public/6a28cde8c2f5c1a2f471d7d5/10b79b72b_InShot_20261031_162634973.jpg" alt="JBL Bluetooth speaker — electronics at Dark Master Store">
-                    <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent flex items-center">
-                        <div class="text-white px-8 md:px-16 max-w-2xl">
-                            <h2 class="text-4xl md:text-6xl font-bold mb-4">Electronics &amp; Gadgets</h2>
-                            <p class="text-xl mb-6">Bluetooth speakers · Fans · Everyday tech · Beauty · Bags · T-Shirts</p>
-                            <button onclick="showPage('products')" class="bg-yellow-400 text-black px-8 py-3 rounded-lg font-bold hover:bg-yellow-500">
-                                Shop Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="banner-slide">
-                    <img src="https://media.base44.com/images/public/6a28cde8c2f5c1a2f471d7d5/f1e1c88ef_InShot_20261031_162546419.jpg" alt="Orange silicone MagSafe iPhone case — phone accessories">
-                    <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent flex items-center">
-                        <div class="text-white px-8 md:px-16 max-w-2xl">
-                            <h2 class="text-4xl md:text-6xl font-bold mb-4">Phone Cases &amp; iPhone Gear</h2>
-                            <p class="text-xl mb-6">MagSafe covers · Chargers · Screen protectors</p>
-                            <button onclick="showPage('products')" class="bg-yellow-400 text-black px-8 py-3 rounded-lg font-bold hover:bg-yellow-500">
-                                Shop Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="banner-slide">
-                    <img src="https://media.base44.com/images/public/6a28cde8c2f5c1a2f471d7d5/b4fba4102_InShot_20261031_162737556.jpg" alt="Portable display fan — desk and camping gadget">
-                    <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent flex items-center">
-                        <div class="text-white px-8 md:px-16 max-w-2xl">
-                            <h2 class="text-4xl md:text-6xl font-bold mb-4">Cool Gadgets, Real Prices</h2>
-                            <p class="text-xl mb-6">Portable fans · Desk tech · Home &amp; camping gear</p>
-                            <button onclick="showPage('products')" class="bg-yellow-400 text-black px-8 py-3 rounded-lg font-bold hover:bg-yellow-500">
-                                Shop Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="banner-slide">
-                    <img src="https://media.base44.com/images/public/6a28cde8c2f5c1a2f471d7d5/4628d627e_InShot_20261031_162753693.jpg" alt="Two-tone drawstring backpack — bags at Dark Master Store">
-                    <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent flex items-center">
-                        <div class="text-white px-8 md:px-16 max-w-2xl">
-                            <h2 class="text-4xl md:text-6xl font-bold mb-4">Bags, Beauty &amp; Essentials</h2>
-                            <p class="text-xl mb-6">Backpacks · Accessories · Beauty picks</p>
-                            <button onclick="showPage('products')" class="bg-yellow-400 text-black px-8 py-3 rounded-lg font-bold hover:bg-yellow-500">
-                                Shop Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="banner-slide">
-                    <img src="https://base44.app/api/apps/6aa31690faf5aa774b988d3d/files/mp/public/6aa31690faf5aa774b988d3d/1f64df40c_darkmaster-banner-1.png" alt="Shop Dark Master T-Shirts">
-                    <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent flex items-center">
-                        <div class="text-white px-8 md:px-16 max-w-2xl">
-                            <h2 class="text-4xl md:text-6xl font-bold mb-4">Shop Dark Master T-Shirts</h2>
-                            <p class="text-xl mb-6">Our own brand — designed &amp; printed in South Africa</p>
-                            <button onclick="showPage('products')" class="bg-yellow-400 text-black px-8 py-3 rounded-lg font-bold hover:bg-yellow-500">
-                                Shop Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="banner-slide">
-                    <img src="https://base44.app/api/apps/6aa31690faf5aa774b988d3d/files/mp/public/6aa31690faf5aa774b988d3d/362a9b4fc_darkmaster-banner-2.jpg" alt="Dark Master Gradient T-Shirt">
-                    <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent flex items-center">
-                        <div class="text-white px-8 md:px-16 max-w-2xl">
-                            <h2 class="text-4xl md:text-6xl font-bold mb-4">Dark Master Gradient T-Shirt</h2>
-                            <p class="text-xl mb-6">Bold gradient print · Premium cotton</p>
-                            <button onclick="showPage('products')" class="bg-yellow-400 text-black px-8 py-3 rounded-lg font-bold hover:bg-yellow-500">
-                                Shop Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="banner-slide">
-                    <img src="https://base44.app/api/apps/6aa31690faf5aa774b988d3d/files/mp/public/6aa31690faf5aa774b988d3d/807d37904_darkmaster-banner-3.png" alt="Dark Master Mini Honey Block T-Shirt">
-                    <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent flex items-center">
-                        <div class="text-white px-8 md:px-16 max-w-2xl">
-                            <h2 class="text-4xl md:text-6xl font-bold mb-4">Dark Master Mini Honey Block T-Shirt</h2>
-                            <p class="text-xl mb-6">Subtle honeycomb hex · Everyday fit</p>
-                            <button onclick="showPage('products')" class="bg-yellow-400 text-black px-8 py-3 rounded-lg font-bold hover:bg-yellow-500">
-                                Shop Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="banner-slide">
-                    <img src="https://base44.app/api/apps/6aa31690faf5aa774b988d3d/files/mp/public/6aa31690faf5aa774b988d3d/22efdcc9b_darkmaster-banner-4.png" alt="Dark Master Honey Block T-Shirt">
-                    <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent flex items-center">
-                        <div class="text-white px-8 md:px-16 max-w-2xl">
-                            <h2 class="text-4xl md:text-6xl font-bold mb-4">Dark Master Honey Block T-Shirt</h2>
-                            <p class="text-xl mb-6">The original honeycomb drop</p>
-                            <button onclick="showPage('products')" class="bg-yellow-400 text-black px-8 py-3 rounded-lg font-bold hover:bg-yellow-500">
-                                Shop Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+        <div class="dms-hero" id="dmsHero">
+  <div class="dms-hero-slide active"><img src="https://base44.app/api/apps/6a51f13b3c37882206c2b77f/files/mp/public/6a51f13b3c37882206c2b77f/0b49063ca_220578486-1200-1600.png" alt="Shop Fashion"><div class="dms-hero-cap"><h2>Shop Fashion</h2><p>Fresh tees — factory prices, every size</p></div></div>
+  <div class="dms-hero-slide"><img src="https://base44.app/api/apps/6a51f13b3c37882206c2b77f/files/mp/public/6a51f13b3c37882206c2b77f/6720e9757_images4.png" alt="Shop Kappa"><div class="dms-hero-cap"><h2>Shop Kappa</h2><p>Authentic brands, up to 50% off</p></div></div>
+  <div class="dms-hero-slide"><img src="https://base44.app/api/apps/6a51f13b3c37882206c2b77f/files/mp/public/6a51f13b3c37882206c2b77f/322679355_1000133314.png" alt="Shop Dark Master"><div class="dms-hero-cap"><h2>Shop Dark Master</h2><p>Our own label — made to stand out</p></div></div>
+  <div class="dms-hero-slide"><img src="https://base44.app/api/apps/6a51f13b3c37882206c2b77f/files/mp/public/6a51f13b3c37882206c2b77f/74883fe6e_1000133324.png" alt="Shop Street Style"><div class="dms-hero-cap"><h2>Shop Street Style</h2><p>Free delivery on every order</p></div></div>
+  <div class="dms-hero-slide"><img src="https://base44.app/api/apps/6a51f13b3c37882206c2b77f/files/mp/public/6a51f13b3c37882206c2b77f/3c2b73136_images7.jpeg" alt="Shop Lacoste"><div class="dms-hero-cap"><h2>Shop Lacoste</h2><p>Straight from the factory floor</p></div></div>
+  <div class="dms-hero-slide"><img src="https://base44.app/api/apps/6a51f13b3c37882206c2b77f/files/mp/public/6a51f13b3c37882206c2b77f/34f927912_225807451-1200-1600.png" alt="Shop Sneakers"><div class="dms-hero-cap"><h2>Shop Sneakers</h2><p>Nike Shox just landed</p></div></div>
+  <div class="dms-hero-slide"><img src="https://base44.app/api/apps/6a51f13b3c37882206c2b77f/files/mp/public/6a51f13b3c37882206c2b77f/8aa7f0170_52SFA0088_312_02.jpg" alt="Shop with Free Delivery"><div class="dms-hero-cap"><h2>Shop with Free Delivery</h2><p>Every order, no minimum spend</p></div></div>
+  <div class="dms-hero-slide"><img src="https://base44.app/api/apps/6a51f13b3c37882206c2b77f/files/mp/public/6a51f13b3c37882206c2b77f/38bd08bd7_225807452-1200-1600.png" alt="Shop Nike"><div class="dms-hero-cap"><h2>Shop Nike</h2><p>Fresh kicks at factory price</p></div></div>
+  <div class="dms-hero-slide"><img src="https://base44.app/api/apps/6a51f13b3c37882206c2b77f/files/mp/public/6a51f13b3c37882206c2b77f/2bfa48cc6_d0c69230-7ca1-4968-b564-48aae162dcfe.webp" alt="Shop Diesel"><div class="dms-hero-cap"><h2>Shop Diesel</h2><p>Denim Division tees in stock</p></div></div>
+  <div class="dms-hero-dots" id="dmsHeroDots"></div>
+</div>
+   
             <!-- Search Section -->
             <div class="bg-white py-12">
                 <div class="max-w-4xl mx-auto px-4">
@@ -1027,7 +1023,7 @@
     <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
 </button>
                 </div>
-                <div id="featuredProducts" class="grid grid-cols-2 lg:grid-cols-4 gap-6"></div>
+                <div id="moreProducts" class="grid grid-cols-2 lg:grid-cols-4 gap-6"></div>
                 </div>
             </div>
 
@@ -1036,7 +1032,7 @@
             <div class="py-16 bg-gray-50" id="moreProductsSection">
                 <div class="max-w-7xl mx-auto px-4">
              <h2 class="text-3xl font-bold text-center mb-4">Discover More</h2>
-                    <div id="moreProducts" class="grid grid-cols-2 lg:grid-cols-4 gap-6"></div>
+                    <div id="moreProducts" class="grid grid-cols-2 lg:grid-cols-4 gap-2"></div>
                    <div class="text-center mt-8">
                         <button onclick="showPage('products')" class="bg-yellow-400 text-black px-6 py-3 text-sm rounded-full font-bold hover:bg-yellow-500 inline-flex items-center gap-2 shadow-lg">
                         View All Products
@@ -1149,7 +1145,7 @@
 
  </div>
     </div>
-        </div>
+        </div><!-- /homePage -->
                 
 
         <!-- PRODUCTS PAGE -->
@@ -1253,7 +1249,8 @@
 
 
       </div>
-                <div id="allProductsGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-6"></div>
+                <div id="allProductsGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-2"></div>
+
                 
 
                 
@@ -1720,15 +1717,15 @@
     
     </div><!-- restores the lost </div> for #sellerInfoPopup — without it every popup below is trapped inside a hidden modal -->
 
-    <div id="customAlert" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:9999;align-items:center;justify-content:center;">
-    <div style="background:#ffffff;border-radius:24px;padding:32px 28px;max-width:320px;width:90%;position:relative;box-shadow:0 30px 80px rgba(0,0,0,0.15);border:2px solid #f3f4f6;animation:popIn 0.3s cubic-bezier(0.34,1.56,0.64,1);">
-        <button onclick="closeCustomAlert()" style="position:absolute;top:14px;right:14px;background:#f3f4f6;border:none;cursor:pointer;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    <div id="customAlert" style="display:none;position:fixed;top:14px;left:50%;right:auto;bottom:auto;transform:translateX(-50%);width:calc(100% - 24px);max-width:460px;background:transparent;z-index:2147483600;align-items:flex-start;justify-content:center;">
+    <div style="background:#fff;border-radius:18px;padding:14px 16px;width:100%;display:flex;align-items:center;gap:12px;box-sizing:border-box;box-shadow:0 18px 50px rgba(0,0,0,0.18);border:1px solid #f1f1f1;animation:popIn .28s cubic-bezier(.34,1.56,.64,1);">
+        <span style="width:40px;height:40px;border-radius:12px;background:#f7f7f7;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <i data-lucide="check-circle" style="width:20px;height:20px;stroke-width:1;color:#111;"></i>
+        </span>
+        <p id="customAlertMessage" style="margin:0;flex:1;font-size:13.5px;font-weight:700;color:#111;line-height:1.45;"></p>
+        <button onclick="closeCustomAlert()" aria-label="Close" style="width:30px;height:30px;border-radius:50%;background:#f5f5f5;border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <i data-lucide="x" style="width:15px;height:15px;stroke-width:1;color:#111;"></i>
         </button>
-        <div style="width:60px;height:60px;background:#facc15;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 6px 20px rgba(250,204,21,0.4);">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        <p id="customAlertMessage" style="text-align:center;font-size:15px;color:#111;font-weight:700;margin:0;line-height:1.6;"></p>
     </div>
 </div>
 
@@ -1839,7 +1836,40 @@
         <p id="quickSellersError" style="display:none;color:#ef4444;font-size:13px;"></p>
         <button onclick="verifyQuickSellers()" style="background:#111;color:#facc15;font-weight:800;padding:14px 40px;border:none;border-radius:12px;font-size:15px;cursor:pointer;">Unlock</button>
     </div>
-    <div id="quickSellersList" style="display:none;padding:16px;"></div>
+        <div id="quickSellersList" style="display:none;padding:16px;"></div>
+</div>
+
+<!-- WIDE SHOP PICKER — white, scrollable, 1px lucide icons -->
+<div id="dmsStorePicker" class="dms-pick">
+  <div class="dms-pick-card">
+    <div class="dms-pick-head">
+      <h3><i data-lucide="store"></i> Which shop sells this?</h3>
+      <button type="button" class="dms-pick-close" onclick="dmsCloseStorePicker()"><i data-lucide="x"></i></button>
+    </div>
+    <div class="dms-pick-body" id="dmsStoreListBody"></div>
+  </div>
+</div>
+
+<!-- WIDE COUNTRY PICKER — white, scrollable -->
+<div id="dmsCountryPicker" class="dms-pick">
+  <div class="dms-pick-card">
+    <div class="dms-pick-head">
+      <h3><i data-lucide="globe"></i> Which country is it in?</h3>
+      <button type="button" class="dms-pick-close" onclick="dmsCloseCountryPicker()"><i data-lucide="x"></i></button>
+    </div>
+    div class="dms-pick-body" id="dmsCountryListBody"></div>
+  </div>
+</div>
+
+<!-- WIDE CATEGORY PICKER — white, scrollable, 1px lucide icons -->
+<div id="dmsCategoryPicker" class="dms-pick">
+  <div class="dms-pick-card">
+    <div class="dms-pick-head">
+      <h3><i data-lucide="tag"></i> Pick a category</h3>
+      <button type="button" class="dms-pick-close" onclick="dmsCloseCategoryPicker()"><i data-lucide="x"></i></button>
+    </div>
+    <div class="dms-pick-body" id="dmsCategoryListBody"></div>
+  </div>
 </div>
 
 
@@ -1847,7 +1877,7 @@
     <script type="module">
         // Import Firebase
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-        import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, query, where, orderBy, limit, startAfter, Timestamp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+        import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc, query, where, orderBy, limit, startAfter, Timestamp, initializeFirestore, persistentLocalCache, persistentMultipleTabManager } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
         import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
 
 
@@ -1866,7 +1896,9 @@
 
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
+        const db = initializeFirestore(app, {
+            localCache: persistentLocalCache({ tabManager: persistentMultipleTabManager() })
+        });
         const auth = getAuth(app);
 
         // Initialize Lucide icons
@@ -1981,6 +2013,8 @@ window.showAlert = function(message) {
 window.closeCustomAlert = function() {
     document.getElementById('customAlert').style.display = 'none';
 }; 
+window.alert = function (msg) { window.showAlert(msg); };
+
         
         
         
@@ -2050,7 +2084,7 @@ window.HARDCODED_CATEGORIES = [];
             currentBannerIndex = (currentBannerIndex + 1) % slides.length;
             slides[currentBannerIndex].classList.add('active');
         }
-        setInterval(rotateBanners, 5000);
+        (function(){var hero=document.getElementById('dmsHero');if(!hero)return;var slides=hero.querySelectorAll('.dms-hero-slide');var dotsBox=document.getElementById('dmsHeroDots');if(dotsBox){var h='';for(var d=0;d<slides.length;d++){h+='<span class="dms-hero-dot'+(d===0?' active':'')+'"></span>';}dotsBox.innerHTML=h;}var dots=hero.querySelectorAll('.dms-hero-dot');var idx=0;function goTo(n){var old=slides[idx];old.classList.remove('active');old.classList.add('leaving');setTimeout(function(){old.classList.remove('leaving');},1500);idx=n;slides[idx].classList.add('active');for(var k=0;k<dots.length;k++){dots[k].classList.toggle('active',k===idx);}}setInterval(function(){goTo((idx+1)%slides.length);},2600);})();
 
         // Image lightbox
         window.openLightbox = function(imageSrc) {
@@ -2325,9 +2359,12 @@ window.HARDCODED_CATEGORIES = [];
         setLoadingProgress(25, 'Fetching store...');
         console.log('🔎 [LOAD] Fetching categories from Firestore...');
                 // 1) CATEGORIES — load in full first
-        const FIRST_PAGE = 2;
-        const [categoriesSnapshot, productsSnapshot] = await Promise.all([
+                const FIRST_PAGE = 4;
+        const _dayAgoISO = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+        const [categoriesSnapshot, todaySnapshot, productsSnapshot] = await Promise.all([
             getDocs(collection(db, 'categories')),
+            // REAL DB QUERY — everything added in the last 24 hours, newest first (top of the feed for one day)
+            getDocs(query(collection(db, 'products'), where('created_date', '>=', _dayAgoISO), orderBy('created_date', 'desc'), limit(24))).catch(() => ({ docs: [] })),
             getDocs(query(collection(db, 'products'), limit(FIRST_PAGE)))
         ]);
         window._dmsLastProductDoc = productsSnapshot.docs.length
@@ -2337,7 +2374,9 @@ window.HARDCODED_CATEGORIES = [];
 
 
         const firestoreCategories = categoriesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        const firestoreProducts = productsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                const firestoreProducts = productsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        const todayProducts = todaySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
 
 
         console.log('📂 [LOAD] Categories fetched:', firestoreCategories.length);
@@ -2355,7 +2394,7 @@ window.HARDCODED_CATEGORIES = [];
             return isNaN(t) ? 0 : t;
         };
         const seen = new Set();
-        const unique = [...window.HARDCODED_PRODUCTS, ...firestoreProducts].filter(p => {
+        const unique = [...window.HARDCODED_PRODUCTS, ...todayProducts, ...firestoreProducts].filter(p => {
             const key = p.id || p.name;
             if (seen.has(key)) return false;
             seen.add(key);
@@ -2377,7 +2416,7 @@ window.HARDCODED_CATEGORIES = [];
         firstBatch.forEach(p => {
             if (!window.appState.products.find(x => x.id === p.id)) window.appState.products.push(p);
         });
-                window._allProductsLoaded = window._dmsProductsDone === true;
+                window._allProductsLoaded = false; // keep pulling 4 at a time until Firestore runs out
         window._isLoadingMore = false;
 
 
@@ -2468,18 +2507,32 @@ async function loadMoreProducts() {
     window._isLoadingMore = true;
 
     try {
-        // Next 2 straight from Firestore, continuing after the last product we already showed
-        let q = query(collection(db, 'products'), limit(2));
+          // Next 4 straight from Firestore, continuing after the last product we already showed
+        const PAGE = 4;
+        let q = query(collection(db, 'products'), limit(PAGE));
         if (window._dmsLastProductDoc) {
-            q = query(collection(db, 'products'), startAfter(window._dmsLastProductDoc), limit(2));
+            q = query(collection(db, 'products'), startAfter(window._dmsLastProductDoc), limit(PAGE));
         }
         const snap = await getDocs(q);
-        const newProducts = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        const _ms = v => {
+            if (!v) return 0;
+            if (typeof v === 'object' && typeof v.toMillis === 'function') return v.toMillis();
+            const t = new Date(v).getTime();
+            return isNaN(t) ? 0 : t;
+        };
+        // Today's products first, everything older shuffled — never the same predictable order
+        const _fresh = [], _older = [];
+        snap.docs.map(d => ({ id: d.id, ...d.data() })).forEach(p => {
+            (_ms(p.created_date) > 0 && (Date.now() - _ms(p.created_date)) < 86400000 ? _fresh : _older).push(p);
+        });
+        _fresh.sort((a, b) => _ms(b.created_date) - _ms(a.created_date));
+        for (let i = _older.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [_older[i], _older[j]] = [_older[j], _older[i]]; }
+        const newProducts = [..._fresh, ..._older];
 
         if (snap.docs.length) {
             window._dmsLastProductDoc = snap.docs[snap.docs.length - 1];
         }
-        if (snap.docs.length < 2) {
+        if (snap.docs.length < PAGE) {
             window._allProductsLoaded = true;
             window._dmsProductsDone = true;
         }
@@ -2502,10 +2555,15 @@ async function loadMoreProducts() {
                 lucide.createIcons();
             }
         }
-    } catch(e) {
+        } catch(e) {
         console.error('Error loading more products:', e);
     }
     window._isLoadingMore = false;
+    // If 4 more still didn't fill the screen, keep pulling — never stops at a handful of products
+    setTimeout(() => {
+        if (window._allProductsLoaded) return;
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 600) loadMoreProducts();
+    }, 300);
 }
 
 window.dmsAppendHomeProducts = function(list) {
@@ -2563,14 +2621,27 @@ window.addEventListener('scroll', () => {
             }
         });
 
+           // ===== CATEGORY VISIBILITY — hides from the category line ONLY, products stay =====
+        window.DMS_HIDDEN_CATS = JSON.parse(localStorage.getItem('dms_hidden_categories') || '[]');
+        window.dmsIsCatHidden = function (id) { return window.DMS_HIDDEN_CATS.indexOf(id) !== -1; };
+        window.dmsToggleCategory = function (id) {
+            var i = window.DMS_HIDDEN_CATS.indexOf(id);
+            if (i === -1) window.DMS_HIDDEN_CATS.push(id); else window.DMS_HIDDEN_CATS.splice(i, 1);
+            localStorage.setItem('dms_hidden_categories', JSON.stringify(window.DMS_HIDDEN_CATS));
+            renderHomePage();
+            var ap = document.getElementById('adminPanel');
+            if (ap && !ap.classList.contains('hidden')) renderAdminCategories();
+        };
+
         // Render home page
         function renderHomePage() {
             const categoriesGrid = document.getElementById('categoriesGrid');
-            categoriesGrid.innerHTML = window.appState.categories.map(cat => `
+            categoriesGrid.innerHTML = window.appState.categories.filter(cat => !window.dmsIsCatHidden(cat.id)).map(cat => `
                 <div onclick="filterByCategory('${cat.id}')" style="flex:0 0 130px;scroll-snap-align:start;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,0.08);cursor:pointer;transition:transform 0.2s;border:1px solid #f3f4f6;">
                     <div style="position:relative;width:130px;height:130px;">
                         <img src="${cat.image || 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400'}" alt="${cat.name}" style="width:100%;height:100%;object-fit:cover;"/>
-                        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.8),transparent);"></div>
+                        <div style="position:absolute;left:0;right:0;bottom:0;height:34%;background:linear-gradient(to top,rgba(0,0,0,0.55),transparent);"></div>
+                        
                         <div style="position:absolute;bottom:0;left:0;right:0;padding:10px;color:#fff;">
                             <h3 style="font-weight:800;font-size:13px;margin:0;line-height:1.2;">${cat.name}</h3>
                         </div>
@@ -2705,6 +2776,7 @@ window.addEventListener('scroll', () => {
         function createProductCard(product) {
             const price = product.price || 0;
             const originalPrice = product.original_price;
+            const pctOff = (originalPrice && originalPrice > price && price > 0) ? Math.round((1 - price / originalPrice) * 100) : 0;
             const rating = product.rating || 5;
             const reviewCount = product.rating_count || 0;
             const images = product.images || [];
@@ -2740,21 +2812,19 @@ window.addEventListener('scroll', () => {
                     <div class="relative aspect-square">
                         ${imageHTML}
                         ${badgesHTML}
+                        ${pctOff > 0 ? `<div style="position:absolute;top:8px;right:8px;z-index:12;background:#fff;border:1px solid #111;border-radius:9px;padding:3px 7px;font-size:10px;font-weight:900;color:#111;display:flex;align-items:center;gap:3px;letter-spacing:-0.2px;"><i data-lucide="tag" style="width:10px;height:10px;stroke-width:1;"></i>${pctOff}% OFF</div>` : ''}
                     </div>
                 <div class="p-2">
     <h3 class="font-semibold text-sm mb-1" style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.4em;line-height:1.2em;">${product.name}</h3>
-   <div class="flex flex-col gap-1 mb-2">
-        <div class="flex items-center gap-2" style="white-space:nowrap;">
-            <i data-lucide="check-circle" class="w-4 h-4 ${inStock ? 'text-green-500 fill-green-500' : 'text-red-500'}" style="flex-shrink:0;"></i>
-            <span class="text-sm ${inStock ? 'text-green-600' : 'text-red-600'} font-medium" style="white-space:nowrap;">
-                ${inStock ? 'In Stock' : 'Out of Stock'}
-            </span>
+      <div class="flex items-center mb-2" style="flex-wrap:nowrap;gap:3px;overflow:hidden;min-width:0;">
+        <div style="font-size:8.5px;font-weight:700;${inStock ? 'color:#16a34a;background:#f0fdf4' : 'color:#ef4444;background:#fef2f2'};padding:1px 4px;border-radius:99px;display:inline-flex;align-items:center;gap:2px;white-space:nowrap;flex:0 1 auto;min-width:0;">
+            <i data-lucide="check-circle" style="width:8px;height:8px;flex-shrink:0;"></i>${inStock ? 'In Stock' : 'No Stock'}
         </div>
-        <div style="font-size:11px;font-weight:700;${_dmsQty >= 3 ? 'color:#16a34a;background:#f0fdf4' : _dmsQty > 0 ? 'color:#ef4444;background:#fef2f2' : 'color:#9ca3af;background:#f3f4f6'};padding:2px 8px;border-radius:99px;display:inline-flex;align-items:center;gap:3px;white-space:nowrap;align-self:flex-start;max-width:100%;overflow:hidden;text-overflow:ellipsis;">
-            <i data-lucide="package" style="width:10px;height:10px;flex-shrink:0;"></i>${inStock ? 'Only ' + _dmsQty + ' left' : '0 left'}
+        <div style="font-size:8.5px;font-weight:700;${_dmsQty >= 3 ? 'color:#16a34a;background:#f0fdf4' : _dmsQty > 0 ? 'color:#ef4444;background:#fef2f2' : 'color:#9ca3af;background:#f3f4f6'};padding:1px 4px;border-radius:99px;display:inline-flex;align-items:center;gap:2px;white-space:nowrap;flex:0 1 auto;min-width:0;">
+            <i data-lucide="package" style="width:8px;height:8px;flex-shrink:0;"></i>${inStock ? _dmsQty + ' left' : '0 left'}
         </div>
-        <div style="font-size:11px;font-weight:800;color:#000;background:#facc15;padding:2px 8px;border-radius:99px;display:inline-flex;align-items:center;gap:3px;white-space:nowrap;align-self:flex-start;max-width:100%;overflow:hidden;text-overflow:ellipsis;">
-            <i data-lucide="trending-up" style="width:10px;height:10px;color:#000;flex-shrink:0;"></i>${dmsGetSold(product.id)} sold
+        <div style="font-size:8.5px;font-weight:800;color:#000;background:#facc15;padding:1px 4px;border-radius:99px;display:inline-flex;align-items:center;gap:2px;white-space:nowrap;flex:0 1 auto;min-width:0;letter-spacing:-0.2px;">
+            <i data-lucide="trending-up" style="width:8px;height:8px;color:#000;flex-shrink:0;"></i>${dmsGetSold(product.id)} sold
         </div>
     </div>
                         <div class="flex items-center gap-2 mb-3">
@@ -3074,28 +3144,22 @@ ${product.colors ? `
 
             const popup = document.createElement('div');
             popup.id = 'addedToCartPopup';
-            popup.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.45);display:flex;align-items:center;justify-content:center;padding:20px;';
+            popup.style.cssText = 'position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:99999;width:calc(100% - 24px);max-width:460px;';
             popup.innerHTML = `
-                <div style="background:#fff;border-radius:24px;padding:26px 22px;max-width:300px;width:100%;text-align:center;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.3);animation:popIn 0.3s ease;">
-                    <button onclick="closeAddedToCartPopup()" style="position:absolute;top:12px;right:12px;background:#f3f4f6;border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;">
-                        <i data-lucide="x" style="width:16px;height:16px;color:#374151;"></i>
-                    </button>
-                    <!-- App logo + flashing dots -->
-                    <div style="position:relative;width:72px;height:72px;margin:0 auto 14px;">
-                        <div style="position:absolute;inset:0;border-radius:50%;">
-                            <div style="position:absolute;top:50%;left:50%;width:10px;height:10px;border-radius:50%;background:#facc15;transform:translate(-50%,-50%);animation:dmsDotSplash 3.5s ease-in-out infinite;"></div>
-                            <div style="position:absolute;top:50%;left:50%;width:8px;height:8px;border-radius:50%;background:#facc15;transform:translate(-50%,-50%);animation:dmsDotSplash 3.5s ease-in-out infinite 0.5s;opacity:0.6;"></div>
-                        </div>
-                        <img src="https://media.base44.com/images/public/6a229080e7ef797967332f6a/71dfa2b0c_1000125769.png" alt="Dark Master Store" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:12px;object-fit:cover;z-index:2;box-shadow:0 4px 14px rgba(0,0,0,0.18);"/>
+                <div style="background:#fff;border-radius:18px;padding:12px 14px;display:flex;align-items:center;gap:12px;box-sizing:border-box;box-shadow:0 18px 50px rgba(0,0,0,0.18);border:1px solid #f1f1f1;animation:popIn .28s cubic-bezier(.34,1.56,.64,1);">
+                    <img src="${product.images?.[0] || 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=200'}" alt="${product.name}" style="width:46px;height:46px;object-fit:cover;border-radius:12px;flex-shrink:0;"/>
+                    <div style="flex:1;min-width:0;">
+                        <p style="margin:0;font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#16a34a;display:flex;align-items:center;gap:5px;">
+                            <i data-lucide="check-circle" style="width:13px;height:13px;stroke-width:1;"></i> Added to cart
+                        </p>
+                        <p style="margin:3px 0 0;font-size:13px;font-weight:700;color:#111;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${product.name}</p>
                     </div>
-                    <!-- Product picture + name -->
-                    <img src="${product.images?.[0] || 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=200'}" alt="${product.name}" style="width:70px;height:70px;object-fit:cover;border-radius:14px;margin:0 auto 10px;display:block;box-shadow:0 4px 12px rgba(0,0,0,0.12);"/>
-                    <p style="font-size:13px;font-weight:700;color:#374151;margin:0 0 4px;line-height:1.3;">${product.name}</p>
-                    <h3 style="font-size:17px;font-weight:900;color:#111;margin:0 0 14px;">Added to Cart</h3>
-                    <button onclick="closeAddedToCartPopup();showPage('cart')" style="width:100%;background:#facc15;color:#111;font-weight:800;padding:12px;border:none;border-radius:12px;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px;">
-                        <i data-lucide="shopping-cart" style="width:16px;height:16px;"></i> View Cart
+                    <button onclick="closeAddedToCartPopup();showPage('cart')" style="display:inline-flex;align-items:center;gap:6px;background:#111;color:#fff;border:0;border-radius:10px;padding:9px 12px;font-size:12.5px;font-weight:800;cursor:pointer;flex-shrink:0;">
+                        <i data-lucide="shopping-cart" style="width:14px;height:14px;stroke-width:1;"></i> Cart
                     </button>
-                    <button onclick="closeAddedToCartPopup()" style="width:100%;background:#fff;color:#6b7280;font-weight:700;padding:10px;border:1.5px solid #e5e7eb;border-radius:12px;font-size:13px;cursor:pointer;">Keep Shopping</button>
+                    <button onclick="closeAddedToCartPopup()" aria-label="Close" style="width:30px;height:30px;border-radius:50%;background:#f5f5f5;border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                        <i data-lucide="x" style="width:14px;height:14px;stroke-width:1;color:#111;"></i>
+                    </button>
                 </div>`;
             document.body.appendChild(popup);
             lucide.createIcons();
@@ -4553,18 +4617,10 @@ ${msg.orderSummary && msg.orderSummary.items && msg.orderSummary.items.length > 
                         <i data-lucide="package" class="w-8 h-8"></i>
                         Manage Products
                     </h1>
-                    <button onclick="showAddProduct()" style="background:linear-gradient(135deg,#facc15,#f59e0b);color:#111;font-weight:800;padding:12px 24px;border:none;border-radius:14px;font-size:15px;cursor:pointer;display:flex;align-items:center;gap:8px;box-shadow:0 4px 15px rgba(250,204,21,0.4);transition:opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                        Add New Product
-                    </button>
-                    <button onclick="showBulkPriceEditor()" style="background:linear-gradient(135deg,#111,#1f1f1f);color:#facc15;font-weight:800;padding:12px 24px;border:none;border-radius:14px;font-size:15px;cursor:pointer;display:flex;align-items:center;gap:8px;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                        Bulk Edit Prices
-                    </button>
-                    <button onclick="adminLoadAllProducts()" id="adminLoadAllBtn" style="background:white;color:#111;font-weight:800;padding:12px 16px;border:2px solid #e5e7eb;border-radius:14px;font-size:15px;cursor:pointer;display:flex;align-items:center;gap:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);transition:all 0.2s;" onmouseover="this.style.borderColor='#facc15';this.style.boxShadow='0 4px 15px rgba(250,204,21,0.3)'" onmouseout="this.style.borderColor='#e5e7eb';this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)'">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg>
-                        Load All
-                    </button>
+                    <button onclick="showAddProduct()" class="dms-btn dms-btn-dark"><i data-lucide="plus"></i> Add product</button>
+                    <button onclick="showBulkPriceEditor()" class="dms-btn"><i data-lucide="dollar-sign"></i> Bulk prices</button>
+                    <button onclick="adminLoadAllProducts()" id="adminLoadAllBtn" class="dms-btn"><i data-lucide="refresh-cw"></i> Load all</button>
+
                 </div>
 
                 <!-- SEARCH BAR -->
@@ -4619,12 +4675,8 @@ ${msg.orderSummary && msg.orderSummary.items && msg.orderSummary.items.length > 
                                         </td>
                                         <td class="px-6 py-4">
                                             <div class="flex items-center justify-center gap-2">
-                                                <button onclick="editProduct('${product.id}')" style="background:#dbeafe;border:none;border-radius:8px;padding:8px;cursor:pointer;" title="Edit">
-                                                    <i data-lucide="edit" class="w-5 h-5 text-blue-600"></i>
-                                                </button>
-                                                <button onclick="deleteProduct('${product.id}')" style="background:#fee2e2;border:none;border-radius:8px;padding:8px;cursor:pointer;" title="Delete">
-                                                    <i data-lucide="trash-2" class="w-5 h-5 text-red-600"></i>
-                                                </button>
+                                   <button onclick="editProduct('${product.id}')" class="dms-icon-btn" title="Edit"><i data-lucide="pencil"></i></button>
+<button onclick="deleteProduct('${product.id}')" class="dms-icon-btn danger" title="Delete"><i data-lucide="trash-2"></i></button>
                                             </div>
                                         </td>
                                     </tr>
@@ -4818,18 +4870,15 @@ function showProductForm(product = null) {
                     
                     <div class="space-y-3">
                         <div class="upload-btn-wrapper">
-                            <label class="upload-btn cursor-pointer bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 flex items-center justify-center gap-2">
-                                <i data-lucide="upload" class="w-5 h-5"></i>
-                                Upload Images (Lazer R2)
+                            <label class="dms-btn" style="cursor:pointer;">
+                                <i data-lucide="upload"></i> Upload images
                                 <input type="file" accept="image/*" multiple onchange="handleProductImages(this.files)" style="display: none;" />
                             </label>
                         </div>
                         
-                        <button type="button" onclick="addImageURL()" class="w-full bg-gray-200 px-4 py-3 rounded-lg font-semibold hover:bg-gray-300 flex items-center justify-center gap-2">
-                            <i data-lucide="link" class="w-5 h-5"></i>
-                            Add Image URL
+                        <button type="button" onclick="addImageURL()" class="dms-btn">
+                            <i data-lucide="link"></i> Add image URL
                         </button>
-                    </div>
                     
                     <p id="uploadProgress" class="hidden text-blue-600 mt-2 font-semibold">Uploading to LazerR2</p>
                     <div id="imagePreviewsContainer" class="grid grid-cols-3 gap-3 mt-4"></div>
@@ -4859,40 +4908,61 @@ function showProductForm(product = null) {
 
                 <div>
                     <label class="block text-sm font-medium mb-2 flex items-center gap-2">
-                        <i data-lucide="map-pin" class="w-4 h-4 text-yellow-500"></i> Location / Where We Sell
+                        <i data-lucide="store" class="w-4 h-4" style="stroke-width:1;"></i> Shop that sells this product
                     </label>
-                    <input type="text" name="location" value="${product?.location || ''}" placeholder="e.g. Johannesburg, Cape Town, Nationwide"
-                        class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-yellow-400"/>
+                    <button type="button" class="dms-wide-btn" onclick="dmsOpenStorePicker()">
+                        <i data-lucide="store"></i>
+                        <span id="soldByBtnLabel" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Choose a shop</span>
+                        <i data-lucide="chevron-down" class="chev"></i>
+                    </button>
+                    <input type="hidden" name="soldBy" id="soldByValue" value="${product?.soldBy || product?.shop_name || ''}"/>
+                    <p style="font-size:11px;color:#6b7280;margin:6px 2px 0;">USA shops first — every name ends with its country code. Picking a shop fills the location for you.</p>
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium mb-2 flex items-center gap-2">
-                        <i data-lucide="store" class="w-4 h-4 text-yellow-500"></i> Sold By (Shop Name)
+                        <i data-lucide="map-pin" class="w-4 h-4" style="stroke-width:1;"></i> Location — country, then city
                     </label>
-                    <input type="text" name="soldBy" value="${product?.soldBy || ''}" placeholder="e.g. Dark Master Store"
-                        class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-yellow-400"/>
-
+                    <button type="button" class="dms-wide-btn" onclick="dmsOpenCountryPicker()">
+                        <i data-lucide="globe"></i>
+                        <span id="locCountryLabel" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Choose a country</span>
+                        <i data-lucide="chevron-down" class="chev"></i>
+                    </button>
+                    <input type="hidden" id="locCountry" value=""/>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
+                        <select id="locProvince" onchange="dmsFillCities()" style="width:100%;padding:10px 12px;border:1px solid #e5e7eb;border-radius:10px;font-size:13px;outline:none;background:#fff;"></select>
+                        <select id="locCity" onchange="dmsSyncLocation()" style="width:100%;padding:10px 12px;border:1px solid #e5e7eb;border-radius:10px;font-size:13px;outline:none;background:#fff;"></select>
+                    </div>
+                    <input type="text" id="locTyped" oninput="dmsSyncLocation()" placeholder="Or just type the location yourself" style="width:100%;margin-top:6px;padding:10px 12px;border:1px solid #e5e7eb;border-radius:10px;font-size:13px;outline:none;background:#fff;box-sizing:border-box;"/>
+                    <input type="hidden" name="location" id="locValue" value="${product?.location || ''}"/>
+                    <p id="locPreview" style="font-size:11px;color:#6b7280;margin:6px 0 0;">Pick a country — the city fills itself</p>
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium mb-2 flex items-center gap-2">
-                        <i data-lucide="palette" class="w-4 h-4 text-yellow-500"></i> Available Colors (comma separated)
+                        <i data-lucide="palette" class="w-4 h-4" style="stroke-width:1;"></i> Available Colors — tap the real colours
                     </label>
-                    <input type="text" name="colors" value="${product?.colors || ''}" placeholder="e.g. Red, Blue, Black, White"
-                        class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-yellow-400"/>
-
+                    <div id="colorPalette" style="display:flex;flex-wrap:wrap;gap:7px;padding:12px;border:1px solid #e5e7eb;border-radius:12px;background:#fff;">
+                        ${DMS_COLOR_PALETTE.map(c => `<button type="button" class="dms-swatch" data-color="${c.name}" onclick="dmsPickColor(this)" title="${c.name}" style="width:28px;height:28px;border-radius:50%;border:1px solid #d1d5db;background:${c.hex};cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;"><i data-lucide="check" style="width:12px;height:12px;stroke-width:1;color:${['#FFFFFF','#f5f0e1','#e7d8c9','#c0c0c0'].includes(c.hex) ? '#111' : '#fff'};display:none;"></i></button>`).join('')}
+                    </div>
+                    <input type="hidden" name="colors" id="colorsValue" value="${product?.colors || ''}"/>
+                    <p id="colorsPreview" style="font-size:11px;color:#6b7280;margin:6px 0 0;">${product?.colors || 'No colours picked'}</p>
                 </div>
+
+                
                 
                                    
 
                 <div>
-                    <label class="block text-sm font-medium mb-2">Category *</label>
-                    <select required name="category_id" class="w-full px-4 py-3 border rounded-lg">
-    <option value="">Select category</option>
-    ${window.appState.categories.map(cat => `
-        <option value="${cat.id}" ${product?.category_id === cat.id ? 'selected' : ''}>${cat.name}</option>
-    `).join('')}
-</select>
+              <label class="block text-sm font-medium mb-2 flex items-center gap-2">
+                        <i data-lucide="tag" class="w-4 h-4" style="stroke-width:1;"></i> Category *
+                    </label>
+                    <button type="button" class="dms-wide-btn" onclick="dmsOpenCategoryPicker()">
+                        <i data-lucide="tag"></i>
+                        <span id="categoryBtnLabel" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Choose a category</span>
+                        <i data-lucide="chevron-down" class="chev"></i>
+                    </button>
+                    <input type="hidden" name="category_id" id="categoryIdValue" value="${product?.category_id || ''}"/>
                 </div>
 
                 <div>
@@ -4924,50 +4994,33 @@ function showProductForm(product = null) {
 </div>
 
 
-
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="p-4 border-2 border-gray-200 rounded-lg">
-                        <label class="block text-sm font-medium mb-2 flex items-center gap-2">
-                            <i data-lucide="box" class="w-4 h-4 text-yellow-500"></i> Stock Quantity
-                        </label>
-                        <input type="number" min="0" step="1" name="stock_quantity" value="${product?.stock_quantity ?? 0}" class="w-full px-3 py-2 border rounded-lg" placeholder="0" />
-                        <p class="text-xs text-gray-600 mt-1">How many units are available</p>
+<div style="display:flex;flex-direction:column;gap:10px;">
+                    <div style="display:flex;align-items:center;gap:10px;width:100%;padding:12px 14px;border:1px solid #e5e7eb;border-radius:12px;background:#fff;box-sizing:border-box;">
+                        <i data-lucide="box" style="width:16px;height:16px;stroke-width:1;color:#111;flex-shrink:0;"></i>
+                        <span style="font-size:13.5px;font-weight:700;color:#111;">Stock quantity</span>
+                        <input type="number" min="0" step="1" name="stock_quantity" value="${product?.stock_quantity ?? 0}" style="margin-left:auto;width:84px;padding:8px 10px;border:1px solid #e5e7eb;border-radius:10px;font-size:13.5px;font-weight:700;text-align:center;outline:none;box-sizing:border-box;" placeholder="0"/>
                     </div>
-                    <label class="flex items-center gap-3 p-4 border-2 rounded-lg cursor-pointer hover:bg-gray-50 ${product?.in_stock !== false ? 'border-green-500 bg-green-50' : ''}">
-                        <input type="checkbox" name="in_stock" ${product?.in_stock !== false ? 'checked' : ''} class="w-5 h-5" />
-                        <div>
-                            <span class="font-medium">In Stock</span>
-                            <p class="text-xs text-gray-600">Available for purchase</p>
-                        </div>
+                    <label class="dms-flag ${product?.in_stock !== false ? 'on' : ''}" style="width:100%;padding:12px 14px;border-radius:12px;box-sizing:border-box;">
+                        <input type="checkbox" name="in_stock" ${product?.in_stock !== false ? 'checked' : ''} onchange="this.closest('.dms-flag').classList.toggle('on', this.checked)" />
+                        <i data-lucide="check-circle"></i> In stock
                     </label>
-                    
-                    <label class="flex items-center gap-3 p-4 border rounded-lg cursor-pointer hover:bg-gray-50">
-                        <input type="checkbox" name="is_featured" ${product?.is_featured ? 'checked' : ''} class="w-5 h-5" />
-                        <div>
-                            <span class="font-medium">Featured</span>
-                            <p class="text-xs text-gray-600">Show on homepage</p>
-                        </div>
+                    <label class="dms-flag ${product?.is_featured ? 'on' : ''}" style="width:100%;padding:12px 14px;border-radius:12px;box-sizing:border-box;">
+                        <input type="checkbox" name="is_featured" ${product?.is_featured ? 'checked' : ''} onchange="this.closest('.dms-flag').classList.toggle('on', this.checked)" />
+                        <i data-lucide="star"></i> Featured
                     </label>
-                    
-                    <label class="flex items-center gap-3 p-4 border rounded-lg cursor-pointer hover:bg-gray-50">
-                        <input type="checkbox" name="is_sale" ${product?.is_sale ? 'checked' : ''} class="w-5 h-5" />
-                        <div>
-                            <span class="font-medium">On Sale</span>
-                            <p class="text-xs text-gray-600">RED badge</p>
-                        </div>
+                    <label class="dms-flag ${product?.is_sale ? 'on' : ''}" style="width:100%;padding:12px 14px;border-radius:12px;box-sizing:border-box;">
+                        <input type="checkbox" name="is_sale" ${product?.is_sale ? 'checked' : ''} onchange="this.closest('.dms-flag').classList.toggle('on', this.checked)" />
+                        <i data-lucide="tag"></i> On sale
                     </label>
-                    
-                    <label class="flex items-center gap-3 p-4 border-2 border-green-500 rounded-lg cursor-pointer hover:bg-green-50">
-                        <input type="checkbox" name="is_combo" ${product?.is_combo ? 'checked' : ''} class="w-5 h-5" />
-                        <div>
-                            <span class="font-medium text-green-700">✨ COMBO</span>
-                            <p class="text-xs text-green-600">4-image grid</p>
-                        </div>
+                    <label class="dms-flag ${product?.is_combo ? 'on' : ''}" style="width:100%;padding:12px 14px;border-radius:12px;box-sizing:border-box;">
+                        <input type="checkbox" name="is_combo" ${product?.is_combo ? 'checked' : ''} onchange="this.closest('.dms-flag').classList.toggle('on', this.checked)" />
+                        <i data-lucide="layers"></i> Combo
                     </label>
                 </div>
+                
 
       <!-- CUSTOM REVIEWS SECTION -->
-                <div style="border:1.5px solid #e5e7eb;border-radius:14px;padding:16px;background:#ffffff;">
+                <div style="border:1.5px solid #e5e7eb;border-radius:14px;padding:12px;background:#ffffff;">
                     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
                         <label style="font-size:14px;font-weight:700;color:#111827;display:flex;align-items:center;gap:8px;">
                             <i data-lucide="message-circle" style="width:18px;height:18px;color:#4b5563;"></i> Custom Reviews
@@ -4986,19 +5039,26 @@ function showProductForm(product = null) {
                 </div>
 
                 <div style="display:flex;gap:12px;margin-top:8px;">
-                    <button type="button" onclick="showAdminPage('products')" style="flex:1;background:#fff;color:#374151;border:1.5px solid #e5e7eb;padding:13px;border-radius:12px;font-weight:700;font-size:14px;cursor:pointer;transition:all 0.15s;display:flex;align-items:center;justify-content:center;gap:7px;" onmouseover="this.style.borderColor='#111827';this.style.color='#111827';" onmouseout="this.style.borderColor='#e5e7eb';this.style.color='#374151';">
-                        <i data-lucide="x" style="width:16px;height:16px;"></i> Cancel
+                    <button type="button" onclick="showAdminPage('products')" class="dms-btn" style="flex:1;padding:12px;">
+                        <i data-lucide="x"></i> Cancel
                     </button>
-                    <button type="submit" style="flex:1.5;background:linear-gradient(135deg,#facc15,#f59e0b);color:#111;border:none;padding:13px;border-radius:12px;font-weight:800;font-size:14px;cursor:pointer;box-shadow:0 4px 14px rgba(250,204,21,0.4);transition:all 0.15s;display:flex;align-items:center;justify-content:center;gap:7px;" onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 6px 18px rgba(250,204,21,0.5);'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 14px rgba(250,204,21,0.4);'">
-                        <i data-lucide="check" style="width:16px;height:16px;stroke-width:2.5;"></i> ${isEdit ? 'Update Product' : 'Create Product'}
+                    <button type="submit" class="dms-btn dms-btn-dark" style="flex:1.5;padding:12px;">
+                        <i data-lucide="check"></i> ${isEdit ? 'Update product' : 'Create product'}
                     </button>
                 </div>
             </form>
         </div>
     `;
 
-    lucide.createIcons();
+        lucide.createIcons();
     renderImagePreviews();
+    dmsInitStore((product && product.soldBy) || (product && product.shop_name) || '');
+    dmsInitLocation((product && product.location) || '');
+        dmsInitColors();
+    dmsInitCategory();
+
+    // Pre-populate existing reviews when editing
+
 
     // Pre-populate existing reviews when editing
     if (isEdit && product?.reviews && product.reviews.length > 0) {
@@ -5020,6 +5080,12 @@ function showProductForm(product = null) {
         }
 
         const formData = new FormData(e.target);
+        if (!formData.get('category_id')) {
+            showAlert('Please choose a category first.');
+            btn.disabled = false;
+            btn.textContent = isEdit ? 'Update Product' : 'Create Product';
+            return;
+        }
         const sizesInput = formData.get('sizes');
         const sizes = sizesInput ? sizesInput.split(',').map(s => s.trim()).filter(Boolean) : [];
 
@@ -5140,9 +5206,8 @@ showAdminPage('products');
     onchange="let r=new FileReader();r.onload=e=>{let img=document.getElementById('catPreview');img.src=e.target.result;img.classList.remove('hidden');};r.readAsDataURL(this.files[0])" />
 </label>
 <img id="catPreview" src="" class="hidden w-24 h-24 object-cover rounded-xl border-2 border-yellow-400 mx-auto" />
-    <button onclick="addNewCategory()"
-      class="bg-black text-white font-bold py-3 rounded-xl hover:bg-gray-800 flex items-center justify-center gap-2">
-      <i data-lucide="upload" class="w-5 h-5"></i> Upload & Add Category
+    <button onclick="addNewCategory()" class="dms-btn dms-btn-dark" style="padding:11px;">
+      <i data-lucide="upload"></i> Upload &amp; add category
     </button>
   </div>
 </div>
@@ -5157,14 +5222,17 @@ showAdminPage('products');
                             <div class="p-6">
     <h3 class="font-bold text-xl mb-2">${category.name}</h3>
     <p class="text-gray-600 mb-4">${category.description || ''}</p>
-    <button onclick="editCategory('${category.id}', '${category.name}', '${category.description || ''}')"
-    class="w-full bg-blue-500 text-white font-bold py-2 rounded-xl hover:bg-blue-600 flex items-center justify-center gap-2">
-    <i data-lucide="edit" class="w-4 h-4"></i> Edit Category
+    <div style="display:flex;gap:6px;">
+    <button onclick="editCategory('${category.id}', '${category.name}', '${category.description || ''}')" class="dms-btn" style="flex:1;">
+    <i data-lucide="pencil"></i> Edit
 </button>
-<button onclick="deleteCategory('${category.id}')" 
-    class="w-full bg-red-500 text-white font-bold py-2 rounded-xl hover:bg-red-600 flex items-center justify-center gap-2 mt-2">
-    <i data-lucide="trash-2" class="w-4 h-4"></i> Delete Category
+<button onclick="dmsToggleCategory('${category.id}')" class="dms-btn" style="flex:1;">
+    <i data-lucide="${window.dmsIsCatHidden(category.id) ? 'eye' : 'eye-off'}"></i> ${window.dmsIsCatHidden(category.id) ? 'Show' : 'Hide'}
 </button>
+<button onclick="deleteCategory('${category.id}')" class="dms-btn dms-btn-danger" style="flex:0 0 auto;">
+    <i data-lucide="trash-2"></i>
+</button>
+</div>
 </div>
                         </div>
                     `).join('')}
@@ -5763,6 +5831,322 @@ window.selectSize = function(size, btn) {
   if (hidden) hidden.value = size;
 };
 
+
+// ===== COUNTRIES → PROVINCES → CITIES (South Africa first; uses SA_PROVINCES below) =====
+window.DMS_PLACES = {
+  "Italy":[{"name":"Lombardy","cities":["Milan","Bergamo","Brescia","Como"]},{"name":"Lazio","cities":["Rome","Latina","Viterbo"]},{"name":"Tuscany","cities":["Florence","Pisa","Siena"]},{"name":"Veneto","cities":["Venice","Verona","Padua"]},{"name":"Campania","cities":["Naples","Salerno"]}],
+  "United States":[{"name":"California","cities":["Los Angeles","San Francisco","San Diego"]},{"name":"New York","cities":["New York City","Buffalo","Albany"]},{"name":"Texas","cities":["Houston","Dallas","Austin"]},{"name":"Florida","cities":["Miami","Orlando","Tampa"]},{"name":"Colorado","cities":["Denver","Boulder","Colorado Springs"]},{"name":"Illinois","cities":["Chicago","Springfield"]},{"name":"Georgia","cities":["Atlanta","Savannah"]},{"name":"Washington","cities":["Seattle","Spokane"]}],
+  "France":[{"name":"Île-de-France","cities":["Paris","Versailles"]},{"name":"Provence","cities":["Marseille","Nice","Toulon"]},{"name":"Auvergne-Rhône-Alpes","cities":["Lyon","Grenoble"]}],
+  "Germany":[{"name":"Bavaria","cities":["Munich","Nuremberg"]},{"name":"Baden-Württemberg","cities":["Stuttgart","Heidelberg"]},{"name":"North Rhine-Westphalia","cities":["Cologne","Düsseldorf","Dortmund"]},{"name":"Berlin","cities":["Berlin"]}],
+  "Netherlands":[{"name":"North Holland","cities":["Amsterdam","Haarlem"]},{"name":"South Holland","cities":["Rotterdam","The Hague"]},{"name":"Utrecht","cities":["Utrecht","Amersfoort"]}],
+  "United Kingdom":[{"name":"England","cities":["London","Manchester","Birmingham","Liverpool"]},{"name":"Scotland","cities":["Edinburgh","Glasgow"]},{"name":"Wales","cities":["Cardiff","Swansea"]}],
+  "Spain":[{"name":"Madrid","cities":["Madrid","Alcalá"]},{"name":"Catalonia","cities":["Barcelona","Girona"]},{"name":"Andalusia","cities":["Seville","Málaga"]}],
+  "Portugal":[{"name":"Lisbon","cities":["Lisbon","Sintra"]},{"name":"Porto","cities":["Porto","Braga"]}],
+  "Turkey":[{"name":"Istanbul","cities":["Istanbul","Kadıköy"]},{"name":"Ankara","cities":["Ankara"]},{"name":"İzmir","cities":["İzmir","Bodrum"]}],
+  "China":[{"name":"Guangdong","cities":["Guangzhou","Shenzhen","Dongguan"]},{"name":"Zhejiang","cities":["Hangzhou","Ningbo","Yiwu"]},{"name":"Jiangsu","cities":["Nanjing","Suzhou"]},{"name":"Fujian","cities":["Xiamen","Fuzhou","Quanzhou"]},{"name":"Shanghai","cities":["Shanghai"]}],
+  "Vietnam":[{"name":"Ho Chi Minh City","cities":["Ho Chi Minh City","Thu Duc"]},{"name":"Hanoi","cities":["Hanoi"]},{"name":"Da Nang","cities":["Da Nang","Hoi An"]}],
+  "India":[{"name":"Maharashtra","cities":["Mumbai","Pune","Nagpur"]},{"name":"Delhi","cities":["New Delhi","Delhi"]},{"name":"Tamil Nadu","cities":["Chennai","Coimbatore","Tiruppur"]},{"name":"Gujarat","cities":["Ahmedabad","Surat"]}],
+  "Brazil":[{"name":"São Paulo","cities":["São Paulo","Campinas"]},{"name":"Rio de Janeiro","cities":["Rio de Janeiro","Niterói"]},{"name":"Minas Gerais","cities":["Belo Horizonte","Uberlândia"]}],
+  "Kenya":[{"name":"Nairobi","cities":["Nairobi","Westlands"]},{"name":"Mombasa","cities":["Mombasa","Malindi"]},{"name":"Kisumu","cities":["Kisumu"]}],
+  "Zimbabwe":[{"name":"Harare","cities":["Harare","Chitungwiza"]},{"name":"Bulawayo","cities":["Bulawayo"]},{"name":"Manicaland","cities":["Mutare","Rusape"]}],
+  "Mozambique":[{"name":"Maputo","cities":["Maputo","Matola"]},{"name":"Sofala","cities":["Beira"]},{"name":"Nampula","cities":["Nampula"]}],
+  "Eswatini":[{"name":"Hhohho","cities":["Mbabane","Ezulwini"]},{"name":"Manzini","cities":["Manzini","Matsapha"]}],
+  "Lesotho":[{"name":"Maseru","cities":["Maseru","Roma"]},{"name":"Leribe","cities":["Hlotse","Maputsoe"]}],
+  "Botswana":[{"name":"South-East","cities":["Gaborone","Mochudi"]},{"name":"North-West","cities":["Maun","Kasane"]}],
+  "Namibia":[{"name":"Khomas","cities":["Windhoek","Katutura"]},{"name":"Erongo","cities":["Swakopmund","Walvis Bay"]}],
+  "Nigeria":[{"name":"Lagos","cities":["Lagos","Ikeja"]},{"name":"Abuja","cities":["Abuja"]},{"name":"Kano","cities":["Kano","Kaduna"]}],
+  "United Arab Emirates":[{"name":"Dubai","cities":["Dubai","Jebel Ali"]},{"name":"Abu Dhabi","cities":["Abu Dhabi","Al Ain"]},{"name":"Sharjah","cities":["Sharjah","Ajman"]}],
+  "Australia":[{"name":"New South Wales","cities":["Sydney","Newcastle"]},{"name":"Victoria","cities":["Melbourne","Geelong"]},{"name":"Queensland","cities":["Brisbane","Gold Coast"]}],
+  "Canada":[{"name":"Ontario","cities":["Toronto","Ottawa","Mississauga"]},{"name":"Quebec","cities":["Montreal","Quebec City"]},{"name":"British Columbia","cities":["Vancouver","Victoria"]}],
+  "Japan":[{"name":"Tokyo","cities":["Tokyo","Shibuya"]},{"name":"Osaka","cities":["Osaka","Sakai"]},{"name":"Aichi","cities":["Nagoya","Toyota"]}],
+  "South Korea":[{"name":"Seoul","cities":["Seoul","Incheon"]},{"name":"Busan","cities":["Busan"]},{"name":"Gyeonggi","cities":["Suwon","Seongnam"]}],
+  "Bangladesh":[{"name":"Dhaka","cities":["Dhaka","Gazipur"]},{"name":"Chattogram","cities":["Chattogram","Cox's Bazar"]}],
+  "Pakistan":[{"name":"Punjab","cities":["Lahore","Faisalabad","Sialkot"]},{"name":"Sindh","cities":["Karachi","Hyderabad"]}],
+  "Indonesia":[{"name":"Jakarta","cities":["Jakarta","Bekasi"]},{"name":"West Java","cities":["Bandung","Bogor"]},{"name":"East Java","cities":["Surabaya","Malang"]}],
+  "Thailand":[{"name":"Bangkok","cities":["Bangkok","Nonthaburi"]},{"name":"Chiang Mai","cities":["Chiang Mai"]},{"name":"Chonburi","cities":["Pattaya","Si Racha"]}],
+  "Malaysia":[{"name":"Selangor","cities":["Shah Alam","Petaling Jaya"]},{"name":"Kuala Lumpur","cities":["Kuala Lumpur"]},{"name":"Penang","cities":["George Town"]}],
+  "Singapore":[{"name":"Central","cities":["Singapore","Orchard"]}],
+  "Philippines":[{"name":"Metro Manila","cities":["Manila","Quezon City","Makati"]},{"name":"Cebu","cities":["Cebu City","Mandaue"]}],
+  "Sri Lanka":[{"name":"Western","cities":["Colombo","Negombo"]},{"name":"Central","cities":["Kandy","Nuwara Eliya"]}],
+  "Nepal":[{"name":"Bagmati","cities":["Kathmandu","Lalitpur"]},{"name":"Gandaki","cities":["Pokhara"]}],
+  "Mexico":[{"name":"Mexico City","cities":["Mexico City","Ecatepec"]},{"name":"Jalisco","cities":["Guadalajara","Puerto Vallarta"]},{"name":"Nuevo León","cities":["Monterrey"]}],
+  "Argentina":[{"name":"Buenos Aires","cities":["Buenos Aires","La Plata"]},{"name":"Córdoba","cities":["Córdoba","Villa María"]}],
+  "Colombia":[{"name":"Bogotá","cities":["Bogotá","Soacha"]},{"name":"Antioquia","cities":["Medellín","Envigado"]}],
+  "Chile":[{"name":"Santiago Metropolitan","cities":["Santiago","Puente Alto"]},{"name":"Valparaíso","cities":["Valparaíso","Viña del Mar"]}],
+  "Egypt":[{"name":"Cairo","cities":["Cairo","Giza"]},{"name":"Alexandria","cities":["Alexandria"]}],
+  "Morocco":[{"name":"Casablanca-Settat","cities":["Casablanca","Mohammedia"]},{"name":"Rabat-Salé","cities":["Rabat","Salé"]},{"name":"Marrakesh-Safi","cities":["Marrakesh"]}],
+  "Ghana":[{"name":"Greater Accra","cities":["Accra","Tema"]},{"name":"Ashanti","cities":["Kumasi","Obuasi"]}],
+  "Ethiopia":[{"name":"Addis Ababa","cities":["Addis Ababa","Bishoftu"]}],
+  "Tanzania":[{"name":"Dar es Salaam","cities":["Dar es Salaam","Bagamoyo"]},{"name":"Arusha","cities":["Arusha","Moshi"]}],
+  "Uganda":[{"name":"Central","cities":["Kampala","Entebbe"]},{"name":"Western","cities":["Mbarara","Fort Portal"]}],
+  "Rwanda":[{"name":"Kigali","cities":["Kigali","Remera"]}],
+  "Zambia":[{"name":"Lusaka","cities":["Lusaka","Kabwe"]},{"name":"Copperbelt","cities":["Ndola","Kitwe"]}],
+  "Malawi":[{"name":"Lilongwe","cities":["Lilongwe"]},{"name":"Blantyre","cities":["Blantyre","Limbe"]}],
+  "Angola":[{"name":"Luanda","cities":["Luanda","Talatona"]},{"name":"Benguela","cities":["Benguela","Lobito"]}],
+  "Saudi Arabia":[{"name":"Riyadh","cities":["Riyadh","Al Kharj"]},{"name":"Makkah","cities":["Jeddah","Mecca"]}],
+  "Qatar":[{"name":"Doha","cities":["Doha","Al Rayyan"]}],
+  "Israel":[{"name":"Tel Aviv","cities":["Tel Aviv","Herzliya"]},{"name":"Jerusalem","cities":["Jerusalem"]}],
+  "Russia":[{"name":"Moscow","cities":["Moscow","Zelenograd"]},{"name":"Saint Petersburg","cities":["Saint Petersburg"]}],
+  "Ukraine":[{"name":"Kyiv","cities":["Kyiv","Brovary"]},{"name":"Lviv","cities":["Lviv"]}],
+  "Poland":[{"name":"Masovia","cities":["Warsaw","Radom"]},{"name":"Lesser Poland","cities":["Kraków","Tarnów"]}],
+  "Czechia":[{"name":"Prague","cities":["Prague","Kladno"]},{"name":"South Moravia","cities":["Brno","Znojmo"]}],
+  "Romania":[{"name":"Bucharest","cities":["Bucharest","Otopeni"]},{"name":"Cluj","cities":["Cluj-Napoca"]}],
+  "Hungary":[{"name":"Budapest","cities":["Budapest","Érd"]}],
+  "Greece":[{"name":"Attica","cities":["Athens","Piraeus"]},{"name":"Central Macedonia","cities":["Thessaloniki"]}],
+  "Austria":[{"name":"Vienna","cities":["Vienna","Baden"]},{"name":"Tyrol","cities":["Innsbruck"]}],
+  "Switzerland":[{"name":"Zurich","cities":["Zurich","Winterthur"]},{"name":"Geneva","cities":["Geneva"]}],
+  "Sweden":[{"name":"Stockholm","cities":["Stockholm","Solna"]},{"name":"Västra Götaland","cities":["Gothenburg"]}],
+  "Norway":[{"name":"Oslo","cities":["Oslo","Bærum"]},{"name":"Vestland","cities":["Bergen"]}],
+  "Denmark":[{"name":"Capital Region","cities":["Copenhagen","Frederiksberg"]},{"name":"Central Jutland","cities":["Aarhus"]}],
+  "Finland":[{"name":"Uusimaa","cities":["Helsinki","Espoo","Vantaa"]},{"name":"Pirkanmaa","cities":["Tampere"]}],
+  "Ireland":[{"name":"Leinster","cities":["Dublin","Drogheda"]},{"name":"Munster","cities":["Cork","Limerick"]}],
+  "Belgium":[{"name":"Brussels","cities":["Brussels","Schaerbeek"]},{"name":"Flanders","cities":["Antwerp","Ghent","Bruges"]}],
+  "New Zealand":[{"name":"Auckland","cities":["Auckland","Manukau"]},{"name":"Wellington","cities":["Wellington","Lower Hutt"]}]
+};
+window.DMS_COUNTRIES = ["South Africa"].concat(Object.keys(window.DMS_PLACES));
+window.dmsPlacesFor = function (country) {
+  if (country === "South Africa") return SA_PROVINCES.map(function (p) { return { name: p.name, cities: p.cities }; });
+  return window.DMS_PLACES[country] || [{ name: country, cities: [country] }];
+};
+window.dmsInitLocation = function (existing) {
+  var c = document.getElementById('locCountry'); if (!c) return;
+  c.value = '';
+  var lbl = document.getElementById('locCountryLabel');
+  if (lbl) lbl.textContent = 'Choose a country';
+  var typed = document.getElementById('locTyped');
+  if (typed) typed.value = existing || '';
+  document.getElementById('locProvince').innerHTML = '<option value="">Province / State</option>';
+  document.getElementById('locCity').innerHTML = '<option value="">City</option>';
+  var v = document.getElementById('locValue'); if (v) v.value = existing || '';
+  var p = document.getElementById('locPreview'); if (p) p.textContent = existing || 'Pick a country — the city fills itself';
+};
+
+window.dmsOpenCountryPicker = function () {
+  var body = document.getElementById('dmsCountryListBody'); if (!body) return;
+  var cur = (document.getElementById('locCountry') || {}).value || '';
+  body.innerHTML = window.DMS_COUNTRIES.map(function (c, i) {
+    return '<button type="button" class="dms-pick-row' + (c === cur ? ' sel' : '') + '" onclick="dmsPickCountry(' + i + ')">' +
+      '<i data-lucide="globe"></i><span class="lbl">' + c + '</span></button>';
+  }).join('');
+  document.getElementById('dmsCountryPicker').classList.add('on');
+  if (window.lucide) lucide.createIcons();
+};
+
+window.dmsCloseCountryPicker = function () {
+  var m = document.getElementById('dmsCountryPicker'); if (m) m.classList.remove('on');
+};
+
+window.dmsPickCountry = function (i) { window.dmsSetCountry(window.DMS_COUNTRIES[i]); };
+
+window.dmsSetCountry = function (name) {
+  if (!name) return;
+  var c = document.getElementById('locCountry'); if (!c) return;
+  c.value = name;
+  var lbl = document.getElementById('locCountryLabel'); if (lbl) lbl.textContent = name;
+  var typed = document.getElementById('locTyped'); if (typed) typed.value = '';
+  window.dmsCloseCountryPicker();
+  window.dmsFillProvinces();
+};
+
+window.dmsFillProvinces = function () {
+  var country = document.getElementById('locCountry').value;
+  var list = country ? dmsPlacesFor(country) : [];
+  var sel = document.getElementById('locProvince');
+  sel.innerHTML = '<option value="">Province / State</option>' + list.map(function (p) { return '<option>' + p.name + '</option>'; }).join('');
+  if (list.length) sel.selectedIndex = 1;
+  window.dmsFillCities();
+};
+
+window.dmsFillCities = function () {
+  var country = document.getElementById('locCountry').value;
+  var provName = document.getElementById('locProvince').value;
+  var prov = country ? dmsPlacesFor(country).filter(function (p) { return p.name === provName; })[0] : null;
+  var sel = document.getElementById('locCity');
+  sel.innerHTML = '<option value="">City</option>' + (prov ? prov.cities.map(function (c) { return '<option>' + c + '</option>'; }).join('') : '');
+  if (prov && prov.cities.length) sel.selectedIndex = 1;
+  window.dmsSyncLocation();
+};
+
+window.dmsSyncLocation = function () {
+  var typed = document.getElementById('locTyped');
+  var country = document.getElementById('locCountry').value;
+  var prov = document.getElementById('locProvince').value;
+  var city = document.getElementById('locCity').value;
+  var val = (typed && typed.value.trim()) ? typed.value.trim() : [city, prov, country].filter(Boolean).join(', ');
+  var hid = document.getElementById('locValue'); if (hid) hid.value = val;
+  var p = document.getElementById('locPreview'); if (p) p.textContent = val || 'Pick a country — the city fills itself';
+};
+
+// ===== REAL COLOUR SWATCHES =====
+window.DMS_COLOR_PALETTE = [
+  {name:'Black',hex:'#000000'},{name:'White',hex:'#FFFFFF'},{name:'Grey',hex:'#6b7280'},{name:'Silver',hex:'#c0c0c0'},
+  {name:'Red',hex:'#ef4444'},{name:'Maroon',hex:'#7f1d1d'},{name:'Pink',hex:'#ec4899'},{name:'Orange',hex:'#f97316'},
+  {name:'Yellow',hex:'#facc15'},{name:'Gold',hex:'#d4af37'},{name:'Beige',hex:'#e7d8c9'},{name:'Cream',hex:'#f5f0e1'},
+  {name:'Green',hex:'#22c55e'},{name:'Olive',hex:'#6b7f3a'},{name:'Teal',hex:'#0d9488'},{name:'Sky',hex:'#38bdf8'},
+  {name:'Blue',hex:'#2563eb'},{name:'Navy',hex:'#1e3a5f'},{name:'Purple',hex:'#a855f7'},{name:'Brown',hex:'#7c3f1d'}
+];
+window.dmsPickColor = function (btn) {
+  var on = btn.dataset.on === '1';
+  btn.dataset.on = on ? '0' : '1';
+  btn.style.boxShadow = on ? 'none' : '0 0 0 2px #111';
+  var i = btn.querySelector('i'); if (i) i.style.display = on ? 'none' : 'block';
+  var picked = Array.prototype.map.call(document.querySelectorAll('.dms-swatch[data-on="1"]'), function (b) { return b.dataset.color; });
+  document.getElementById('colorsValue').value = picked.join(', ');
+  document.getElementById('colorsPreview').textContent = picked.length ? picked.join(', ') : 'No colours picked';
+};
+window.dmsInitColors = function () {
+  var hid = document.getElementById('colorsValue'); if (!hid) return;
+  var existing = (hid.value || '').split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+  Array.prototype.forEach.call(document.querySelectorAll('.dms-swatch'), function (b) {
+    if (existing.indexOf(b.dataset.color) !== -1) {
+      b.dataset.on = '1'; b.style.boxShadow = '0 0 0 2px #111';
+      var i = b.querySelector('i'); if (i) i.style.display = 'block';
+    }
+  });
+};
+
+// ===== SHOPS for Sold By — every name ends with its country code =====
+window.DMS_STORES = [
+  {n:'Best Buy',c:'USA',icon:'tv'},
+  {n:'Newegg',c:'USA',icon:'cpu'},
+  {n:'Amazon',c:'USA',icon:'package'},
+  {n:'Walmart',c:'USA',icon:'shopping-cart'},
+  {n:'B&H Photo Video',c:'USA',icon:'camera'},
+  {n:'Dark Master Store',c:'USA',icon:'store'},
+  {n:'Camping Shop',c:'USA',icon:'tent'},
+  {n:'Online Shop',c:'USA',icon:'laptop'},
+  {n:'Fashion World',c:'USA',icon:'shirt'},
+  {n:'Nike',c:'USA',icon:'footprints'},
+  {n:"Levi's",c:'USA',icon:'shirt'},
+  {n:'Dark Master Store',c:'ZA',icon:'store'},
+  {n:'Dark Master Own Brand',c:'ZA',icon:'store'},
+  {n:'Online Electronics',c:'ZA',icon:'cpu'},
+  {n:'Camping Shop',c:'ZA',icon:'tent'},
+  {n:'Online Shop',c:'ZA',icon:'laptop'},
+  {n:'Fashion World',c:'ZA',icon:'shirt'},
+  {n:'Automotive Electronics',c:'ZA',icon:'car'},
+  {n:'Gucci',c:'IT',icon:'shopping-bag'},
+  {n:'Prada',c:'IT',icon:'shopping-bag'},
+  {n:'Versace',c:'IT',icon:'shopping-bag'},
+  {n:'Dolce & Gabbana',c:'IT',icon:'shopping-bag'},
+  {n:'Kappa',c:'IT',icon:'shirt'},
+  {n:'Diesel',c:'IT',icon:'shirt'},
+  {n:'Milano Factory Outlet',c:'IT',icon:'factory'},
+  {n:'Adidas',c:'DE',icon:'footprints'},
+  {n:'Puma',c:'DE',icon:'footprints'},
+  {n:'Hugo Boss',c:'DE',icon:'shirt'},
+  {n:'Lacoste',c:'FR',icon:'shirt'},
+  {n:'Louis Vuitton',c:'FR',icon:'shopping-bag'},
+  {n:'G-Star RAW',c:'NL',icon:'shirt'},
+  {n:'Tommy Hilfiger',c:'NL',icon:'shirt'},
+  {n:'Zara',c:'ES',icon:'shirt'},
+  {n:'Burberry',c:'UK',icon:'shopping-bag'},
+  {n:'Shenzhen Electronics Factory',c:'CN',icon:'cpu'},
+  {n:'Guangzhou Apparel Factory',c:'CN',icon:'shirt'},
+  {n:'Istanbul Textiles',c:'TR',icon:'shirt'},
+  {n:'Dubai Gadget Traders',c:'AE',icon:'smartphone'},
+  {n:'Mumbai Accessories',c:'IN',icon:'headphones'},
+  {n:'Nairobi Outdoor Gear',c:'KE',icon:'tent'},
+  {n:'Sao Paulo Footwear',c:'BR',icon:'footprints'},
+  {n:'Seoul K-Beauty',c:'KR',icon:'sparkles'},
+  {n:'Tokyo Tech Direct',c:'JP',icon:'zap'},
+  {n:'Bangkok Camping Co',c:'TH',icon:'tent'},
+  {n:'Sydney Sports Supply',c:'AU',icon:'dumbbell'},
+  {n:'Toronto Home Living',c:'CA',icon:'sofa'}
+];
+
+window.DMS_CODE_COUNTRY = {USA:'United States',ZA:'South Africa',IT:'Italy',DE:'Germany',FR:'France',ES:'Spain',NL:'Netherlands',UK:'United Kingdom',CN:'China',TR:'Turkey',AE:'United Arab Emirates',IN:'India',KE:'Kenya',BR:'Brazil',KR:'South Korea',JP:'Japan',TH:'Thailand',AU:'Australia',CA:'Canada'};
+window.DMS_STORE_ORDER = ['USA','ZA','IT','DE','FR','NL','ES','UK','CN','TR','AE','IN','KE','BR','KR','JP','TH','AU','CA'];
+
+window.dmsStoreLabel = function (s) { return s.n + ' — ' + s.c; };
+
+window.dmsInitStore = function (existing) {
+  var v = document.getElementById('soldByValue'); if (!v) return;
+  var lbl = document.getElementById('soldByBtnLabel');
+  var val = existing || v.value || '';
+  if (val) { v.value = val; if (lbl) lbl.textContent = val; }
+};
+
+window.dmsOpenStorePicker = function () {
+  var body = document.getElementById('dmsStoreListBody'); if (!body) return;
+  var cur = (document.getElementById('soldByValue') || {}).value || '';
+  var html = '';
+  window.DMS_STORE_ORDER.forEach(function (code) {
+    var rows = window.DMS_STORES.filter(function (s) { return s.c === code; });
+    if (!rows.length) return;
+    html += '<div class="dms-pick-group">' + code + '</div>';
+    rows.forEach(function (s) {
+      var i = window.DMS_STORES.indexOf(s);
+      html += '<button type="button" class="dms-pick-row' + (cur === window.dmsStoreLabel(s) ? ' sel' : '') + '" onclick="dmsPickStore(' + i + ')">' +
+        '<i data-lucide="' + s.icon + '"></i><span class="lbl">' + s.n + '</span><span class="code">' + s.c + '</span></button>';
+    });
+  });
+  body.innerHTML = html;
+  document.getElementById('dmsStorePicker').classList.add('on');
+  if (window.lucide) lucide.createIcons();
+};
+
+window.dmsCloseStorePicker = function () {
+  var m = document.getElementById('dmsStorePicker'); if (m) m.classList.remove('on');
+};
+
+window.dmsPickStore = function (i) {
+  var s = window.DMS_STORES[i]; if (!s) return;
+  var lbl = window.dmsStoreLabel(s);
+  var v = document.getElementById('soldByValue'); if (v) v.value = lbl;
+  var b = document.getElementById('soldByBtnLabel'); if (b) b.textContent = lbl;
+  window.dmsCloseStorePicker();
+  var country = window.DMS_CODE_COUNTRY[s.c];
+  if (country) window.dmsSetCountry(country);
+};
+
+// ===== WHITE CATEGORY PICKER =====
+window.dmsCatIcon = function (name) {
+  var n = (name || '').toLowerCase();
+  if (/phone|iphone|case|magsafe/.test(n)) return 'smartphone';
+  if (/beauty|cosmet|skin|makeup|perfume/.test(n)) return 'sparkles';
+  if (/bag|backpack|luggage/.test(n)) return 'briefcase';
+  if (/shirt|clothing|cloth|apparel|fashion|wear/.test(n)) return 'shirt';
+  if (/electronic|gadget|speaker|audio|fan|light/.test(n)) return 'headphones';
+  return 'tag';
+};
+window.dmsOpenCategoryPicker = function () {
+  var body = document.getElementById('dmsCategoryListBody'); if (!body) return;
+  var cur = (document.getElementById('categoryIdValue') || {}).value || '';
+  var cats = window.appState.categories || [];
+  var html = '<div class="dms-pick-group">All categories</div>';
+  if (!cats.length) {
+    html += '<div style="padding:10px 8px;font-size:13px;color:#6b7280;">No categories yet — add one in the Categories page.</div>';
+  }
+  cats.forEach(function (c) {
+    var nm = String(c.name || '').replace(/'/g, '&#39;');
+    html += '<button type="button" class="dms-pick-row' + (cur === c.id ? ' sel' : '') + '" onclick="dmsPickCategory(\'' + c.id + '\',\'' + nm + '\')">' +
+      '<i data-lucide="' + window.dmsCatIcon(c.name) + '"></i>' +
+      '<span class="lbl">' + c.name + '</span>' +
+      (cur === c.id ? '<span class="code">Selected</span>' : '') +
+      '</button>';
+  });
+  body.innerHTML = html;
+  document.getElementById('dmsCategoryPicker').classList.add('on');
+  if (window.lucide) lucide.createIcons();
+};
+window.dmsCloseCategoryPicker = function () {
+  var m = document.getElementById('dmsCategoryPicker'); if (m) m.classList.remove('on');
+};
+window.dmsPickCategory = function (id, name) {
+  var v = document.getElementById('categoryIdValue'); if (v) v.value = id;
+  var b = document.getElementById('categoryBtnLabel'); if (b) b.textContent = name;
+  window.dmsCloseCategoryPicker();
+};
+window.dmsInitCategory = function () {
+  var v = document.getElementById('categoryIdValue'); if (!v) return;
+  var b = document.getElementById('categoryBtnLabel');
+  var cat = (window.appState.categories || []).filter(function (c) { return c.id === v.value; })[0];
+  if (b) b.textContent = cat ? cat.name : 'Choose a category';
+};
+
+
+
 // ============================================================
 // REVIEW HELPER DATA — SA provinces, cities, cultural name pools
 // ============================================================
@@ -6087,7 +6471,7 @@ window.addReviewRow = function(existingReview) {
         <i data-lucide="trash-2" style="width:12px;height:12px;"></i> Remove
       </button>
     </div>
-    <div style="padding:14px;display:flex;flex-direction:column;gap:10px;">
+        <div class="dms-rev-grid">
 
       <!-- REVIEWER NAME + AI TOGGLE -->
       <div>
@@ -7328,10 +7712,10 @@ function renderAdminProductsWithSearch() {
                 <i data-lucide="package" class="w-8 h-8"></i>
                 Manage Products
             </h1>
-            <button onclick="showAddProduct()" class="bg-yellow-400 text-black px-6 py-3 rounded-lg font-bold hover:bg-yellow-500 flex items-center gap-2">
-                <i data-lucide="plus" class="w-5 h-5"></i>
-                Add New Product
-            </button>
+            <button onclick="showAddProduct()" class="dms-btn dms-btn-dark">
+<i data-lucide="plus"></i>
+Add New Product
+</button>
             <button onclick="adminLoadAllProducts()" id="adminLoadAllBtn" style="background:white;color:#111;font-weight:800;padding:12px 16px;border:2px solid #e5e7eb;border-radius:14px;font-size:15px;cursor:pointer;display:flex;align-items:center;gap:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);transition:all 0.2s;" onmouseover="this.style.borderColor='#facc15';this.style.boxShadow='0 4px 15px rgba(250,204,21,0.3)'" onmouseout="this.style.borderColor='#e5e7eb';this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)'">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg>
                 Load All
@@ -7526,6 +7910,13 @@ window.verifyQuickSellers = function() {
     document.getElementById('quickSellersList').style.display = 'block';
     renderQuickSellers();
 };
+
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+}
+
+
 
 async function renderQuickSellers() {
     const container = document.getElementById('quickSellersList');

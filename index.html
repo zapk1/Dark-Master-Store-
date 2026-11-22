@@ -1877,7 +1877,7 @@ button.bg-yellow-400:hover svg,button[style*="background:#facc15"]:hover svg{str
     <script type="module">
         // Import Firebase
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-        import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc, query, where, orderBy, limit, startAfter, Timestamp, initializeFirestore, persistentLocalCache, persistentMultipleTabManager } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+        import { collection, getDocs, addDoc, setDoc, updateDoc, deleteDoc, doc, query, where, orderBy, limit, startAfter, Timestamp, initializeFirestore, persistentLocalCache, persistentMultipleTabManager } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
         import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
 
 
@@ -2863,9 +2863,11 @@ window.addEventListener('scroll', () => {
         // Show product detail with clickable images
         window.showProductDetail = function(productId) {
             const product = window.appState.products.find(p => p.id === productId)
+             || (_allProductsCache || []).find(p => p.id === productId)
              || (window._randomPool || []).find(p => p.id === productId)
              || (window.HARDCODED_PRODUCTS || []).find(p => p.id === productId);
             if (!product) { showAlert('Sorry — this product could not be added. Refresh and try again.'); return; }
+
 
 
             window.appState.currentProduct = product;
@@ -3097,6 +3099,7 @@ ${product.colors ? `
         // Add to cart — searches ALL product sources so it never fails on the home page
         window.addToCart = function(productId, quantity = 1, size = '', color = '') {
             const product = window.appState.products.find(p => p.id === productId)
+                         || (_allProductsCache || []).find(p => p.id === productId)
                          || (window._randomPool || []).find(p => p.id === productId)
                          || (window.HARDCODED_PRODUCTS || []).find(p => p.id === productId)
                          || window.appState.currentProduct;
@@ -4709,16 +4712,19 @@ ${msg.orderSummary && msg.orderSummary.items && msg.orderSummary.items.length > 
             const product = window.appState.products.find(p => p.id === productId);
             if (!product) return;
 
-            try {
-                await updateDoc(doc(db, 'products', productId), {
-                    is_featured: !product.is_featured
-                });
+            const next = !product.is_featured;
+            product.is_featured = next;
+            if (window.renderAdminProducts) window.renderAdminProducts();
 
-                product.is_featured = !product.is_featured;
-                renderAdminProducts();
+            try {
+                await setDoc(doc(db, 'products', productId), {
+                    is_featured: next
+                }, { merge: true });
             } catch (error) {
                 console.error('Error updating product:', error);
-                alert('Error updating product: ' + error.message);
+                product.is_featured = !next;
+                if (window.renderAdminProducts) window.renderAdminProducts();
+                showAlert('Could not save the featured star. Firestore is blocking the write.');
             }
         };
 

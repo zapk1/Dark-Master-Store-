@@ -1857,7 +1857,7 @@ button.bg-yellow-400:hover svg,button[style*="background:#facc15"]:hover svg{str
       <h3><i data-lucide="globe"></i> Which country is it in?</h3>
       <button type="button" class="dms-pick-close" onclick="dmsCloseCountryPicker()"><i data-lucide="x"></i></button>
     </div>
-    div class="dms-pick-body" id="dmsCountryListBody"></div>
+        <div class="dms-pick-body" id="dmsCountryListBody"></div>
   </div>
 </div>
 
@@ -1868,7 +1868,18 @@ button.bg-yellow-400:hover svg,button[style*="background:#facc15"]:hover svg{str
       <h3><i data-lucide="tag"></i> Pick a category</h3>
       <button type="button" class="dms-pick-close" onclick="dmsCloseCategoryPicker()"><i data-lucide="x"></i></button>
     </div>
-    <div class="dms-pick-body" id="dmsCategoryListBody"></div>
+        <div class="dms-pick-body" id="dmsCategoryListBody"></div>
+  </div>
+</div>
+
+<!-- WIDE SHOP CATEGORY PICKER -->
+<div id="dmsShopCatPicker" class="dms-pick">
+  <div class="dms-pick-card">
+    <div class="dms-pick-head">
+      <h3><i data-lucide="layout-grid"></i> Shop category</h3>
+      <button type="button" class="dms-pick-close" onclick="dmsCloseShopCatPicker()"><i data-lucide="x"></i></button>
+    </div>
+    <div class="dms-pick-body" id="dmsShopCatListBody"></div>
   </div>
 </div>
 
@@ -2004,10 +2015,12 @@ async function uploadToGitHub(file) {
         
         
 window.showAlert = function(message) {
+    var el = document.getElementById('customAlert');
     document.getElementById('customAlertMessage').textContent = message;
-    const el = document.getElementById('customAlert');
-    el.style.display = 'flex';
-    setTimeout(() => closeCustomAlert(), 2500);
+    el.style.cssText = 'display:flex;position:fixed;top:14px;left:50%;right:auto;bottom:auto;transform:translateX(-50%);width:calc(100% - 24px);max-width:460px;background:transparent;z-index:2147483647;align-items:flex-start;justify-content:center;';
+    if (window.lucide) lucide.createIcons();
+    clearTimeout(window.__dmsAlertTimer);
+    window.__dmsAlertTimer = setTimeout(function(){ closeCustomAlert(); }, 2500);
 };
 
 window.closeCustomAlert = function() {
@@ -2803,13 +2816,13 @@ window.addEventListener('scroll', () => {
                     <img src="${images[3]}" alt="${product.name}" loading="lazy" />
                 </div>
             ` : `
-                <img src="${mainImage}" alt="${product.name}" class="w-full h-full object-cover" loading="lazy" />
+                <img src="${mainImage}" alt="${product.name}" class="w-full h-full object-contain p-2" loading="lazy" />
             `;
 
       return `
                 <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer" onclick="showProductDetail('${product.id}')">
 
-                    <div class="relative aspect-square">
+                    <div class="relative aspect-square bg-white">
                         ${imageHTML}
                         ${badgesHTML}
                         ${pctOff > 0 ? `<div style="position:absolute;top:8px;right:8px;z-index:12;background:#fff;border:1px solid #111;border-radius:9px;padding:3px 7px;font-size:10px;font-weight:900;color:#111;display:flex;align-items:center;gap:3px;letter-spacing:-0.2px;"><i data-lucide="tag" style="width:10px;height:10px;stroke-width:1;"></i>${pctOff}% OFF</div>` : ''}
@@ -2879,11 +2892,11 @@ window.addEventListener('scroll', () => {
             const content = `
                 <div class="grid md:grid-cols-2 gap-8">
                     <div>
-                        <div class="dms-slider relative bg-gray-100 rounded-2xl mb-3 overflow-hidden" data-images='${JSON.stringify(images.length ? images : [mainImage])}'>
+                        <div class="dms-slider relative bg-white rounded-2xl mb-3 overflow-hidden" data-images='${JSON.stringify(images.length ? images : [mainImage])}'>
                             <div class="dms-slider-track flex transition-transform duration-300 ease-out" style="touch-action:pan-y;">
                                 ${(images.length ? images : [mainImage]).map((img, i) => `
-                                    <div class="dms-slider-slide flex-shrink-0 w-full aspect-square cursor-pointer" onclick="openLightbox('${img}')">
-                                        <img src="${img}" alt="${product.name} ${i+1}" class="w-full h-full object-cover" loading="lazy" draggable="false" />
+                                    <div class="dms-slider-slide flex-shrink-0 w-full aspect-[4/5] cursor-pointer" onclick="openLightbox('${img}')">
+                                        <img src="${img}" alt="${product.name} ${i+1}" class="w-full h-full object-contain p-2" loading="lazy" draggable="false" />
                                     </div>
                                 `).join('')}
                             </div>
@@ -4923,6 +4936,12 @@ function showProductForm(product = null) {
                     </button>
                     <input type="hidden" name="soldBy" id="soldByValue" value="${product?.soldBy || product?.shop_name || ''}"/>
                     <p style="font-size:11px;color:#6b7280;margin:6px 2px 0;">USA shops first — every name ends with its country code. Picking a shop fills the location for you.</p>
+                    <button type="button" class="dms-wide-btn" style="margin-top:8px;" onclick="dmsOpenShopCatPicker()">
+                        <i data-lucide="layout-grid"></i>
+                        <span id="shopCatBtnLabel" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Choose a shop category</span>
+                        <i data-lucide="chevron-down" class="chev"></i>
+                    </button>
+                    <input type="hidden" name="shop_category" id="shopCategoryValue" value="${product?.shop_category || ''}"/>
                 </div>
 
                 <div>
@@ -5062,6 +5081,7 @@ function showProductForm(product = null) {
     dmsInitLocation((product && product.location) || '');
         dmsInitColors();
     dmsInitCategory();
+    dmsInitShopCat();
 
     // Pre-populate existing reviews when editing
 
@@ -5113,6 +5133,7 @@ function showProductForm(product = null) {
             sizes: sizes,
             location: formData.get('location') || '',
             soldBy: formData.get('soldBy') || '',
+            shop_category: formData.get('shop_category') || '',
                         colors: formData.get('colors') || '',
             images: window.uploadedImages,
             created_date: new Date().toISOString()
@@ -5153,12 +5174,12 @@ function showProductForm(product = null) {
             if (isEdit) {
                 // Update existing product (reviews included)
                 await updateDoc(doc(db, 'products', product.id), productData);
-                alert('✅ Product updated successfully!');
+                alert('Product updated successfully!');
             } else {
     // Create new product
     const docRef = await addDoc(collection(db, 'products'), productData);
     productData.id = docRef.id;  // 👈 CAPTURE THE ID!
-    alert('✅ Product created successfully!');
+    alert(' Product created successfully!');
 }
 
             
@@ -5439,7 +5460,7 @@ Date: ${new Date(order.createdAt).toLocaleString()}
                 const messagesSnapshot = await getDocs(collection(db, 'messages'));
                 window.appState.messages = messagesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                 
-                alert('✅ Message sent to customer!');
+                alert(' Message sent to customer!');
             } catch (error) {
                 console.error('Error sending message:', error);
                 alert('Error sending message: ' + error.message);
@@ -5639,7 +5660,7 @@ window.addNewCategory = async function() {
   const imageUrl = await uploadToGitHub(file);
   
   await addDoc(collection(db, 'categories'), { name, description, image: imageUrl, createdAt: new Date().toISOString() });
-  alert('✅ Category added!');
+  alert(' Category added!');
   loadAllData().then(() => showAdminPage('categories'));
 };
 
@@ -5667,7 +5688,7 @@ window.editCategory = async function(catId, currentName, currentDescription) {
   if (imageUrl) updateData.image = imageUrl;
 
   await updateDoc(doc(db, 'categories', catId), updateData);
-  alert('✅ Category updated!');
+  alert('Category updated!');
   loadAllData().then(() => showAdminPage('categories'));
 };
 
@@ -5677,7 +5698,7 @@ window.deleteCategory = async function(catId) {
         await deleteDoc(doc(db, 'categories', catId));
         window.appState.categories = window.appState.categories.filter(c => c.id !== catId);
         renderAdminCategories();
-        alert('✅ Category deleted!');
+        alert('Category deleted!');
     } catch (error) {
         alert('Error: ' + error.message);
     }
@@ -5925,6 +5946,7 @@ window.dmsInitLocation = function (existing) {
   document.getElementById('locCity').innerHTML = '<option value="">City</option>';
   var v = document.getElementById('locValue'); if (v) v.value = existing || '';
   var p = document.getElementById('locPreview'); if (p) p.textContent = existing || 'Pick a country — the city fills itself';
+  if (!existing) window.dmsSetCountry('South Africa');
 };
 
 window.dmsOpenCountryPicker = function () {
@@ -5959,8 +5981,7 @@ window.dmsFillProvinces = function () {
   var list = country ? dmsPlacesFor(country) : [];
   var sel = document.getElementById('locProvince');
   sel.innerHTML = '<option value="">Province / State</option>' + list.map(function (p) { return '<option>' + p.name + '</option>'; }).join('');
-  if (list.length) sel.selectedIndex = 1;
-  window.dmsFillCities();
+  window.dmsFillCities()
 };
 
 window.dmsFillCities = function () {
@@ -5969,7 +5990,6 @@ window.dmsFillCities = function () {
   var prov = country ? dmsPlacesFor(country).filter(function (p) { return p.name === provName; })[0] : null;
   var sel = document.getElementById('locCity');
   sel.innerHTML = '<option value="">City</option>' + (prov ? prov.cities.map(function (c) { return '<option>' + c + '</option>'; }).join('') : '');
-  if (prov && prov.cities.length) sel.selectedIndex = 1;
   window.dmsSyncLocation();
 };
 
@@ -6076,7 +6096,13 @@ window.dmsInitStore = function (existing) {
 window.dmsOpenStorePicker = function () {
   var body = document.getElementById('dmsStoreListBody'); if (!body) return;
   var cur = (document.getElementById('soldByValue') || {}).value || '';
-  var html = '';
+    var html = '<div style="padding:10px 8px 6px;">' +
+    '<label style="font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#9ca3af;">Not in the list? Add your own shop</label>' +
+    '<div style="display:flex;gap:8px;margin-top:6px;">' +
+    '<input id="dmsCustomShopName" type="text" placeholder="Shop name — ZA" style="flex:1;min-width:0;padding:10px 12px;border:1px solid #e5e7eb;border-radius:10px;font-size:13px;outline:none;box-sizing:border-box;"/>' +
+    '<button type="button" onclick="dmsUseCustomShop()" style="background:#111;color:#fff;border:0;border-radius:10px;padding:10px 14px;font-size:12.5px;font-weight:800;cursor:pointer;flex-shrink:0;">Use</button>' +
+    '</div></div>';
+  html += '<div class="dms-pick-group">Shops we already have</div>';
   window.DMS_STORE_ORDER.forEach(function (code) {
     var rows = window.DMS_STORES.filter(function (s) { return s.c === code; });
     if (!rows.length) return;
@@ -6094,6 +6120,15 @@ window.dmsOpenStorePicker = function () {
 
 window.dmsCloseStorePicker = function () {
   var m = document.getElementById('dmsStorePicker'); if (m) m.classList.remove('on');
+};
+
+window.dmsUseCustomShop = function () {
+  var inp = document.getElementById('dmsCustomShopName');
+  var val = (inp && inp.value ? inp.value : '').trim();
+  if (!val) { window.showAlert('Type the shop name first.'); return; }
+  var v = document.getElementById('soldByValue'); if (v) v.value = val;
+  var b = document.getElementById('soldByBtnLabel'); if (b) b.textContent = val;
+  window.dmsCloseStorePicker();
 };
 
 window.dmsPickStore = function (i) {
@@ -6143,6 +6178,33 @@ window.dmsPickCategory = function (id, name) {
   var v = document.getElementById('categoryIdValue'); if (v) v.value = id;
   var b = document.getElementById('categoryBtnLabel'); if (b) b.textContent = name;
   window.dmsCloseCategoryPicker();
+};
+window.DMS_SHOP_CATS = ['Electronics','Phone Accessories','Beauty & Skincare','Fashion & Clothing','T-Shirts','Sneakers & Shoes','Bags & Luggage','Home & Living','Sports & Outdoor','Gifts & Gadgets'];
+window.dmsOpenShopCatPicker = function () {
+  var body = document.getElementById('dmsShopCatListBody'); if (!body) return;
+  var cur = (document.getElementById('shopCategoryValue') || {}).value || '';
+  var html = '<div class="dms-pick-group">Shop categories</div>';
+  window.DMS_SHOP_CATS.forEach(function (c) {
+    html += '<button type="button" class="dms-pick-row' + (cur === c ? ' sel' : '') + '" onclick="dmsPickShopCat(\'' + c + '\')">' +
+      '<i data-lucide="layout-grid"></i><span class="lbl">' + c + '</span>' +
+      (cur === c ? '<span class="code">Selected</span>' : '') + '</button>';
+  });
+  body.innerHTML = html;
+  document.getElementById('dmsShopCatPicker').classList.add('on');
+  if (window.lucide) lucide.createIcons();
+};
+window.dmsCloseShopCatPicker = function () {
+  var m = document.getElementById('dmsShopCatPicker'); if (m) m.classList.remove('on');
+};
+window.dmsPickShopCat = function (name) {
+  var v = document.getElementById('shopCategoryValue'); if (v) v.value = name;
+  var b = document.getElementById('shopCatBtnLabel'); if (b) b.textContent = name;
+  window.dmsCloseShopCatPicker();
+};
+window.dmsInitShopCat = function () {
+  var v = document.getElementById('shopCategoryValue'); if (!v) return;
+  var b = document.getElementById('shopCatBtnLabel');
+  if (b) b.textContent = v.value || 'Choose a shop category';
 };
 window.dmsInitCategory = function () {
   var v = document.getElementById('categoryIdValue'); if (!v) return;
@@ -6901,7 +6963,7 @@ document.getElementById('sellerApplyForm').onsubmit = async function(e) {
         window.location.href = `mailto:darkmasterstore.za@beelzeapps.co.za?subject=${subject}&body=${body}`;
 
 
-        successEl.textContent = '✅ Application + proof submitted! Your email app should now open to confirm.';
+        successEl.textContent = 'Application + proof submitted! Your email app should now open to confirm.';
         successEl.style.display = 'block';
         e.target.reset();
         document.getElementById('sellerPaySection').style.display = 'none';
@@ -7345,7 +7407,7 @@ function renderSellerAddProduct(seller, product = null) {
             } else {
                 await addDoc(collection(db, 'products'), productData);
             }
-            showAlert(isEdit ? '✅ Product updated!' : '✅ Product listed on Dark Master Store!');
+            showAlert(isEdit ? ' Product updated!' : ' Product listed on Dark Master Store!');
             showSellerPage('products');
         } catch (err) {
             errorEl.textContent = 'Error: ' + err.message;
@@ -7397,7 +7459,7 @@ window.sellerDeleteProduct = async function(productId) {
     if (!confirm('Delete this product? This cannot be undone.')) return;
     try {
         await deleteDoc(doc(db, 'products', productId));
-        showAlert('✅ Product deleted');
+        showAlert(' Product deleted');
         showSellerPage('products');
     } catch(err) {
         showAlert('Error: ' + err.message);
@@ -7500,7 +7562,7 @@ window.createSellerAccount = async function() {
 window.copySellerCode = function() {
     const code = document.getElementById('generatedCodeText').textContent;
     navigator.clipboard.writeText(code).then(() => {
-        showAlert('✅ Code copied: ' + code);
+        showAlert('Code copied: ' + code);
     });
 };
 
@@ -7628,13 +7690,13 @@ window.dismissApplication = async function(appId) {
 
 
 window.copyCodeFromAdmin = function(code) {
-    navigator.clipboard.writeText(code).then(() => showAlert('✅ Code copied: ' + code));
+    navigator.clipboard.writeText(code).then(() => showAlert(' Code copied: ' + code));
 };
 
 window.toggleSellerStatus = async function(sellerId, currentlyDisabled) {
     try {
         await updateDoc(doc(db, 'sellers', sellerId), { disabled: !currentlyDisabled });
-        showAlert(currentlyDisabled ? '✅ Seller enabled' : '⚠️ Seller disabled');
+        showAlert(currentlyDisabled ? ' Seller enabled' : ' Seller disabled');
         renderAdminSellers();
     } catch(err) {
         showAlert('Error: ' + err.message);
@@ -7645,7 +7707,7 @@ window.deleteSellerAccount = async function(sellerId) {
     if (!confirm('Delete this seller account? This is permanent.')) return;
     try {
         await deleteDoc(doc(db, 'sellers', sellerId));
-        showAlert('✅ Seller account deleted');
+        showAlert(' Seller account deleted');
         renderAdminSellers();
     } catch(err) {
         showAlert('Error: ' + err.message);
@@ -7660,6 +7722,7 @@ window.deleteSellerAccount = async function(sellerId) {
   var IDS=['authModal','adminLoginPopup','sellPopup','sellerInfoPopup','sellerLoginPopup','dmsVaultPopup','dmsSellerPopup','quickOrdersPopup','quickSellersPopup','waPopup','bcPopup','customAlert','imageLightbox'];
 
   function lift(el){
+    if(el.id==='customAlert'){ el.style.position='fixed'; el.style.zIndex='2147483600'; return; }
     el.style.position='fixed';
     el.style.inset='0';
     el.style.zIndex='2147483600';
@@ -7820,7 +7883,7 @@ window.saveSellerBank = async function() {
     try {
         await updateDoc(doc(db, 'sellers', seller.id), { bankName, bankAccName, bankAcc, bankBranch, bankType });
         seller.bankName = bankName; seller.bankAccName = bankAccName; seller.bankAcc = bankAcc; seller.bankBranch = bankBranch; seller.bankType = bankType;
-        showAlert('✅ Bank details saved. Customers will pay into this account.');
+        showAlert(' Bank details saved. Customers will pay into this account.');
     } catch(err) { showAlert('Error: ' + err.message); }
 };
 
@@ -8432,7 +8495,7 @@ window.adminLoadAllProducts = async function() {
         window.appState.products = [...window.HARDCODED_PRODUCTS, ...allProducts];
         window._allProductsLoaded = true;
         console.log('Admin loaded ALL ' + allProducts.length + ' products from Firestore');
-        showAlert('✅ Loaded all ' + allProducts.length + ' products from Firebase');
+        showAlert(' Loaded all ' + allProducts.length + ' products from Firebase');
         renderAdminProducts();
     } catch (err) {
         console.error('Error loading all products:', err);

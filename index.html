@@ -4787,6 +4787,38 @@ async function uploadToImgBB(file) {
 
 
 
+// Fit any photo whole into the store's square white frame
+window.dmsSquareImage = function (file) {
+    return new Promise(function (resolve) {
+        if (!file || !file.type || file.type.indexOf('image/') !== 0) { resolve(file); return; }
+        var size = 1200;
+        var url = URL.createObjectURL(file);
+        var img = new Image();
+        img.onload = function () {
+            var canvas = document.createElement('canvas');
+            canvas.width = size; canvas.height = size;
+            var ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, size, size);
+            var pad = Math.round(size * 0.03);
+            var box = size - pad * 2;
+            var scale = Math.min(box / img.width, box / img.height);
+            var w = Math.round(img.width * scale);
+            var h = Math.round(img.height * scale);
+            ctx.imageSmoothingQuality = 'high';
+            ctx.drawImage(img, Math.round((size - w) / 2), Math.round((size - h) / 2), w, h);
+            URL.revokeObjectURL(url);
+            canvas.toBlob(function (blob) {
+                if (!blob) { resolve(file); return; }
+                var name = (file.name || 'image').replace(/\.[^.]+$/, '') + '.jpg';
+                resolve(new File([blob], name, { type: 'image/jpeg' }));
+            }, 'image/jpeg', 0.92);
+        };
+        img.onerror = function () { URL.revokeObjectURL(url); resolve(file); };
+        img.src = url;
+    });
+};
+
 // Handle multiple image uploads
 window.handleProductImages = async function(files) {
     const fileList = Array.from(files);
@@ -4810,8 +4842,12 @@ window.handleProductImages = async function(files) {
                 uploadProgress.textContent = `Uploading ${i + 1}/${fileList.length} to Cloudflare R2...`;
             }
             
+        // Fit to the store's square frame before uploading
+            if (uploadProgress) uploadProgress.textContent = `Fitting ${i + 1}/${fileList.length} to a square…`;
+            const squared = await window.dmsSquareImage(file);
             // Upload to Cloudflare R2 and get URL
-            const r2Url = await uploadToImgBB(file);
+            const r2Url = await uploadToImgBB(squared);
+            
             if (!r2Url) throw new Error('R2 returned no URL');
             window.uploadedImages.push(r2Url);
             
